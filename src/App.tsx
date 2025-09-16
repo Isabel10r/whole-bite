@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 import { Helmet } from 'react-helmet-async'
-import { motion, AnimatePresence } from 'framer-motion'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -31,60 +30,13 @@ function App() {
       <Layout className="min-h-screen">
         <Header />
         <Content className="flex-1">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <Home />
-                </motion.div>
-              } />
-              <Route path="/calculator" element={
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <NutritionCalculator />
-                </motion.div>
-              } />
-              <Route path="/calculator/bmr" element={
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <BMRCalculator />
-                </motion.div>
-              } />
-              <Route path="/recipes" element={
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <Recipes />
-                </motion.div>
-              } />
-              <Route path="/about" element={
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <About />
-                </motion.div>
-              } />
-            </Routes>
-          </AnimatePresence>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calculator" element={<NutritionCalculator />} />
+            <Route path="/calculator/bmr" element={<BMRCalculator />} />
+            <Route path="/recipes" element={<Recipes />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </Content>
         <Footer />
       </Layout>

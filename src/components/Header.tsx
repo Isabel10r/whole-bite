@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
+// Header height constant for consistent spacing across components
+export const HEADER_HEIGHT = 74;
+
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,10 +33,6 @@ const Header = () => {
     {
       key: '/calculator/bmr',
       label: 'BMR Calculator',
-    },
-    {
-      key: '/calculator/macros',
-      label: 'Macro Calculator',
     },
   ];
 
@@ -102,8 +101,8 @@ const Header = () => {
   };
 
   const handleBookNow = () => {
-    // Redirect to Google Calendar booking
-    window.open('https://calendar.google.com/calendar/appointments/schedules/AcZssZ0...', '_blank');
+    // Redirect to Calendly booking
+    window.open('https://calendly.com/isabel10ramirez06', '_blank');
   };
 
   return (
@@ -113,12 +112,10 @@ const Header = () => {
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
           : 'bg-white shadow-sm'
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{ height: `${HEADER_HEIGHT}px` }}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="flex items-center justify-between w-full">
           {/* Logo Area - Left */}
           <motion.div 
             className="flex items-center space-x-3"
@@ -150,18 +147,18 @@ const Header = () => {
           </motion.div>
 
           {/* Navigation Menu - Center */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex flex-1 justify-center">
             <Menu
               onClick={onClick}
               selectedKeys={[location.pathname]}
               mode="horizontal"
               items={mainMenuItems}
-              className="bg-transparent border-none"
+              className="bg-transparent border-none flex-1 justify-center"
               style={{
                 fontSize: '16px',
                 fontWeight: '500',
                 lineHeight: '1.5',
-                minWidth: '400px',
+                display: 'flex',
                 justifyContent: 'center'
               }}
               theme="light"

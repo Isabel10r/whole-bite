@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import NutritionCalculator from './pages/NutritionCalculator'
+import BMRCalculator from './pages/BMRCalculator'
 import Recipes from './pages/Recipes'
 import About from './pages/About'
 import './App.css'
@@ -50,6 +51,16 @@ function App() {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   <NutritionCalculator />
+                </motion.div>
+              } />
+              <Route path="/calculator/bmr" element={
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <BMRCalculator />
                 </motion.div>
               } />
               <Route path="/recipes" element={

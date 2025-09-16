@@ -4,6 +4,7 @@ import { ArrowRightOutlined, HeartOutlined, TrophyOutlined, TeamOutlined } from 
 import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { HEADER_HEIGHT } from '../components/Header';
 
 
 // Custom hook for scroll-based gradient animation
@@ -280,7 +281,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#F7F7F7] font-sans">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0ea7b5] via-[#6bd2db] to-[#0c457d] text-white py-32 md:py-40 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0ea7b5] via-[#6bd2db] to-[#0c457d] text-white relative overflow-hidden" style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px)` }}>
         {/* Floating Bubbles */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -340,7 +341,7 @@ const HomePage = () => {
           />
         </div>
         
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center" style={{ minHeight: `calc(100dvh - ${HEADER_HEIGHT}px)` }}>
           <div className="max-w-5xl mx-auto">
             <motion.h1 
               className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight"
@@ -392,7 +393,7 @@ const HomePage = () => {
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
               >
                 <AnimatedCounter end={50} suffix="+" />
-                <div className="text-sm opacity-90 mt-2">Evidence-Based Methods</div>
+                <div className="text-sm opacity-90 mt-2">Recipes & Meal Ideas</div>
               </div>
               <div 
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
@@ -418,19 +419,23 @@ const HomePage = () => {
                   className="bg-[#e8702a] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:shadow-xl"
                   style={{
                     background: '#e8702a',
-                    borderColor: '#e8702a'
+                    borderColor: '#e8702a',
+                    color: 'white'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#0ea7b5';
-                    e.currentTarget.style.borderColor = '#0ea7b5';
+                    e.currentTarget.style.background = '#ffbe4f';
+                    e.currentTarget.style.borderColor = '#ffbe4f';
+                    e.currentTarget.style.color = '#0c457d';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = '#e8702a';
                     e.currentTarget.style.borderColor = '#e8702a';
+                    e.currentTarget.style.color = 'white';
                   }}
                   onClick={(e) => {
-                    e.currentTarget.style.background = '#0ea7b5';
-                    e.currentTarget.style.borderColor = '#0ea7b5';
+                    e.currentTarget.style.background = '#ffbe4f';
+                    e.currentTarget.style.borderColor = '#ffbe4f';
+                    e.currentTarget.style.color = '#0c457d';
                   }}
                   href="#contact"
                 >
@@ -978,7 +983,7 @@ const HomePage = () => {
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.open('https://calendar.google.com/calendar/appointments/schedules', '_blank');
+                        window.open('https://calendly.com/isabel10ramirez06', '_blank');
                       }}
                     >
                       Start Now
@@ -1404,7 +1409,7 @@ const HomePage = () => {
               Be the next success story. Join others who've already transformed their energy, weight, and relationship with food. Your transformation starts with one decision.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+            <div className="flex justify-center items-center mb-12">
               <Button
                 type="primary"
                 size="large"
@@ -1423,31 +1428,9 @@ const HomePage = () => {
                   e.currentTarget.style.borderColor = '#e8702a';
                   e.currentTarget.style.color = 'white';
                 }}
-                href="mailto:your.email@example.com"
+                onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
               >
                 Get Started Today <ArrowRightOutlined />
-              </Button>
-              <Button
-                size="large"
-                className="bg-transparent text-white border-2 border-white px-12 py-4 rounded-full transition-all duration-300 text-lg"
-                style={{
-                  background: 'transparent',
-                  borderColor: 'white',
-                  color: 'white'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#0ea7b5';
-                  e.currentTarget.style.borderColor = '#0ea7b5';
-                  e.currentTarget.style.color = 'white';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.borderColor = 'white';
-                  e.currentTarget.style.color = 'white';
-                }}
-                href="tel:+1234567890"
-              >
-                Call Now
               </Button>
             </div>
             
@@ -1491,9 +1474,9 @@ const HomePage = () => {
                       filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
                     }}
                   >
-                    Weekly
+                    4 weeks
                   </div>
-                  <div className="text-white">Check-ins</div>
+                  <div className="text-white">Follow-up</div>
                 </div>
               </motion.div>
               <motion.div 
@@ -1607,7 +1590,7 @@ const HomePage = () => {
                         backgroundColor: service.iconColor,
                         borderColor: service.iconColor
                       }}
-                      onClick={() => window.open('https://calendar.google.com/calendar/appointments/schedules', '_blank')}
+                      onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
                     >
                       Start Now!
                     </Button>

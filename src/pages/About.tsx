@@ -33,86 +33,86 @@ const About: React.FC = () => {
 
   const expertise = [
     {
-      name: 'Maternal Nutrition',
-      description: 'Specialized guidance for pregnancy, postpartum recovery, and breastfeeding nutrition.',
+      name: 'Functional Nutrition',
+      description: 'Customized plans to improve health from the root, supporting digestive, hormonal, and metabolic processes.',
       icon: <HeartOutlined className="text-3xl" style={{ color: '#FF6B6B' }} />,
-      details: ['Prenatal nutrition planning', 'Postpartum recovery support', 'Breastfeeding nutrition']
+      details: ['Digestive Health', 'Hormonal Balance', 'Metabolic Optimization']
     },
     {
-      name: 'Infant & Child Nutrition',
-      description: 'Expert support for baby weaning, toddler nutrition, and healthy eating habits.',
-      icon: <TeamOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
-      details: ['Baby-led weaning', 'Toddler meal planning', 'Picky eating solutions']
+      name: 'Habit Transformation',
+      description: 'Practical strategies to achieve lasting lifestyle changes without extreme restrictions.',
+      icon: <TrophyOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      details: ['Sustainable Changes', 'Nutritional Education', 'Long-term Adherence']
     },
     {
-      name: 'Family Wellness',
-      description: 'Holistic approach to family nutrition and healthy lifestyle habits.',
-      icon: <SafetyOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
-      details: ['Family meal planning', 'Healthy lifestyle coaching', 'Preventive nutrition']
+      name: 'Fitness Lifestyle',
+      description: 'Support in body recomposition processes, muscle gain, or fat loss journeys.',
+      icon: <StarOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
+      details: ['Body Recomposition', 'Muscle Gain', 'Fat Loss']
     },
     {
-      name: 'Evidence-Based Practice',
-      description: 'All recommendations backed by the latest scientific research and clinical studies.',
+      name: 'Nutritional Education',
+      description: 'Guides, menus, digital resources, and follow-up to ensure understanding and adherence.',
       icon: <BulbOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
-      details: ['Research-based approach', 'Clinical experience', 'Continuous education']
+      details: ['Educational Resources', 'Personalized Follow-up', 'Digital Tools']
     }
   ]
 
   const values = [
     {
       icon: <SafetyOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
-      title: 'Evidence-Based',
-      description: 'All my recommendations are backed by scientific research and peer-reviewed studies.'
+      title: 'Commitment',
+      description: 'Each plan is personalized and adapted to my patients\' real life, with continuous follow-up.'
     },
     {
       icon: <HeartOutlined className="text-3xl" style={{ color: '#FF6B6B' }} />,
-      title: 'Family-Centered',
-      description: 'I prioritize the unique needs of mothers and families, making nutrition guidance accessible and practical.'
+      title: 'Balance',
+      description: 'I promote flexible, enjoyable, and practical nutrition without extreme diets or unnecessary restrictions.'
     },
     {
-      icon: <GlobalOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
-      title: 'Inclusive',
-      description: 'I support diverse dietary needs and cultural food preferences from around the world.'
+      icon: <BulbOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
+      title: 'Science & Education',
+      description: 'I back every strategy with scientific evidence and strive to teach rather than impose.'
     },
     {
-      icon: <BulbOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
-      title: 'Innovation',
-      description: 'I continuously improve my approach with the latest research and personalized solutions.'
+      icon: <GlobalOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      title: 'Empathy & Closeness',
+      description: 'I understand the emotions surrounding food and accompany each process with humanity.'
     }
   ]
 
   const milestones = [
     {
       year: '2018',
-      title: 'Nutrition Certification',
-      description: 'Completed comprehensive nutrition certification with focus on maternal and child health.'
+      title: 'University Education',
+      description: 'Began my comprehensive five-year university education in Nutrition and Dietetics.'
     },
     {
-      year: '2019',
-      title: 'Clinical Practice Begins',
-      description: 'Started working with families, specializing in pregnancy and postpartum nutrition.'
-    },
-    {
-      year: '2021',
-      title: 'Baby Weaning Specialist',
-      description: 'Became certified in baby-led weaning and infant nutrition guidance.'
+      year: '2020',
+      title: 'Functional Nutrition Specialization',
+      description: 'Specialized in functional nutrition and metabolism, deepening my understanding of root-cause health.'
     },
     {
       year: '2022',
-      title: 'Online Platform Launch',
-      description: 'Launched digital nutrition services to reach more families worldwide.'
+      title: 'Professional Certification',
+      description: 'Obtained my certified Nutritionist Dietitian degree and began my professional practice.'
+    },
+    {
+      year: '2023',
+      title: 'Fitness & Habits Focus',
+      description: 'Developed my specialty in fitness lifestyle and healthy habit transformation.'
     },
     {
       year: '2024',
-      title: '500+ Families Helped',
-      description: 'Successfully guided over 500 families in their nutrition journey.'
+      title: 'Digital Platform',
+      description: 'Launched my digital platform to provide nutritional education and interactive tools.'
     }
   ]
 
   const stats = [
-    { title: 'Families Helped', value: '500+', icon: <TeamOutlined /> },
-    { title: 'Years Experience', value: '6+', icon: <TrophyOutlined /> },
-    { title: 'Countries Served', value: '15+', icon: <GlobalOutlined /> },
+    { title: 'Patients Transformed', value: '300+', icon: <TeamOutlined /> },
+    { title: 'Years of Training', value: '5+', icon: <TrophyOutlined /> },
+    { title: 'Personalized Plans', value: '500+', icon: <GlobalOutlined /> },
     { title: 'Success Rate', value: '95%', icon: <StarOutlined /> }
   ]
 
@@ -120,7 +120,7 @@ const About: React.FC = () => {
     <>
       <Helmet>
         <title>About Me - Isabel Diez</title>
-        <meta name="description" content="Learn about Isabel Diez's mission to provide expert nutrition guidance for mothers and babies, helping families make informed dietary choices for a healthier lifestyle." />
+        <meta name="description" content="Learn about Isabel Diez's mission as a certified nutritionist dietitian specializing in functional nutrition, fitness lifestyle, and healthy habit transformation." />
       </Helmet>
 
       <div className="min-h-screen bg-[#F7F7F7]">
@@ -136,8 +136,8 @@ const About: React.FC = () => {
               About Isabel Diez
             </Title>
             <Paragraph className="text-xl max-w-3xl mx-auto" style={{ color: '#2E2E2E' }}>
-              I'm a certified nutritionist dedicated to helping mothers and families achieve optimal health 
-              through personalized, evidence-based nutrition guidance.
+              I'm Isabel Diez, a certified nutritionist dietitian with a deep passion for functional nutrition, 
+              fitness lifestyle, and healthy habit transformation.
             </Paragraph>
           </motion.div>
 
@@ -152,22 +152,23 @@ const About: React.FC = () => {
                 >
                   <Title level={2} className="mb-6" style={{ color: '#2E2E2E' }}>My Mission</Title>
                   <Paragraph className="text-lg mb-6" style={{ color: '#2E2E2E' }}>
-                    As a certified nutritionist, I specialize in maternal and infant nutrition, helping mothers 
-                    navigate the unique nutritional needs during pregnancy, postpartum recovery, and baby weaning. 
-                    My approach combines scientific evidence with practical, sustainable solutions.
+                    With over five years of university training, my approach focuses on helping people build a sustainable 
+                    path to wellness, without extreme diets or unnecessary restrictions, but through balance, portion control, 
+                    and nutritional education.
                   </Paragraph>
                   <Paragraph className="text-lg mb-6" style={{ color: '#2E2E2E' }}>
-                    Whether you're preparing for pregnancy, recovering postpartum, or introducing solid foods to your baby, 
-                    I provide personalized guidance that fits your family's lifestyle and cultural preferences.
+                    My mission is to empower each patient to understand that good nutrition is not about prohibitions, 
+                    but about learning to enjoy food with awareness and balance. I firmly believe that nutrition is a 
+                    powerful tool to improve health, prevent diseases, and extend longevity.
                   </Paragraph>
                   <Space size="large">
                     <div className="flex items-center">
                       <CheckCircleOutlined style={{ color: '#4ECDC4' }} className="mr-2" />
-                      <Text strong style={{ color: '#2E2E2E' }}>Evidence-Based Approach</Text>
+                      <Text strong style={{ color: '#2E2E2E' }}>Scientific Approach</Text>
                     </div>
                     <div className="flex items-center">
                       <CheckCircleOutlined style={{ color: '#4ECDC4' }} className="mr-2" />
-                      <Text strong style={{ color: '#2E2E2E' }}>Personalized Guidance</Text>
+                      <Text strong style={{ color: '#2E2E2E' }}>Sustainable Transformation</Text>
                     </div>
                   </Space>
                 </motion.div>
@@ -212,7 +213,8 @@ const About: React.FC = () => {
             >
               <Title level={2} className="mb-4" style={{ color: '#2E2E2E' }}>My Values</Title>
               <Paragraph className="text-lg max-w-2xl mx-auto" style={{ color: '#2E2E2E' }}>
-                These core values guide everything I do and shape my commitment to helping families thrive.
+                These core values guide everything I do and shape my commitment to helping people 
+                achieve their wellness in a sustainable way.
               </Paragraph>
             </motion.div>
 
@@ -247,8 +249,8 @@ const About: React.FC = () => {
             >
               <Title level={2} className="mb-4" style={{ color: '#2E2E2E' }}>My Expertise</Title>
               <Paragraph className="text-lg max-w-2xl mx-auto" style={{ color: '#2E2E2E' }}>
-                With specialized training in maternal and infant nutrition, I bring a unique perspective 
-                to helping families navigate their nutritional journey.
+                Throughout my practice, I've had the privilege of seeing how my patients not only reach their goals, 
+                but also transform their relationship with food, adopting habits that last over time.
               </Paragraph>
             </motion.div>
 
@@ -295,7 +297,8 @@ const About: React.FC = () => {
             >
               <Title level={2} className="mb-4" style={{ color: '#2E2E2E' }}>My Journey</Title>
               <Paragraph className="text-lg max-w-2xl mx-auto" style={{ color: '#2E2E2E' }}>
-                From clinical practice to specialized maternal nutrition, here's how I've evolved to serve families better.
+                From my university education to my specialization in functional nutrition and fitness lifestyle, 
+                this has been my path to providing the best service to my patients.
               </Paragraph>
             </motion.div>
 
@@ -332,11 +335,11 @@ const About: React.FC = () => {
               viewport={{ once: true }}
             >
               <Title level={2} className="text-white mb-6">
-                Ready to Transform Your Family's Health?
+                Ready to Transform Your Health?
               </Title>
               <Paragraph className="text-xl text-white mb-8 max-w-2xl mx-auto">
-                Join hundreds of families who have already achieved their health goals with my guidance. 
-                Start your personalized nutrition journey today.
+                Each success story from my patients is the driving force that motivates me to keep growing as a professional. 
+                My goal is for you to find a safe, realistic, and motivating space to achieve lasting results.
               </Paragraph>
               <Space size="large">
                 <a href="/calculator">

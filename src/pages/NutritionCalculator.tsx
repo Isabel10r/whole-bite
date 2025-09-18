@@ -561,7 +561,7 @@ const handleSearch = async (query: string) => {
         <meta name="description" content="Calculate calories, macronutrients, and micronutrients for any food or recipe. Track your daily nutrition intake." />
       </Helmet>
 
-      <div className="min-h-screen bg-[#F7F7F7] relative overflow-hidden">
+      <div className="min-h-screen bg-[#F7F7F7] font-sans relative overflow-hidden">
         {/* Floating Bubbles Background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -633,7 +633,7 @@ const handleSearch = async (query: string) => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12 relative z-10 font-sans">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -671,7 +671,7 @@ const handleSearch = async (query: string) => {
               >
                 <Card 
                   title={null}
-                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                   style={{
                     background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
                   }}
@@ -681,7 +681,7 @@ const handleSearch = async (query: string) => {
                     <div className="w-10 h-10 rounded-full bg-[#e74c3c]/10 flex items-center justify-center">
                       <FontAwesomeIcon icon={faUtensils} className="text-[#e74c3c] text-lg" />
                     </div>
-                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px' }}>
+                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                       Add Food
                     </Text>
                   </div>
@@ -690,7 +690,7 @@ const handleSearch = async (query: string) => {
                   <div>
                     <div className="flex justify-between items-center mb-3">
                       <div className="flex items-center gap-2">
-                        <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>Search Food:</Text>
+                        <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>Search Food:</Text>
                       </div>
                       {(searchTerm || selectedFood) && (
                         <Button 
@@ -724,7 +724,7 @@ const handleSearch = async (query: string) => {
                       >
                         <div className="flex items-center gap-2">
                           <FontAwesomeIcon icon={faCheckCircle} className="text-[#27ae60] text-sm" />
-                          <Text className="text-sm font-medium" style={{ color: '#24604c' }}>
+                          <Text className="text-sm font-medium" style={{ color: '#24604c', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Selected: <strong>{selectedFood.name}</strong>
                           </Text>
                         </div>
@@ -754,7 +754,7 @@ const handleSearch = async (query: string) => {
                           <Spin size="default" />
                           <div className="flex items-center justify-center gap-2 mt-2">
                             <FontAwesomeIcon icon={faSearch} className="text-[#3498db] text-sm" />
-                            <Text type="secondary" style={{ color: '#7c8784' }}>
+                            <Text type="secondary" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                               Searching nutrition database...
                             </Text>
                           </div>
@@ -779,7 +779,7 @@ const handleSearch = async (query: string) => {
                           <div className="w-12 h-12 rounded-full bg-[#f39c12]/10 flex items-center justify-center mx-auto mb-3">
                             <FontAwesomeIcon icon={faSearch} className="text-[#f39c12] text-xl" />
                           </div>
-                          <Text type="secondary" style={{ color: '#7c8784' }}>
+                          <Text type="secondary" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             No results found. Try a different search term.
                           </Text>
                         </div>
@@ -826,7 +826,7 @@ const handleSearch = async (query: string) => {
                             transition={{ duration: 0.2 }}
                           >
                             <div className="flex justify-between items-start mb-2">
-                              <Text strong className="flex-1 mr-2" style={{ color: '#2E2E2E' }}>
+                              <Text strong className="flex-1 mr-2" style={{ color: '#2E2E2E', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                 {food.description}
                               </Text>
                               {food.dataType && (
@@ -840,14 +840,14 @@ const handleSearch = async (query: string) => {
                             <div className="flex justify-between items-center">
                               <div className="flex items-center gap-2">
                                 <FontAwesomeIcon icon={faFire} className="text-[#e67e22] text-sm" />
-                                <Text type="secondary" className="text-sm font-medium" style={{ color: '#7c8784' }}>
+                                <Text type="secondary" className="text-sm font-medium" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                   {Math.round(calories)} cal per 100g
                                 </Text>
                               </div>
                               {food.foodPortions && food.foodPortions.length > 0 && (
                                 <div className="flex items-center gap-1">
                                   <FontAwesomeIcon icon={faUtensils} className="text-[#9b59b6] text-xs" />
-                                  <Text type="secondary" className="text-xs" style={{ color: '#7c8784' }}>
+                                  <Text type="secondary" className="text-xs" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                     Portions
                                   </Text>
                                 </div>
@@ -870,7 +870,7 @@ const handleSearch = async (query: string) => {
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <FontAwesomeIcon icon={faCalculator} className="text-[#2980b9] text-sm" />
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Quantity:
                           </Text>
                         </div>
@@ -897,7 +897,7 @@ const handleSearch = async (query: string) => {
                             >
                               <div className="flex items-center gap-2">
                                 <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
-                                <Text className="text-sm" style={{ color: '#24604c' }}>
+                                <Text className="text-sm" style={{ color: '#24604c', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                   Suggested quantity: <strong>{quantity} {unit}</strong>
                                 </Text>
                               </div>
@@ -909,7 +909,7 @@ const handleSearch = async (query: string) => {
                       <div>
                         <div className="flex items-center gap-2 mb-2">
                           <FontAwesomeIcon icon={faRulerCombined} className="text-[#8e44ad] text-sm" />
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Unit:
                           </Text>
                         </div>
@@ -978,7 +978,7 @@ const handleSearch = async (query: string) => {
                     <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
                       <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
                     </div>
-                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px' }}>
+                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                       Your Daily Progress
                     </Text>
                   </div>
@@ -1000,7 +1000,7 @@ const handleSearch = async (query: string) => {
                       transition={{ duration: 0.4, delay: 0.1 }}
                     >
                       <Card 
-                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                         style={{
                           background: 'linear-gradient(135deg, #10b981/10 0%, white 50%, #10b981/5 100%)'
                         }}
@@ -1009,7 +1009,7 @@ const handleSearch = async (query: string) => {
                           <div className="w-12 h-12 rounded-full bg-[#e74c3c]/10 flex items-center justify-center mx-auto mb-2">
                             <FontAwesomeIcon icon={faFire} className="text-xl text-[#e74c3c]" />
                           </div>
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Total Calories
                           </Text>
                         </div>
@@ -1023,7 +1023,7 @@ const handleSearch = async (query: string) => {
                           strokeColor="#e74c3c"
                           trailColor="#b2d4c7"
                         />
-                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                           Goal: {dailyGoals.calories} cal
                         </Text>
                       </Card>
@@ -1036,7 +1036,7 @@ const handleSearch = async (query: string) => {
                       transition={{ duration: 0.4, delay: 0.2 }}
                     >
                       <Card 
-                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                         style={{
                           background: 'linear-gradient(135deg, #24604c/10 0%, white 50%, #24604c/5 100%)'
                         }}
@@ -1045,7 +1045,7 @@ const handleSearch = async (query: string) => {
                           <div className="w-12 h-12 rounded-full bg-[#3498db]/10 flex items-center justify-center mx-auto mb-2">
                             <FontAwesomeIcon icon={faUtensils} className="text-xl text-[#3498db]" />
                           </div>
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Protein (g)
                           </Text>
                         </div>
@@ -1059,7 +1059,7 @@ const handleSearch = async (query: string) => {
                           strokeColor="#3498db"
                           trailColor="#b2d4c7"
                         />
-                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                           Goal: {dailyGoals.protein}g
                         </Text>
                       </Card>
@@ -1072,7 +1072,7 @@ const handleSearch = async (query: string) => {
                       transition={{ duration: 0.4, delay: 0.3 }}
                     >
                       <Card 
-                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                         style={{
                           background: 'linear-gradient(135deg, #90cbb9/10 0%, white 50%, #90cbb9/5 100%)'
                         }}
@@ -1081,7 +1081,7 @@ const handleSearch = async (query: string) => {
                           <div className="w-12 h-12 rounded-full bg-[#27ae60]/10 flex items-center justify-center mx-auto mb-2">
                             <FontAwesomeIcon icon={faLeaf} className="text-xl text-[#27ae60]" />
                           </div>
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Carbs (g)
                           </Text>
                         </div>
@@ -1095,7 +1095,7 @@ const handleSearch = async (query: string) => {
                           strokeColor="#27ae60"
                           trailColor="#b2d4c7"
                         />
-                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                           Goal: {dailyGoals.carbs}g
                         </Text>
                       </Card>
@@ -1108,7 +1108,7 @@ const handleSearch = async (query: string) => {
                       transition={{ duration: 0.4, delay: 0.4 }}
                     >
                       <Card 
-                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                         style={{
                           background: 'linear-gradient(135deg, #b2d4c7/10 0%, white 50%, #b2d4c7/5 100%)'
                         }}
@@ -1117,7 +1117,7 @@ const handleSearch = async (query: string) => {
                           <div className="w-12 h-12 rounded-full bg-[#f39c12]/10 flex items-center justify-center mx-auto mb-2">
                             <FontAwesomeIcon icon={faSeedling} className="text-xl text-[#f39c12]" />
                           </div>
-                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                             Fat (g)
                           </Text>
                         </div>
@@ -1131,7 +1131,7 @@ const handleSearch = async (query: string) => {
                           strokeColor="#f39c12"
                           trailColor="#e5e7eb"
                         />
-                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                           Goal: {dailyGoals.fat}g
                         </Text>
                       </Card>
@@ -1152,12 +1152,12 @@ const handleSearch = async (query: string) => {
                         <div className="w-10 h-10 rounded-full bg-[#9b59b6]/10 flex items-center justify-center">
                           <FontAwesomeIcon icon={faChartPie} className="text-[#9b59b6] text-lg" />
                         </div>
-                        <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                        <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                           Macronutrient Distribution
                         </span>
                       </div>
                     }
-                    className="shadow-lg border border-[#24604c]/20 rounded-2xl"
+                    className="shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
                     style={{
                       background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
                     }}
@@ -1210,15 +1210,15 @@ const handleSearch = async (query: string) => {
                                   className="w-6 h-6 rounded-full shadow-sm" 
                                   style={{ backgroundColor: item.color }}
                                 />
-                                <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                                <Text strong style={{ color: '#2E2E2E', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                   {item.name}
                                 </Text>
                               </div>
                               <div className="text-right">
-                                <Text strong style={{ color: item.color, fontSize: '16px' }}>
+                                <Text strong style={{ color: item.color, fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                   {item.value} cal
                                 </Text>
-                                <Text type="secondary" className="block text-xs" style={{ color: '#7c8784' }}>
+                                <Text type="secondary" className="block text-xs" style={{ color: '#7c8784', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                                   {((item.value / (macronutrientData.reduce((sum, m) => sum + m.value, 0))) * 100).toFixed(0)}%
                                 </Text>
                               </div>
@@ -1245,12 +1245,12 @@ const handleSearch = async (query: string) => {
                   <div className="w-10 h-10 rounded-full bg-[#16a085]/10 flex items-center justify-center">
                     <FontAwesomeIcon icon={faUtensils} className="text-[#16a085] text-lg" />
                   </div>
-                  <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                  <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                     Your Food List
                   </span>
                 </div>
               }
-              className="mt-8 shadow-lg border border-[#24604c]/20 rounded-2xl"
+              className="mt-8 shadow-lg border border-[#24604c]/20 rounded-2xl font-sans"
               style={{
                 background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
               }}
@@ -1272,12 +1272,12 @@ const handleSearch = async (query: string) => {
                   <div className="w-16 h-16 rounded-full bg-[#95a5a6]/10 flex items-center justify-center mx-auto mb-4">
                     <FontAwesomeIcon icon={faUtensils} className="text-[#95a5a6] text-2xl" />
                   </div>
-                  <Text style={{ color: '#7c8784', fontSize: '16px' }}>
+                  <Text style={{ color: '#7c8784', fontSize: '16px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                     No foods added yet. Search and add foods to start tracking your nutrition!
                   </Text>
                   <div className="mt-4 flex items-center justify-center gap-2">
                     <FontAwesomeIcon icon={faSearch} className="text-[#3498db] text-sm" />
-                    <Text style={{ color: '#24604c', fontSize: '14px' }}>
+                    <Text style={{ color: '#24604c', fontSize: '14px', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                       Try searching for "chicken breast", "broccoli", or "brown rice"
                     </Text>
                   </div>
@@ -1295,7 +1295,7 @@ const handleSearch = async (query: string) => {
               <div className="w-8 h-8 rounded-full bg-[#3498db]/10 flex items-center justify-center">
                 <FontAwesomeIcon icon={faEdit} className="text-[#3498db] text-sm" />
               </div>
-              <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+              <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>
                 Set Your Daily Goals
               </span>
             </div>
@@ -1318,7 +1318,7 @@ const handleSearch = async (query: string) => {
                   label={
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon icon={faFire} className="text-[#e74c3c] text-sm" />
-                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Calories</span>
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>Calories</span>
                     </div>
                   }
                   name="calories"
@@ -1338,7 +1338,7 @@ const handleSearch = async (query: string) => {
                   label={
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon icon={faUtensils} className="text-[#3498db] text-sm" />
-                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Protein (g)</span>
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>Protein (g)</span>
                     </div>
                   }
                   name="protein"
@@ -1358,7 +1358,7 @@ const handleSearch = async (query: string) => {
                   label={
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon icon={faLeaf} className="text-[#27ae60] text-sm" />
-                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Carbs (g)</span>
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>Carbs (g)</span>
                     </div>
                   }
                   name="carbs"
@@ -1378,7 +1378,7 @@ const handleSearch = async (query: string) => {
                   label={
                     <div className="flex items-center gap-2">
                       <FontAwesomeIcon icon={faSeedling} className="text-[#f39c12] text-sm" />
-                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Fat (g)</span>
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold', fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif' }}>Fat (g)</span>
                     </div>
                   }
                   name="fat"

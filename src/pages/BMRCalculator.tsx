@@ -404,7 +404,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#10b981]" />
+                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#e74c3c]" />
                             Age
                           </span>
                         }
@@ -444,7 +444,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faUser} className="mr-2 text-[#24604c]" />
+                            <FontAwesomeIcon icon={faUser} className="mr-2 text-[#9b59b6]" />
                             Gender
                           </span>
                         }
@@ -464,7 +464,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faWeight} className="mr-2 text-[#10b981]" />
+                            <FontAwesomeIcon icon={faWeight} className="mr-2 text-[#3498db]" />
                             Weight
                           </span>
                         }
@@ -520,7 +520,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faRuler} className="mr-2 text-[#90cbb9]" />
+                            <FontAwesomeIcon icon={faRuler} className="mr-2 text-[#f39c12]" />
                             Height
                           </span>
                         }
@@ -581,7 +581,7 @@ const BMRCalculator: React.FC = () => {
                   <Form.Item
                     label={
                       <span>
-                        <FontAwesomeIcon icon={faRunning} className="mr-2 text-[#24604c]" />
+                        <FontAwesomeIcon icon={faRunning} className="mr-2 text-[#27ae60]" />
                         Activity Level
                       </span>
                     }
@@ -648,8 +648,8 @@ const BMRCalculator: React.FC = () => {
                 <Card 
                   title={
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
+                      <div className="w-10 h-10 rounded-full bg-[#16a085]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faCalculator} className="text-[#16a085] text-lg" />
                       </div>
                       <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
                         Your Results
@@ -714,14 +714,14 @@ const BMRCalculator: React.FC = () => {
                             }}
                           >
                             <div className="mb-3">
-                              <div className="w-12 h-12 rounded-full bg-[#3498db]/10 flex items-center justify-center mx-auto mb-2">
-                                <FontAwesomeIcon icon={faRunning} className="text-xl text-[#3498db]" />
+                              <div className="w-12 h-12 rounded-full bg-[#27ae60]/10 flex items-center justify-center mx-auto mb-2">
+                                <FontAwesomeIcon icon={faRunning} className="text-xl text-[#27ae60]" />
                               </div>
                               <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
                                 Total Daily Energy (TDEE)
                               </Text>
                             </div>
-                            <div className="text-3xl font-bold mb-2" style={{ color: '#3498db' }}>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#27ae60' }}>
                               {result.tmr}
                             </div>
                             <Text type="secondary" className="text-sm" style={{ color: '#7c8784' }}>
@@ -738,8 +738,8 @@ const BMRCalculator: React.FC = () => {
                       transition={{ duration: 0.6, delay: 0.3 }}
                     >
                       <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-[#9b59b6]/10 flex items-center justify-center">
-                          <FontAwesomeIcon icon={faFire} className="text-[#9b59b6] text-lg" />
+                        <div className="w-10 h-10 rounded-full bg-[#f39c12]/10 flex items-center justify-center">
+                          <FontAwesomeIcon icon={faFire} className="text-[#f39c12] text-lg" />
                         </div>
                         <Text strong style={{ color: '#2E2E2E', fontSize: '18px' }}>
                           Calorie Goals
@@ -824,8 +824,8 @@ const BMRCalculator: React.FC = () => {
                 <Card 
                   title={
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#16a085]/10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faInfoCircle} className="text-[#16a085] text-lg" />
+                      <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faInfoCircle} className="text-[#3498db] text-lg" />
                       </div>
                       <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
                         What is BMR?
@@ -849,8 +849,8 @@ const BMRCalculator: React.FC = () => {
                 <Card 
                   title={
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
+                      <div className="w-10 h-10 rounded-full bg-[#9b59b6]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faCalculator} className="text-[#9b59b6] text-lg" />
                       </div>
                       <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
                         How to Use Your Results

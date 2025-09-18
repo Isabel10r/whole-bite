@@ -229,17 +229,20 @@ const HomePage = () => {
     {
       icon: <HeartOutlined className="text-4xl text-[#10b981]" />,
       title: "Science-Backed Methods",
-      description: "Every strategy is grounded in the latest scientific research and proven clinical evidence."
+      description: "Every strategy is grounded in the latest scientific research and proven clinical evidence.",
+      image: "https://plus.unsplash.com/premium_photo-1723532517432-d04f548b212f?q=80&w=1586&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
       {
         icon: <TrophyOutlined className="text-4xl text-[#24604c]" />,
         title: "Transformative Outcomes",
-        description: "Achieve lasting results that endure—sustainable transformation, not short-term fixes."
+        description: "Achieve lasting results that endure—sustainable transformation, not short-term fixes.",
+        image: "https://images.unsplash.com/photo-1676131062088-1638d013cb61?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
     {
       icon: <TeamOutlined className="text-4xl text-[#90cbb9]" />,
       title: "Tailored Coaching",
-      description: "Customized guidance that adapts to your unique goals and lifestyle."
+      description: "Customized guidance that adapts to your unique goals and lifestyle.",
+      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ];
 
@@ -389,7 +392,7 @@ const HomePage = () => {
                 <Button
                   type="primary"
                   size="large"
-                  className="bg-[#10b981] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#b2d4c7] hover:!text-[#24604c]"
+                  className="bg-[#10b981] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!text-white"
                   href="#contact"
                 >
                   Start Your Journey <ArrowRightOutlined />
@@ -401,7 +404,7 @@ const HomePage = () => {
               >
                 <Button
                   size="large"
-                  className="bg-transparent text-[#373837] border-2 border-[#373837] px-10 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#b2d4c7] hover:!border-[#b2d4c7] hover:!text-[#24604c]"
+                  className="bg-transparent text-[#373837] border-2 border-[#373837] px-10 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
                   href="#services"
                 >
                   Learn More
@@ -539,36 +542,53 @@ const HomePage = () => {
                 {/* Feature Card */}
                 <div 
                   className={`
-                    relative p-8 rounded-2xl
+                    relative rounded-2xl overflow-hidden
                     ${index === 0 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
                     ${index === 1 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
                     ${index === 2 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
-                    shadow-lg shadow-black/8
+                    shadow-lg shadow-black/8 hover:shadow-xl transition-all duration-300
                   `}
                 >
                   
-                  {/* Centered Icon */}
-                  <div className="mb-6 flex justify-center">
-                    <div className="relative">
+                  {/* Image Section */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={feature.image} 
+                      alt={feature.title}
+                      className={`w-full h-full object-cover ${
+                        feature.title === "Transformative Outcomes" ? "object-center" : "object-center"
+                      }`}
+                      style={
+                        feature.title === "Transformative Outcomes" ? { objectPosition: "center 45%" } : 
+                        feature.title === "Tailored Coaching" ? { objectPosition: "center 30%" } : {}
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    
+                    {/* Icon Overlay */}
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
                       {feature.icon}
                     </div>
                   </div>
                   
-                  {/* Title with Static Highlight */}
-                  <h3 
-                    className="text-2xl font-bold mb-4 relative z-10 text-center"
-                    style={{ color: '#2E2E2E' }}
-                  >
-                    {feature.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p 
-                    className="leading-relaxed text-lg relative z-10 text-center"
-                    style={{ color: '#2E2E2E' }}
-                  >
-                    {feature.description}
-                  </p>
+                  {/* Content Section */}
+                  <div className="p-6">
+                    {/* Title */}
+                    <h3 
+                      className="text-2xl font-bold mb-4 text-center"
+                      style={{ color: '#2E2E2E' }}
+                    >
+                      {feature.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p 
+                      className="leading-relaxed text-lg text-center"
+                      style={{ color: '#2E2E2E' }}
+                    >
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -942,6 +962,7 @@ const HomePage = () => {
                              src={benefit.image}
                              alt={benefit.title}
                              className="w-full h-full object-cover"
+                             style={index === 0 ? { objectPosition: "center 70%" } : {}}
                            />
                            
                            {/* Dark Overlay for Text Readability */}

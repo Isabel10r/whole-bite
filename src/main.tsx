@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')).render(
             colorWarning: '#faad14',
             colorError: '#ff4d4f',
             borderRadius: 12,
-            fontFamily: '"Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
           },
         }}
       >

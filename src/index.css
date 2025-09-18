@@ -4,17 +4,17 @@
 
 /* Reset and Base Styles */
 :root {
-  --primary-color: #52c41a;
-  --primary-hover: #389e0d;
-  --secondary-color: #1890ff;
-  --success-color: #52c41a;
-  --warning-color: #faad14;
-  --error-color: #ff4d4f;
-  --text-color: #262626;
-  --text-secondary: #8c8c8c;
-  --border-color: #d9d9d9;
+  --primary-color: #10b981;
+  --primary-hover: #24604c;
+  --secondary-color: #90cbb9;
+  --success-color: #10b981;
+  --warning-color: #90cbb9;
+  --error-color: #24604c;
+  --text-color: #373837;
+  --text-secondary: #7c8784;
+  --border-color: #b2d4c7;
   --background-color: #ffffff;
-  --background-light: #fafafa;
+  --background-light: #F7F7F7;
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.16);
@@ -27,4 +27,108 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Ant Design Button Overrides */
+.ant-btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+.ant-btn-primary:active {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* Ant Design Menu Overrides */
+.ant-menu-horizontal .ant-menu-item:hover,
+.ant-menu-horizontal .ant-menu-submenu:hover,
+.ant-menu-horizontal .ant-menu-item-selected {
+  color: var(--primary-color) !important;
+  border-bottom-color: var(--primary-color) !important;
+}
+
+.ant-menu-horizontal .ant-menu-item:hover::after,
+.ant-menu-horizontal .ant-menu-submenu:hover::after,
+.ant-menu-horizontal .ant-menu-item-selected::after {
+  border-bottom-color: var(--primary-color) !important;
+}
+
+/* Dropdown menu items */
+.ant-dropdown-menu-item:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Additional Menu Overrides */
+.ant-menu-item a:hover,
+.ant-menu-submenu-title:hover {
+  color: var(--primary-color) !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item:hover,
+.ant-menu-horizontal > .ant-menu-submenu:hover,
+.ant-menu-horizontal > .ant-menu-item-selected,
+.ant-menu-horizontal > .ant-menu-submenu-selected {
+  color: var(--primary-color) !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected::after,
+.ant-menu-horizontal > .ant-menu-submenu-selected::after {
+  border-bottom-color: var(--primary-color) !important;
+}
+
+/* Override any default button hover colors */
+.ant-btn:hover,
+.ant-btn:focus {
+  color: inherit !important;
+  background-color: inherit !important;
+  border-color: inherit !important;
+}
+
+/* Ensure our custom hover classes work */
+.hover\:bg-\[\#10b981\]:hover {
+  background-color: #10b981 !important;
+}
+
+.hover\:bg-\[\#b2d4c7\]:hover {
+  background-color: #b2d4c7 !important;
+}
+
+.hover\:border-\[\#10b981\]:hover {
+  border-color: #10b981 !important;
+}
+
+.hover\:border-\[\#b2d4c7\]:hover {
+  border-color: #b2d4c7 !important;
+}
+
+.hover\:text-white:hover {
+  color: white !important;
+}
+
+.hover\:text-\[\#24604c\]:hover {
+  color: #24604c !important;
+}
+
+.hover\:bg-\[\#373837\]:hover {
+  background-color: #373837 !important;
+}
+
+.hover\:border-\[\#373837\]:hover {
+  border-color: #373837 !important;
+}
+
+.hover\:bg-white:hover {
+  background-color: white !important;
+}
+
+.hover\:border-white:hover {
+  border-color: white !important;
 }

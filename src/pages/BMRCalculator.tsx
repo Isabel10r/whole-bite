@@ -9,12 +9,10 @@ import {
   Select,
   Radio,
   Typography,
-  Statistic,
   Alert,
   Spin,
   message,
-  Space,
-  Divider
+  Space
 } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,7 +28,7 @@ import {
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
-const { Title, Text, Paragraph } = Typography;
+const { Text, Paragraph } = Typography;
 const { Option } = Select;
 
 interface BMRFormData {
@@ -61,7 +59,7 @@ const BMRCalculator: React.FC = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<BMRResult | null>(null);
-  const [formData, setFormData] = useState<BMRFormData>({
+  const [, setFormData] = useState<BMRFormData>({
     age: 0,
     gender: 'female', // Keep this for TypeScript, but form won't show it selected
     weight: 0,
@@ -130,7 +128,7 @@ const BMRCalculator: React.FC = () => {
         // To use the API: 
         // 1. Get API key from https://rapidapi.com/tope96/api/bmr-and-tmr
         // 2. Create .env file with: VITE_RAPIDAPI_KEY=your_key_here
-        const apiKey = import.meta.env.VITE_RAPIDAPI_KEY;
+        const apiKey = (import.meta as any).env?.VITE_RAPIDAPI_KEY;
         
         if (apiKey) {
           const url = `https://bmr-and-tmr.p.rapidapi.com/bmr?age=${age}&gender=${values.gender}&weight=${Math.round(weightInKg)}&height=${Math.round(heightInCm)}&activitylevel=${activityLevel}`;
@@ -267,27 +265,131 @@ const BMRCalculator: React.FC = () => {
         <meta name="keywords" content="BMR calculator, basal metabolic rate, calorie calculator, metabolism, weight loss, weight gain" />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+      <div className="min-h-screen bg-[#F7F7F7] relative overflow-hidden">
+        {/* Floating Bubbles Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+            }}
+            animate={{
+              y: [0, -15, 0],
+              x: [0, 8, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+            }}
+            animate={{
+              y: [0, 12, 0],
+              x: [0, -6, 0],
+              scale: [1, 0.9, 1]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+            }}
+            animate={{
+              y: [0, -8, 0],
+              x: [0, 5, 0],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+            }}
+            animate={{
+              y: [0, -10, 0],
+              x: [0, 4, 0],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
           {/* Header */}
-          <div className="text-center mb-8">
-            <Title level={1} className="text-4xl font-bold mb-4">
-              <FontAwesomeIcon icon={faCalculator} className="mr-3 text-orange-500" />
+          <div className="text-center mb-16">
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold mb-6 tracking-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ color: '#2E2E2E' }}
+            >
+              <FontAwesomeIcon icon={faCalculator} className="mr-4 text-[#10b981]" />
               BMR Calculator
-            </Title>
-            <Text className="text-lg text-gray-600">
-              Calculate your Basal Metabolic Rate and daily calorie needs
-            </Text>
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              style={{ color: '#2E2E2E' }}
+            >
+              Calculate your Basal Metabolic Rate and daily calorie needs with precision and personalized recommendations
+            </motion.p>
           </div>
 
           <Row gutter={[24, 24]}>
             {/* Input Form */}
             <Col xs={24} lg={12}>
-              <Card title="Your Information" className="h-full">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Card 
+                  title={
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#10b981]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faUser} className="text-[#10b981] text-lg" />
+                      </div>
+                      <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                        Your Information
+                      </span>
+                    </div>
+                  }
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                  }}
+                >
                 <Form
                   form={form}
                   layout="vertical"
@@ -302,7 +404,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-blue-500" />
+                            <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#10b981]" />
                             Age
                           </span>
                         }
@@ -330,6 +432,11 @@ const BMRCalculator: React.FC = () => {
                           min="15"
                           max="100"
                           step="1"
+                          className="rounded-lg border-[#b2d4c7] focus:border-[#10b981] shadow-sm"
+                          style={{
+                            borderRadius: '12px',
+                            padding: '8px 12px'
+                          }}
                         />
                       </Form.Item>
                     </Col>
@@ -337,7 +444,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faUser} className="mr-2 text-pink-500" />
+                            <FontAwesomeIcon icon={faUser} className="mr-2 text-[#24604c]" />
                             Gender
                           </span>
                         }
@@ -357,7 +464,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faWeight} className="mr-2 text-green-500" />
+                            <FontAwesomeIcon icon={faWeight} className="mr-2 text-[#10b981]" />
                             Weight
                           </span>
                         }
@@ -384,12 +491,23 @@ const BMRCalculator: React.FC = () => {
                           min="20"
                           max="500"
                           step="0.1"
+                          className="rounded-lg border-[#b2d4c7] focus:border-[#10b981] shadow-sm"
+                          style={{
+                            borderRadius: '12px',
+                            padding: '8px 12px'
+                          }}
                         />
                       </Form.Item>
                     </Col>
                     <Col xs={8}>
                       <Form.Item label="Unit" name="weightUnit">
-                        <Select onChange={handleWeightUnitChange}>
+                        <Select 
+                          onChange={handleWeightUnitChange}
+                          className="rounded-lg"
+                          style={{
+                            borderRadius: '12px'
+                          }}
+                        >
                           <Option value="kg">kg</Option>
                           <Option value="lbs">lbs</Option>
                         </Select>
@@ -402,7 +520,7 @@ const BMRCalculator: React.FC = () => {
                       <Form.Item
                         label={
                           <span>
-                            <FontAwesomeIcon icon={faRuler} className="mr-2 text-purple-500" />
+                            <FontAwesomeIcon icon={faRuler} className="mr-2 text-[#90cbb9]" />
                             Height
                           </span>
                         }
@@ -436,12 +554,23 @@ const BMRCalculator: React.FC = () => {
                           min="50"
                           max="300"
                           step="0.1"
+                          className="rounded-lg border-[#b2d4c7] focus:border-[#10b981] shadow-sm"
+                          style={{
+                            borderRadius: '12px',
+                            padding: '8px 12px'
+                          }}
                         />
                       </Form.Item>
                     </Col>
                     <Col xs={8}>
                       <Form.Item label="Unit" name="heightUnit">
-                        <Select onChange={handleHeightUnitChange}>
+                        <Select 
+                          onChange={handleHeightUnitChange}
+                          className="rounded-lg"
+                          style={{
+                            borderRadius: '12px'
+                          }}
+                        >
                           <Option value="cm">cm</Option>
                           <Option value="ft">ft</Option>
                         </Select>
@@ -452,7 +581,7 @@ const BMRCalculator: React.FC = () => {
                   <Form.Item
                     label={
                       <span>
-                        <FontAwesomeIcon icon={faRunning} className="mr-2 text-orange-500" />
+                        <FontAwesomeIcon icon={faRunning} className="mr-2 text-[#24604c]" />
                         Activity Level
                       </span>
                     }
@@ -463,6 +592,10 @@ const BMRCalculator: React.FC = () => {
                       placeholder="Choose your daily activity level"
                       optionLabelProp="label"
                       dropdownStyle={{ minWidth: '400px' }}
+                      className="rounded-lg"
+                      style={{
+                        borderRadius: '12px'
+                      }}
                     >
                       {activityLevels.map((level) => (
                         <Option 
@@ -479,23 +612,55 @@ const BMRCalculator: React.FC = () => {
                     </Select>
                   </Form.Item>
 
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    size="large"
-                    loading={loading}
-                    className="w-full bg-orange-500 hover:bg-orange-600 border-orange-500 hover:border-orange-600"
-                    icon={<FontAwesomeIcon icon={faCalculator} />}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Calculate BMR
-                  </Button>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      loading={loading}
+                      className="w-full font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                      style={{
+                        backgroundColor: '#10b981',
+                        borderColor: '#10b981',
+                        height: '48px',
+                        fontSize: '16px'
+                      }}
+                      icon={<FontAwesomeIcon icon={faCalculator} />}
+                    >
+                      Calculate BMR
+                    </Button>
+                  </motion.div>
                 </Form>
-              </Card>
+                </Card>
+              </motion.div>
             </Col>
 
             {/* Results */}
             <Col xs={24} lg={12}>
-              <Card title="Your Results" className="h-full">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <Card 
+                  title={
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
+                      </div>
+                      <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                        Your Results
+                      </span>
+                    </div>
+                  }
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                  }}
+                >
                 {loading ? (
                   <div className="text-center py-8">
                     <Spin size="large" />
@@ -508,63 +673,131 @@ const BMRCalculator: React.FC = () => {
                     {/* BMR and TMR */}
                     <Row gutter={16}>
                       <Col xs={24} sm={12}>
-                        <Card className="text-center bg-gradient-to-br from-blue-50 to-blue-100">
-                          <Statistic
-                            title="Basal Metabolic Rate (BMR)"
-                            value={result.bmr}
-                            suffix="cal/day"
-                            prefix={<FontAwesomeIcon icon={faFire} />}
-                            valueStyle={{ color: '#0ea7b5', fontSize: '24px' }}
-                          />
-                          <Text type="secondary" className="text-sm">
-                            Calories burned at rest
-                          </Text>
-                        </Card>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.1 }}
+                        >
+                          <Card 
+                            className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                            style={{
+                              background: 'linear-gradient(135deg, #10b981/10 0%, white 50%, #10b981/5 100%)'
+                            }}
+                          >
+                            <div className="mb-3">
+                              <div className="w-12 h-12 rounded-full bg-[#e74c3c]/10 flex items-center justify-center mx-auto mb-2">
+                                <FontAwesomeIcon icon={faFire} className="text-xl text-[#e74c3c]" />
+                              </div>
+                              <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                                Basal Metabolic Rate (BMR)
+                              </Text>
+                            </div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#e74c3c' }}>
+                              {result.bmr}
+                            </div>
+                            <Text type="secondary" className="text-sm" style={{ color: '#7c8784' }}>
+                              Calories burned at rest
+                            </Text>
+                          </Card>
+                        </motion.div>
                       </Col>
                       <Col xs={24} sm={12}>
-                        <Card className="text-center bg-gradient-to-br from-orange-50 to-orange-100">
-                          <Statistic
-                            title="Total Daily Energy (TDEE)"
-                            value={result.tmr}
-                            suffix="cal/day"
-                            prefix={<FontAwesomeIcon icon={faRunning} />}
-                            valueStyle={{ color: '#e8702a', fontSize: '24px' }}
-                          />
-                          <Text type="secondary" className="text-sm">
-                            Total calories needed daily
-                          </Text>
-                        </Card>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.2 }}
+                        >
+                          <Card 
+                            className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                            style={{
+                              background: 'linear-gradient(135deg, #24604c/10 0%, white 50%, #24604c/5 100%)'
+                            }}
+                          >
+                            <div className="mb-3">
+                              <div className="w-12 h-12 rounded-full bg-[#3498db]/10 flex items-center justify-center mx-auto mb-2">
+                                <FontAwesomeIcon icon={faRunning} className="text-xl text-[#3498db]" />
+                              </div>
+                              <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                                Total Daily Energy (TDEE)
+                              </Text>
+                            </div>
+                            <div className="text-3xl font-bold mb-2" style={{ color: '#3498db' }}>
+                              {result.tmr}
+                            </div>
+                            <Text type="secondary" className="text-sm" style={{ color: '#7c8784' }}>
+                              Total calories needed daily
+                            </Text>
+                          </Card>
+                        </motion.div>
                       </Col>
                     </Row>
 
-                    <Divider>Calorie Goals</Divider>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-full bg-[#9b59b6]/10 flex items-center justify-center">
+                          <FontAwesomeIcon icon={faFire} className="text-[#9b59b6] text-lg" />
+                        </div>
+                        <Text strong style={{ color: '#2E2E2E', fontSize: '18px' }}>
+                          Calorie Goals
+                        </Text>
+                      </div>
+                    </motion.div>
 
                     {/* Weight Goals */}
                     <div className="space-y-3">
-                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                        <Text strong>Maintain current weight</Text>
-                        <Text className="text-lg font-semibold text-gray-700">{result.goals.maintain} cal</Text>
-                      </div>
+                      <motion.div 
+                        className="flex justify-between items-center p-4 bg-white/60 border border-gray-100 rounded-xl shadow-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.4 }}
+                      >
+                        <Text strong style={{ color: '#2E2E2E' }}>Maintain current weight</Text>
+                        <Text className="text-lg font-semibold" style={{ color: '#2E2E2E' }}>{result.goals.maintain} cal</Text>
+                      </motion.div>
                       
-                      <div className="flex justify-between items-center p-3 bg-green-50 rounded">
-                        <Text strong className="text-green-700">Mild weight loss (0.5 lb/week)</Text>
-                        <Text className="text-lg font-semibold text-green-700">{result.goals.mildWeightLoss} cal</Text>
-                      </div>
+                      <motion.div 
+                        className="flex justify-between items-center p-4 bg-gradient-to-r from-[#10b981]/10 to-[#90cbb9]/10 border border-[#10b981]/30 rounded-xl shadow-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.5 }}
+                      >
+                        <Text strong style={{ color: '#10b981' }}>Mild weight loss (0.5 lb/week)</Text>
+                        <Text className="text-lg font-semibold" style={{ color: '#10b981' }}>{result.goals.mildWeightLoss} cal</Text>
+                      </motion.div>
                       
-                      <div className="flex justify-between items-center p-3 bg-green-100 rounded">
-                        <Text strong className="text-green-800">Weight loss (1 lb/week)</Text>
-                        <Text className="text-lg font-semibold text-green-800">{result.goals.weightLoss} cal</Text>
-                      </div>
+                      <motion.div 
+                        className="flex justify-between items-center p-4 bg-gradient-to-r from-[#24604c]/10 to-[#10b981]/10 border border-[#24604c]/30 rounded-xl shadow-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.6 }}
+                      >
+                        <Text strong style={{ color: '#24604c' }}>Weight loss (1 lb/week)</Text>
+                        <Text className="text-lg font-semibold" style={{ color: '#24604c' }}>{result.goals.weightLoss} cal</Text>
+                      </motion.div>
                       
-                      <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
-                        <Text strong className="text-blue-700">Mild weight gain (0.5 lb/week)</Text>
-                        <Text className="text-lg font-semibold text-blue-700">{result.goals.mildWeightGain} cal</Text>
-                      </div>
+                      <motion.div 
+                        className="flex justify-between items-center p-4 bg-gradient-to-r from-[#90cbb9]/10 to-[#b2d4c7]/10 border border-[#90cbb9]/30 rounded-xl shadow-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.7 }}
+                      >
+                        <Text strong style={{ color: '#90cbb9' }}>Mild weight gain (0.5 lb/week)</Text>
+                        <Text className="text-lg font-semibold" style={{ color: '#90cbb9' }}>{result.goals.mildWeightGain} cal</Text>
+                      </motion.div>
                       
-                      <div className="flex justify-between items-center p-3 bg-blue-100 rounded">
-                        <Text strong className="text-blue-800">Weight gain (1 lb/week)</Text>
-                        <Text className="text-lg font-semibold text-blue-800">{result.goals.weightGain} cal</Text>
-                      </div>
+                      <motion.div 
+                        className="flex justify-between items-center p-4 bg-gradient-to-r from-[#b2d4c7]/20 to-[#90cbb9]/20 border border-[#b2d4c7]/30 rounded-xl shadow-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.8 }}
+                      >
+                        <Text strong style={{ color: '#24604c' }}>Weight gain (1 lb/week)</Text>
+                        <Text className="text-lg font-semibold" style={{ color: '#24604c' }}>{result.goals.weightGain} cal</Text>
+                      </motion.div>
                     </div>
                   </Space>
                 ) : (
@@ -575,48 +808,97 @@ const BMRCalculator: React.FC = () => {
                     </Text>
                   </div>
                 )}
-              </Card>
+                </Card>
+              </motion.div>
             </Col>
           </Row>
 
           {/* Information Section */}
-          <Row gutter={[24, 24]} className="mt-8">
-            <Col xs={24} md={12}>
-              <Card title="What is BMR?" className="h-full">
-                <Paragraph>
-                  <Text strong>Basal Metabolic Rate (BMR)</Text> is the number of calories your body needs to perform basic life-sustaining functions like breathing, circulation, cell production, nutrient processing, and protein synthesis.
-                </Paragraph>
-                <Paragraph>
-                  Your BMR represents the minimum amount of energy needed to keep your body functioning while at rest. It typically accounts for 60-75% of your total daily calorie expenditure.
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} md={12}>
-              <Card title="How to Use Your Results" className="h-full">
-                <Paragraph>
-                  <Text strong>TDEE (Total Daily Energy Expenditure)</Text> includes your BMR plus calories burned through physical activity and exercise.
-                </Paragraph>
-                <Paragraph>
-                  Use your TDEE to set calorie goals:
-                </Paragraph>
-                <ul className="list-disc list-inside space-y-1 text-gray-600">
-                  <li>To maintain weight: eat your TDEE calories</li>
-                  <li>To lose weight: eat 250-500 calories below TDEE</li>
-                  <li>To gain weight: eat 250-500 calories above TDEE</li>
-                </ul>
-              </Card>
-            </Col>
-          </Row>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <Row gutter={[24, 24]} className="mt-8">
+              <Col xs={24} md={12}>
+                <Card 
+                  title={
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#16a085]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faInfoCircle} className="text-[#16a085] text-lg" />
+                      </div>
+                      <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                        What is BMR?
+                      </span>
+                    </div>
+                  }
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                  }}
+                >
+                  <Paragraph>
+                    <Text strong style={{ color: '#2E2E2E' }}>Basal Metabolic Rate (BMR)</Text> is the number of calories your body needs to perform basic life-sustaining functions like breathing, circulation, cell production, nutrient processing, and protein synthesis.
+                  </Paragraph>
+                  <Paragraph>
+                    Your BMR represents the minimum amount of energy needed to keep your body functioning while at rest. It typically accounts for 60-75% of your total daily calorie expenditure.
+                  </Paragraph>
+                </Card>
+              </Col>
+              <Col xs={24} md={12}>
+                <Card 
+                  title={
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
+                      </div>
+                      <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                        How to Use Your Results
+                      </span>
+                    </div>
+                  }
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                  }}
+                >
+                  <Paragraph>
+                    <Text strong style={{ color: '#2E2E2E' }}>TDEE (Total Daily Energy Expenditure)</Text> includes your BMR plus calories burned through physical activity and exercise.
+                  </Paragraph>
+                  <Paragraph>
+                    Use your TDEE to set calorie goals:
+                  </Paragraph>
+                  <ul className="list-disc list-inside space-y-1" style={{ color: '#7c8784' }}>
+                    <li>To maintain weight: eat your TDEE calories</li>
+                    <li>To lose weight: eat 250-500 calories below TDEE</li>
+                    <li>To gain weight: eat 250-500 calories above TDEE</li>
+                  </ul>
+                </Card>
+              </Col>
+            </Row>
+          </motion.div>
 
           {/* Disclaimer */}
-          <Alert
-            message="Important Note"
-            description="This calculator provides estimates based on the Mifflin-St Jeor equation. Individual metabolic rates can vary. For personalized nutrition advice, consider consulting with a registered dietitian or healthcare provider."
-            type="info"
-            showIcon
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
             className="mt-6"
-          />
+          >
+            <Alert
+              message="Important Note"
+              description="This calculator provides estimates based on the Mifflin-St Jeor equation. Individual metabolic rates can vary. For personalized nutrition advice, consider consulting with a registered dietitian or healthcare provider."
+              type="info"
+              showIcon
+              className="rounded-xl"
+              style={{
+                backgroundColor: '#90cbb9/10',
+                borderColor: '#90cbb9'
+              }}
+            />
+          </motion.div>
         </motion.div>
+        </div>
       </div>
     </>
   );

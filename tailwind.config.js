@@ -7,37 +7,40 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Summertime 3 Color Palette
-        golden: '#ffbe4f',      // Warm golden yellow
-        lightTeal: '#6bd2db',   // Light turquoise
-        mediumTeal: '#0ea7b5',  // Medium teal
-        navy: '#0c457d',        // Deep navy blue
-        orange: '#e8702a',      // Vibrant orange
+        // Sport Urban Nutrition Color Palette from colorswall.com/palette/136698
+        nutrition: {
+          primary: '#10b981',     // Light medium aquamarine - primary accent
+          secondary: '#90cbb9',   // Lighter aquamarine - secondary accent  
+          dark: '#24604c',        // Dark teal - accent color
+          neutral: '#7c8784',     // Grey shade
+          light: '#b2d4c7',       // Light powder blue tint
+          charcoal: '#373837',    // Dark charcoal
+        },
         
-        // Brand Colors (updated with new palette)
-        coral: '#e8702a',       // Using vibrant orange
-        teal: '#0ea7b5',        // Using medium teal
-        yellow: '#ffbe4f',      // Using golden yellow
-        dark: '#0c457d',        // Using navy blue
-        light: '#F7F7F7',
+        // Brand Colors (updated with nutrition palette)
+        coral: '#10b981',       // Using primary nutrition color
+        teal: '#24604c',        // Using dark nutrition color
+        yellow: '#90cbb9',      // Using secondary nutrition color
+        dark: '#373837',        // Using charcoal
+        light: '#F7F7F7',       // Keep light background
         
         // Legacy colors for compatibility
         primary: {
-          DEFAULT: '#0ea7b5',   // Medium teal
-          hover: '#0c457d',     // Navy blue
+          DEFAULT: '#10b981',   // Primary nutrition color
+          hover: '#24604c',     // Dark nutrition color
         },
-        secondary: '#e8702a',   // Vibrant orange
-        success: '#0ea7b5',     // Medium teal
-        warning: '#ffbe4f',     // Golden yellow
-        error: '#e8702a',       // Vibrant orange
+        secondary: '#90cbb9',   // Secondary nutrition color
+        success: '#10b981',     // Primary nutrition color
+        warning: '#7c8784',     // Neutral grey
+        error: '#24604c',       // Dark nutrition color for emphasis
         text: {
-          DEFAULT: '#0c457d',   // Navy blue
-          secondary: '#8c8c8c',
+          DEFAULT: '#373837',   // Dark charcoal
+          secondary: '#7c8784', // Grey for secondary text
         },
-        border: '#d9d9d9',
+        border: '#b2d4c7',      // Light nutrition color for borders
         background: {
-          DEFAULT: '#ffffff',
-          light: '#F7F7F7',
+          DEFAULT: '#ffffff',   // Keep white background
+          light: '#F7F7F7',     // Light grey background
         },
       },
       fontFamily: {

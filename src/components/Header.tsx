@@ -129,14 +129,14 @@ const Header = () => {
               <FontAwesomeIcon
                 icon={faDumbbell}
                 className="text-2xl"
-                style={{ color: '#0ea7b5' }}
+                style={{ color: '#10b981' }}
               />
             </motion.div>
             <Link
               to="/"
               className="text-2xl font-bold hover:opacity-80 transition-opacity duration-200"
               style={{ 
-                background: 'linear-gradient(45deg, #0c457d, #0ea7b5)',
+                background: 'linear-gradient(45deg, #24604c, #10b981)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text'
@@ -174,10 +174,10 @@ const Header = () => {
               type="primary"
               size="large"
               onClick={handleBookNow}
-              className="font-semibold px-6 py-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+              className="font-semibold px-6 py-2 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
               style={{
-                backgroundColor: '#e8702a',
-                borderColor: '#e8702a',
+                backgroundColor: '#10b981',
+                borderColor: '#10b981',
                 fontSize: '16px',
                 fontWeight: '600',
                 height: 'auto',
@@ -193,7 +193,7 @@ const Header = () => {
             <Button
               type="text"
               size="large"
-              className="text-[#0c457d]"
+              className="text-[#24604c]"
               onClick={() => {
                 // Mobile menu implementation would go here
                 console.log('Mobile menu clicked');

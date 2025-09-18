@@ -267,23 +267,23 @@ const Recipes: React.FC = () => {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'easy': return '#4ECDC4'
-      case 'medium': return '#FFE66D'
-      case 'hard': return '#FF6B6B'
-      default: return '#4ECDC4'
+      case 'easy': return '#10b981'
+      case 'medium': return '#90cbb9'
+      case 'hard': return '#24604c'
+      default: return '#10b981'
     }
   }
 
   const getCategoryColor = (category: string) => {
     const colors: { [key: string]: string } = {
-      breakfast: '#FFE66D',
-      lunch: '#4ECDC4',
-      dinner: '#FF6B6B',
-      snacks: '#4ECDC4',
-      desserts: '#FFE66D',
-      smoothies: '#4ECDC4'
+      breakfast: '#90cbb9',
+      lunch: '#10b981',
+      dinner: '#24604c',
+      snacks: '#10b981',
+      desserts: '#90cbb9',
+      smoothies: '#10b981'
     }
-    return colors[category] || '#4ECDC4'
+    return colors[category] || '#10b981'
   }
 
   const showRecipeModal = (recipe: any) => {
@@ -306,7 +306,7 @@ const Recipes: React.FC = () => {
         >
           <div className="text-center mb-8">
             <Title level={1} className="text-4xl font-bold mb-4" style={{ color: '#2E2E2E' }}>
-              <FontAwesomeIcon icon={faBook} className="mr-3" style={{ color: '#4ECDC4' }} />
+              <FontAwesomeIcon icon={faBook} className="mr-3" style={{ color: '#10b981' }} />
               Healthy Recipes
             </Title>
             <Text className="text-lg" style={{ color: '#2E2E2E' }}>
@@ -408,7 +408,7 @@ const Recipes: React.FC = () => {
                         type="primary" 
                         onClick={() => showRecipeModal(recipe)}
                         icon={<FontAwesomeIcon icon={faBook} />}
-                        style={{ backgroundColor: '#4ECDC4', borderColor: '#4ECDC4' }}
+                        style={{ backgroundColor: '#10b981', borderColor: '#10b981' }}
                       >
                         View Recipe
                       </Button>
@@ -479,7 +479,7 @@ const Recipes: React.FC = () => {
                 <Row gutter={[16, 16]} className="mb-4">
                   <Col span={6}>
                     <div className="text-center">
-                      <FontAwesomeIcon icon={faClock} className="text-2xl mb-1" style={{ color: '#4ECDC4' }} />
+                      <FontAwesomeIcon icon={faClock} className="text-2xl mb-1" style={{ color: '#10b981' }} />
                       <div>
                         <Text strong style={{ color: '#2E2E2E' }}>{selectedRecipe.prepTime + selectedRecipe.cookTime} min</Text>
                         <br />
@@ -489,7 +489,7 @@ const Recipes: React.FC = () => {
                   </Col>
                   <Col span={6}>
                     <div className="text-center">
-                      <FontAwesomeIcon icon={faUser} className="text-2xl mb-1" style={{ color: '#FF6B6B' }} />
+                      <FontAwesomeIcon icon={faUser} className="text-2xl mb-1" style={{ color: '#24604c' }} />
                       <div>
                         <Text strong style={{ color: '#2E2E2E' }}>{selectedRecipe.servings}</Text>
                         <br />
@@ -499,7 +499,7 @@ const Recipes: React.FC = () => {
                   </Col>
                   <Col span={6}>
                     <div className="text-center">
-                      <FontAwesomeIcon icon={faFire} className="text-2xl mb-1" style={{ color: '#FFE66D' }} />
+                      <FontAwesomeIcon icon={faFire} className="text-2xl mb-1" style={{ color: '#90cbb9' }} />
                       <div>
                         <Text strong style={{ color: '#2E2E2E' }}>{selectedRecipe.calories}</Text>
                         <br />
@@ -509,7 +509,7 @@ const Recipes: React.FC = () => {
                   </Col>
                   <Col span={6}>
                     <div className="text-center">
-                      <FontAwesomeIcon icon={faStar} className="text-2xl mb-1" style={{ color: '#FFE66D' }} />
+                      <FontAwesomeIcon icon={faStar} className="text-2xl mb-1" style={{ color: '#b2d4c7' }} />
                       <div>
                         <Text strong style={{ color: '#2E2E2E' }}>{selectedRecipe.rating}</Text>
                         <br />
@@ -540,7 +540,7 @@ const Recipes: React.FC = () => {
                       renderItem={(item, index) => (
                         <List.Item>
                           <div className="flex">
-                            <div className="w-6 h-6 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0" style={{ backgroundColor: '#4ECDC4' }}>
+                            <div className="w-6 h-6 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0" style={{ backgroundColor: '#10b981' }}>
                               {index + 1}
                             </div>
                             <Text style={{ color: '#2E2E2E' }}>{item as string}</Text>
@@ -590,7 +590,7 @@ const Recipes: React.FC = () => {
                 <div className="mt-4">
                   <Space wrap>
                     {selectedRecipe.tags.map((tag: string) => (
-                      <Tag key={tag} style={{ backgroundColor: '#4ECDC4', color: 'white', border: 'none' }}>{tag}</Tag>
+                      <Tag key={tag} style={{ backgroundColor: '#10b981', color: 'white', border: 'none' }}>{tag}</Tag>
                     ))}
                   </Space>
                 </div>

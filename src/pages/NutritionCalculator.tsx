@@ -9,11 +9,13 @@ import {
   Table, 
   Typography, 
   Space, 
-  Progress, 
-  Statistic,
+  Progress,
   Alert,
   Spin,
-  message
+  message,
+  Modal,
+  Form,
+  InputNumber
 } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -23,13 +25,19 @@ import {
   faCalculator,
   faFire,
   faUtensils,
-  faLeaf
+  faLeaf,
+  faCheckCircle,
+  faRulerCombined,
+  faSeedling,
+  faEdit,
+  faSave,
+  faChartPie
 } from '@fortawesome/free-solid-svg-icons'
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
-const { Title, Text } = Typography
+const { Text } = Typography
 const { Option } = Select
 
 // Types and interfaces
@@ -109,6 +117,14 @@ const NutritionCalculator: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [searchError, setSearchError] = useState<string>('')
   const [showResults, setShowResults] = useState<boolean>(true)
+  const [showUnitSuggestion, setShowUnitSuggestion] = useState<boolean>(false)
+  const [showGoalModal, setShowGoalModal] = useState<boolean>(false)
+  const [dailyGoals, setDailyGoals] = useState({
+    calories: 2000,
+    protein: 150,
+    carbs: 250,
+    fat: 67
+  })
 
   // Effect for debounced search
   useEffect(() => {
@@ -138,6 +154,39 @@ const NutritionCalculator: React.FC = () => {
     setUsdaResults([]);
     setSearchError('');
     setShowResults(false);
+  };
+
+  // Función para manejar cambio de unidad con sugerencias lógicas
+  const handleUnitChange = (newUnit: string) => {
+    setUnit(newUnit);
+    
+    // Sugerencias lógicas de cantidad basadas en la unidad
+    const unitSuggestions: Record<string, number> = {
+      'piece': 1,
+      'slice': 1,
+      'medium': 1,
+      'large': 1,
+      'small': 1,
+      'cup': 1,
+      'tbsp': 1,
+      'tsp': 1,
+      'g': 100,
+      'oz': 3.5,
+      'lb': 0.25,
+      'ml': 250,
+      'fl_oz': 8
+    };
+    
+    const suggestedQuantity = unitSuggestions[newUnit];
+    if (suggestedQuantity !== undefined) {
+      setQuantity(suggestedQuantity);
+      setShowUnitSuggestion(true);
+      
+      // Ocultar sugerencia después de 3 segundos
+      setTimeout(() => {
+        setShowUnitSuggestion(false);
+      }, 3000);
+    }
   };
 
   // Función para seleccionar alimento (oculta resultados)
@@ -226,14 +275,40 @@ const NutritionCalculator: React.FC = () => {
   // ----- Begin: USDA nutrient parsing & unit helpers -----
 
   /**
-   * Busca un nutriente dentro del array foodNutrients (case-insensitive, incluye).
+   * Busca un nutriente dentro del array foodNutrients con nombres específicos del USDA.
    * Devuelve 0 si no lo encuentra.
    */
   const findNutrientValue = (nutrients: FoodNutrient[] = [], match: string): number => {
-    const item = nutrients.find(n =>
-      n.nutrientName && n.nutrientName.toLowerCase().includes(match.toLowerCase())
-    );
-    return item ? item.value : 0;
+    // Nombres específicos de nutrientes en la API del USDA
+    const nutrientNames: Record<string, string[]> = {
+      'energy': ['Energy', 'Energy (Atwater General Factors)', 'Energy (Atwater Specific Factors)'],
+      'calories': ['Energy', 'Energy (Atwater General Factors)', 'Energy (Atwater Specific Factors)'],
+      'protein': ['Protein'],
+      'fat': ['Total lipid (fat)', 'Fatty acids, total saturated', 'Fatty acids, total monounsaturated', 'Fatty acids, total polyunsaturated'],
+      'carbs': ['Carbohydrate, by difference', 'Carbohydrate, by summation'],
+      'fiber': ['Fiber, total dietary', 'Fiber, insoluble', 'Fiber, soluble'],
+      'sugar': ['Sugars, total including NLEA', 'Sugars, total', 'Sugars, added']
+    };
+
+    const searchNames = nutrientNames[match.toLowerCase()] || [match];
+    
+    for (const searchName of searchNames) {
+      const item = nutrients.find(n =>
+        n.nutrientName && n.nutrientName.toLowerCase().includes(searchName.toLowerCase())
+      );
+      if (item && item.value > 0) {
+        // Si es energía y el valor parece estar en kJ (muy alto), convertir a kcal
+        if (match.toLowerCase() === 'energy' || match.toLowerCase() === 'calories') {
+          // Si el valor es > 200, probablemente está en kJ, convertir a kcal
+          if (item.value > 200) {
+            return item.value / 4.184; // Convertir kJ a kcal
+          }
+        }
+        return item.value;
+      }
+    }
+    
+    return 0;
   }
 
   /**
@@ -338,34 +413,32 @@ const NutritionCalculator: React.FC = () => {
 
   // ----- End: USDA nutrient parsing & unit helpers -----
 
-// Función para filtrar y organizar resultados de USDA
+// Función simple para filtrar y organizar resultados como USDA oficial
 const filterAndSortResults = (foods: USDAFood[]) => {
-  // Filtrar por tipo de base de datos (priorizar SR Legacy y FNDDS sobre Branded)
-  const prioritizedFoods = foods.sort((a, b) => {
+  // Ordenar por tipo de datos - priorizar oficiales como USDA
+  const sortedFoods = foods.sort((a, b) => {
     const aDataType = a.dataType || '';
     const bDataType = b.dataType || '';
     
-    // Prioridad: SR Legacy > FNDDS > Survey > Branded
-    const priority: Record<string, number> = { 'SR Legacy': 4, 'Foundation': 3, 'Survey (FNDDS)': 2, 'Branded': 1 };
+    // Prioridad simple: SR Legacy > Foundation > Survey > Branded
+    const priority: Record<string, number> = { 
+      'SR Legacy': 4, 
+      'Foundation': 3, 
+      'Survey (FNDDS)': 2, 
+      'Branded': 1
+    };
     const aPriority = priority[aDataType] || 0;
     const bPriority = priority[bDataType] || 0;
     
     return bPriority - aPriority;
   });
 
-  // Eliminar duplicados similares basándose en el nombre
+  // Eliminar duplicados simples
   const uniqueFoods = [];
   const seenNames = new Set();
   
-  for (const food of prioritizedFoods) {
-    const normalizedName = food.description
-      .toLowerCase()
-      .replace(/[,\(\)]/g, '') // Remover puntuación
-      .replace(/\s+/g, ' ') // Normalizar espacios
-      .trim();
-    
-    // Extraer la parte principal del nombre (antes de comas o paréntesis)
-    const mainName = normalizedName.split(',')[0].split('(')[0].trim();
+  for (const food of sortedFoods) {
+    const mainName = food.description.split(',')[0].toLowerCase().trim();
     
     if (!seenNames.has(mainName)) {
       seenNames.add(mainName);
@@ -373,7 +446,7 @@ const filterAndSortResults = (foods: USDAFood[]) => {
     }
   }
   
-  return uniqueFoods.slice(0, 10); // Limitar a 10 resultados únicos
+  return uniqueFoods.slice(0, 10); // Limitar a 10 resultados
 };
 
 // Función para buscar en el API de USDA con loading state y error handling
@@ -463,17 +536,23 @@ const handleSearch = async (query: string) => {
   ]
 
   const macronutrientData = [
-    { name: 'Protein', value: Math.round(totalNutrition.protein * 4), color: '#0ea7b5' },
-    { name: 'Carbs', value: Math.round(totalNutrition.carbs * 4), color: '#ffbe4f' },
-    { name: 'Fat', value: Math.round(totalNutrition.fat * 9), color: '#e8702a' }
+    { name: 'Protein', value: Math.round(totalNutrition.protein * 4), color: '#3498db' },
+    { name: 'Carbs', value: Math.round(totalNutrition.carbs * 4), color: '#27ae60' },
+    { name: 'Fat', value: Math.round(totalNutrition.fat * 9), color: '#f39c12' }
   ]
 
-  const dailyGoals = {
-    calories: 2000,
-    protein: 150,
-    carbs: 250,
-    fat: 67
+  // Handle goal update
+  const handleGoalUpdate = (values: any) => {
+    setDailyGoals({
+      calories: values.calories || 2000,
+      protein: values.protein || 150,
+      carbs: values.carbs || 250,
+      fat: values.fat || 67
+    })
+    setShowGoalModal(false)
+    message.success('Goals updated successfully!')
   }
+
 
   return (
     <>
@@ -482,73 +561,203 @@ const handleSearch = async (query: string) => {
         <meta name="description" content="Calculate calories, macronutrients, and micronutrients for any food or recipe. Track your daily nutrition intake." />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+      <div className="min-h-screen bg-[#F7F7F7] relative overflow-hidden">
+        {/* Floating Bubbles Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+          style={{
+            background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+          }}
+          animate={{
+            y: [0, -15, 0],
+            x: [0, 8, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+          style={{
+            background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+          }}
+          animate={{
+            y: [0, 12, 0],
+            x: [0, -6, 0],
+            scale: [1, 0.9, 1]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+          style={{
+            background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+          }}
+          animate={{
+            y: [0, -8, 0],
+            x: [0, 5, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+          style={{
+            background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+          }}
+          animate={{
+            y: [0, -10, 0],
+            x: [0, 4, 0],
+            scale: [1, 1.3, 1]
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-8">
-            <Title level={1} className="text-4xl font-bold mb-4">
-              <FontAwesomeIcon icon={faCalculator} className="mr-3 text-green-500" />
+          <div className="text-center mb-16">
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold mb-6 tracking-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ color: '#2E2E2E' }}
+            >
+              <FontAwesomeIcon icon={faCalculator} className="mr-4 text-[#10b981]" />
               Nutrition Calculator
-            </Title>
-            <Text className="text-lg text-gray-600">
-              Track your daily nutrition intake and make informed dietary choices
-            </Text>
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              style={{ color: '#2E2E2E' }}
+            >
+              Track your daily nutrition intake and make informed dietary choices with precision and ease
+            </motion.p>
           </div>
 
           <Row gutter={[24, 24]}>
             {/* Food Search and Add */}
-            <Col xs={24} lg={8}>
-              <Card title="Add Food" className="h-full">
-                <Space direction="vertical" size="middle" className="w-full">
+            <Col xs={24} lg={8} className="order-2 lg:order-2">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Card 
+                  title={null}
+                  className="h-full shadow-lg border border-[#24604c]/20 rounded-2xl"
+                  style={{
+                    background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                  }}
+                >
+                  {/* Add Food Header */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-[#e74c3c]/10 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faUtensils} className="text-[#e74c3c] text-lg" />
+                    </div>
+                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px' }}>
+                      Add Food
+                    </Text>
+                  </div>
+                  
+                  <Space direction="vertical" size="middle" className="w-full">
                   <div>
-                    <div className="flex justify-between items-center mb-2">
-                      <Text strong>Search Food:</Text>
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="flex items-center gap-2">
+                        <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>Search Food:</Text>
+                      </div>
                       {(searchTerm || selectedFood) && (
                         <Button 
                           type="text" 
                           size="small" 
                           onClick={clearSearch}
-                          className="text-gray-500 hover:text-orange-500"
+                          className="text-[#7c8784] hover:text-[#10b981] hover:bg-[#10b981]/10 rounded-full px-3"
                         >
                           Clear
                         </Button>
                       )}
                     </div>
                     <Input
-                      placeholder="Search for food items..."
-                      prefix={<FontAwesomeIcon icon={faSearch} />}
+                      placeholder="Search for food items like 'chicken breast' or 'avocado'..."
+                      prefix={<FontAwesomeIcon icon={faSearch} className="text-[#3498db]" />}
                       suffix={isLoading ? <Spin size="small" /> : null}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="mt-1"
+                      className="mt-1 rounded-lg border-[#b2d4c7] focus:border-[#10b981] shadow-sm"
+                      style={{
+                        borderRadius: '12px',
+                        padding: '8px 12px'
+                      }}
                     />
                     {selectedFood && !showResults && (
-                      <div className="mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded flex justify-between items-center">
-                        <Text className="text-sm text-yellow-800">
-                          ✓ Selected: <strong>{selectedFood.name}</strong>
-                        </Text>
+                      <motion.div 
+                        className="mt-3 p-4 bg-gradient-to-r from-[#10b981]/10 to-[#90cbb9]/10 border border-[#10b981]/30 rounded-2xl flex justify-between items-center"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <FontAwesomeIcon icon={faCheckCircle} className="text-[#27ae60] text-sm" />
+                          <Text className="text-sm font-medium" style={{ color: '#24604c' }}>
+                            Selected: <strong>{selectedFood.name}</strong>
+                          </Text>
+                        </div>
                         {usdaResults.length > 1 && (
                           <Button 
                             type="text" 
                             size="small"
                             onClick={() => setShowResults(true)}
-                            className="text-yellow-700 hover:text-yellow-900"
+                            className="text-[#24604c] hover:text-[#10b981] hover:bg-white/50 rounded-full px-3"
                           >
                             Change
                           </Button>
                         )}
-                      </div>
+                      </motion.div>
                     )}
                   </div>
 
                   {searchTerm && showResults && (
-                    <div className="max-h-48 overflow-y-auto">
+                    <motion.div 
+                      className="max-h-64 overflow-y-auto rounded-2xl border border-[#b2d4c7]/50"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {isLoading && (
-                        <div className="text-center py-4">
-                          <Text type="secondary">Searching...</Text>
+                        <div className="text-center py-6">
+                          <Spin size="default" />
+                          <div className="flex items-center justify-center gap-2 mt-2">
+                            <FontAwesomeIcon icon={faSearch} className="text-[#3498db] text-sm" />
+                            <Text type="secondary" style={{ color: '#7c8784' }}>
+                              Searching nutrition database...
+                            </Text>
+                          </div>
                         </div>
                       )}
                       
@@ -557,41 +766,71 @@ const handleSearch = async (query: string) => {
                           message={searchError}
                           type="warning"
                           showIcon
-                          className="mb-2"
+                          className="mb-2 rounded-xl"
+                          style={{
+                            backgroundColor: '#90cbb9/10',
+                            borderColor: '#90cbb9'
+                          }}
                         />
                       )}
                       
                       {!isLoading && !searchError && usdaResults.length === 0 && searchTerm.trim() && (
-                        <div className="text-center py-4">
-                          <Text type="secondary">No results found. Try a different search term.</Text>
+                        <div className="text-center py-6">
+                          <div className="w-12 h-12 rounded-full bg-[#f39c12]/10 flex items-center justify-center mx-auto mb-3">
+                            <FontAwesomeIcon icon={faSearch} className="text-[#f39c12] text-xl" />
+                          </div>
+                          <Text type="secondary" style={{ color: '#7c8784' }}>
+                            No results found. Try a different search term.
+                          </Text>
                         </div>
                       )}
                       
                       {!isLoading && usdaResults.map((food: USDAFood) => {
-                        const calories = food.foodNutrients?.find((n: FoodNutrient) => n.nutrientName === "Energy")?.value || 0;
+                        // Usar la misma lógica de conversión que en findNutrientValue
+                        const energyNutrient = food.foodNutrients?.find((n: FoodNutrient) => 
+                          n.nutrientName && n.nutrientName.toLowerCase().includes('energy')
+                        );
+                        let calories = 0;
+                        if (energyNutrient && energyNutrient.value > 0) {
+                          // Si el valor es > 200, probablemente está en kJ, convertir a kcal
+                          if (energyNutrient.value > 200) {
+                            calories = energyNutrient.value / 4.184; // Convertir kJ a kcal
+                          } else {
+                            calories = energyNutrient.value;
+                          }
+                        }
                         const dataTypeBadge = () => {
                           const type = food.dataType || '';
                           const badgeStyle: Record<string, string> = {
-                            'SR Legacy': 'bg-yellow-100 text-yellow-800', // #ffbe4f palette
-                            'Foundation': 'bg-orange-100 text-orange-700', // #e8702a palette
-                            'Survey (FNDDS)': 'bg-cyan-100 text-cyan-800', // #0ea7b5 palette
+                            'SR Legacy': 'bg-[#10b981]/20 text-[#24604c]', // Primary green palette
+                            'Foundation': 'bg-[#90cbb9]/20 text-[#24604c]', // Secondary green palette
+                            'Survey (FNDDS)': 'bg-[#b2d4c7]/20 text-[#24604c]', // Light green palette
                             'Branded': 'bg-gray-100 text-gray-600'
                           };
                           return badgeStyle[type] || 'bg-gray-100 text-gray-800';
                         };
 
                         return (
-                          <div
+                          <motion.div
                             key={food.fdcId}
-                            className={`p-3 cursor-pointer hover:bg-orange-50 rounded border mb-2 transition-colors ${
-                              selectedFood?.id === food.fdcId ? 'bg-yellow-50 border-yellow-300' : 'border-gray-200'
+                            className={`p-4 cursor-pointer rounded-xl mb-3 transition-all duration-300 border ${
+                              selectedFood?.id === food.fdcId 
+                                ? 'bg-gradient-to-r from-[#10b981]/10 to-[#90cbb9]/10 border-[#10b981] shadow-md' 
+                                : 'bg-white/80 border-[#b2d4c7]/50 hover:bg-gradient-to-r hover:from-[#10b981]/5 hover:to-[#90cbb9]/5 hover:border-[#10b981]/30 hover:shadow-sm'
                             }`}
                             onClick={() => selectFood(food)}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            <div className="flex justify-between items-start mb-1">
-                              <Text strong className="flex-1 mr-2">{food.description}</Text>
+                            <div className="flex justify-between items-start mb-2">
+                              <Text strong className="flex-1 mr-2" style={{ color: '#2E2E2E' }}>
+                                {food.description}
+                              </Text>
                               {food.dataType && (
-                                <span className={`px-2 py-1 rounded text-xs font-medium ${dataTypeBadge()}`}>
+                                <span className={`px-3 py-1 rounded-full text-xs font-medium ${dataTypeBadge()}`}>
                                   {food.dataType === 'SR Legacy' ? 'Official' : 
                                    food.dataType === 'Foundation' ? 'Enhanced' :
                                    food.dataType === 'Survey (FNDDS)' ? 'Survey' : 'Brand'}
@@ -599,40 +838,89 @@ const handleSearch = async (query: string) => {
                               )}
                             </div>
                             <div className="flex justify-between items-center">
-                              <Text type="secondary" className="text-sm">
-                                {Math.round(calories)} cal per 100g
-                              </Text>
-                              {food.foodPortions && food.foodPortions.length > 0 && (
-                                <Text type="secondary" className="text-xs">
-                                  📏 Portion data
+                              <div className="flex items-center gap-2">
+                                <FontAwesomeIcon icon={faFire} className="text-[#e67e22] text-sm" />
+                                <Text type="secondary" className="text-sm font-medium" style={{ color: '#7c8784' }}>
+                                  {Math.round(calories)} cal per 100g
                                 </Text>
+                              </div>
+                              {food.foodPortions && food.foodPortions.length > 0 && (
+                                <div className="flex items-center gap-1">
+                                  <FontAwesomeIcon icon={faUtensils} className="text-[#9b59b6] text-xs" />
+                                  <Text type="secondary" className="text-xs" style={{ color: '#7c8784' }}>
+                                    Portions
+                                  </Text>
+                                </div>
                               )}
                             </div>
-                          </div>
+                          </motion.div>
                         );
                       })}
-                    </div>
+                    </motion.div>
                   )}
 
 
                   {selectedFood && (
-                    <>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="space-y-4"
+                    >
                       <div>
-                        <Text strong>Quantity:</Text>
-                        <Input
-                          type="number"
-                          value={quantity}
-                          onChange={(e) => setQuantity(Number(e.target.value))}
-                          className="mt-2"
-                        />
+                        <div className="flex items-center gap-2 mb-2">
+                          <FontAwesomeIcon icon={faCalculator} className="text-[#2980b9] text-sm" />
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Quantity:
+                          </Text>
+                        </div>
+                        <div>
+                          <Input
+                            type="number"
+                            value={quantity}
+                            onChange={(e) => setQuantity(Number(e.target.value))}
+                            className="mt-2 rounded-lg border-[#b2d4c7] focus:border-[#10b981] shadow-sm"
+                            style={{
+                              borderRadius: '12px',
+                              padding: '8px 12px',
+                              fontSize: '16px'
+                            }}
+                            min={0}
+                            step={0.1}
+                          />
+                          {showUnitSuggestion && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="mt-2 p-2 bg-gradient-to-r from-[#10b981]/10 to-[#90cbb9]/10 border border-[#10b981]/30 rounded-lg"
+                            >
+                              <div className="flex items-center gap-2">
+                                <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
+                                <Text className="text-sm" style={{ color: '#24604c' }}>
+                                  Suggested quantity: <strong>{quantity} {unit}</strong>
+                                </Text>
+                              </div>
+                            </motion.div>
+                          )}
+                        </div>
                       </div>
 
                       <div>
-                        <Text strong>Unit:</Text>
+                        <div className="flex items-center gap-2 mb-2">
+                          <FontAwesomeIcon icon={faRulerCombined} className="text-[#8e44ad] text-sm" />
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Unit:
+                          </Text>
+                        </div>
                         <Select
                           value={unit}
-                          onChange={setUnit}
+                          onChange={handleUnitChange}
                           className="w-full mt-2"
+                          style={{
+                            borderRadius: '12px'
+                          }}
+                          size="large"
                         >
                           <Option value="g">Grams (g)</Option>
                           <Option value="oz">Ounces (oz)</Option>
@@ -650,154 +938,484 @@ const handleSearch = async (query: string) => {
                         </Select>
                       </div>
 
-                      <Button
-                        type="primary"
-                        icon={<FontAwesomeIcon icon={faPlus} />}
-                        onClick={addFood}
-                        className="w-full bg-orange-500 hover:bg-orange-600 border-orange-500 hover:border-orange-600"
-                        disabled={!selectedFood || quantity <= 0}
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        Add to List
-                      </Button>
-                    </>
+                        <Button
+                          type="primary"
+                          icon={<FontAwesomeIcon icon={faPlus} />}
+                          onClick={addFood}
+                          className="w-full font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                          style={{
+                            backgroundColor: '#10b981',
+                            borderColor: '#10b981',
+                            height: '48px',
+                            fontSize: '16px'
+                          }}
+                          disabled={!selectedFood || quantity <= 0}
+                        >
+                          Add to My List
+                        </Button>
+                      </motion.div>
+                    </motion.div>
                   )}
-                </Space>
-              </Card>
+                  </Space>
+                </Card>
+              </motion.div>
             </Col>
 
             {/* Nutrition Summary */}
-            <Col xs={24} lg={16}>
-              <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12} md={6}>
-                  <Card className="text-center">
-                    <Statistic
-                      title="Total Calories"
-                      value={totalNutrition.calories}
-                      prefix={<FontAwesomeIcon icon={faFire} />}
-                      valueStyle={{ color: '#e8702a' }}
-                    />
-                    <Progress
-                      percent={formatNumber(Math.min((totalNutrition.calories / dailyGoals.calories) * 100, 100))}
-                      size="small"
-                      className="mt-2"
-                    />
-                  </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                  <Card className="text-center">
-                    <Statistic
-                      title="Protein (g)"
-                      value={totalNutrition.protein}
-                      prefix={<FontAwesomeIcon icon={faUtensils} />}
-                      valueStyle={{ color: '#0ea7b5' }}
-                    />
-                    <Progress
-                      percent={formatNumber(Math.min((totalNutrition.protein / dailyGoals.protein) * 100, 100))}
-                      size="small"
-                      className="mt-2"
-                    />
-                  </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                  <Card className="text-center">
-                    <Statistic
-                      title="Carbs (g)"
-                      value={totalNutrition.carbs}
-                      prefix={<FontAwesomeIcon icon={faLeaf} />}
-                      valueStyle={{ color: '#ffbe4f' }}
-                    />
-                    <Progress
-                      percent={formatNumber(Math.min((totalNutrition.carbs / dailyGoals.carbs) * 100, 100))}
-                      size="small"
-                      className="mt-2"
-                    />
-                  </Card>
-                </Col>
-                <Col xs={24} sm={12} md={6}>
-                  <Card className="text-center">
-                    <Statistic
-                      title="Fat (g)"
-                      value={totalNutrition.fat}
-                      valueStyle={{ color: '#e8702a' }}
-                    />
-                    <Progress
-                      percent={formatNumber(Math.min((totalNutrition.fat / dailyGoals.fat) * 100, 100))}
-                      size="small"
-                      className="mt-2"
-                    />
-                  </Card>
-                </Col>
-              </Row>
-
-              {/* Macronutrient Chart */}
-              <Card title="Macronutrient Distribution" className="mt-4">
-                <Row gutter={[16, 16]}>
-                  <Col xs={24} md={12}>
-                    <ResponsiveContainer width="100%" height={200}>
-                      <PieChart>
-                        <Pie
-                          data={macronutrientData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={40}
-                          outerRadius={80}
-                          dataKey="value"
-                        >
-                          {macronutrientData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </Col>
-                  <Col xs={24} md={12}>
-                    <div className="space-y-2">
-                      {macronutrientData.map((item, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            <div 
-                              className="w-4 h-4 rounded mr-2" 
-                              style={{ backgroundColor: item.color }}
-                            />
-                            <Text>{item.name}</Text>
-                          </div>
-                          <Text strong>{item.value} cal</Text>
-                        </div>
-                      ))}
+            <Col xs={24} lg={16} className="order-1 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                {/* Goals Header with Edit Button */}
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#3498db]/10 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faCalculator} className="text-[#3498db] text-lg" />
                     </div>
+                    <Text strong style={{ color: '#2E2E2E', fontSize: '24px' }}>
+                      Your Daily Progress
+                    </Text>
+                  </div>
+                  <Button
+                    type="text"
+                    icon={<FontAwesomeIcon icon={faEdit} />}
+                    onClick={() => setShowGoalModal(true)}
+                    className="text-[#3498db] hover:text-[#2980b9] hover:bg-[#3498db]/10 rounded-full px-4 py-2"
+                    style={{ fontSize: '16px' }}
+                  >
+                    Edit Goals
+                  </Button>
+                </div>
+                <Row gutter={[16, 16]}>
+                  <Col xs={24} sm={12} md={6}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 }}
+                    >
+                      <Card 
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #10b981/10 0%, white 50%, #10b981/5 100%)'
+                        }}
+                      >
+                        <div className="mb-3">
+                          <div className="w-12 h-12 rounded-full bg-[#e74c3c]/10 flex items-center justify-center mx-auto mb-2">
+                            <FontAwesomeIcon icon={faFire} className="text-xl text-[#e74c3c]" />
+                          </div>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Total Calories
+                          </Text>
+                        </div>
+                        <div className="text-3xl font-bold mb-2" style={{ color: '#e74c3c' }}>
+                          {totalNutrition.calories}
+                        </div>
+                        <Progress
+                          percent={formatNumber(Math.min((totalNutrition.calories / dailyGoals.calories) * 100, 100))}
+                          size="small"
+                          className="mt-2"
+                          strokeColor="#e74c3c"
+                          trailColor="#b2d4c7"
+                        />
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                          Goal: {dailyGoals.calories} cal
+                        </Text>
+                      </Card>
+                    </motion.div>
+                  </Col>
+                  <Col xs={24} sm={12} md={6}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                    >
+                      <Card 
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #24604c/10 0%, white 50%, #24604c/5 100%)'
+                        }}
+                      >
+                        <div className="mb-3">
+                          <div className="w-12 h-12 rounded-full bg-[#3498db]/10 flex items-center justify-center mx-auto mb-2">
+                            <FontAwesomeIcon icon={faUtensils} className="text-xl text-[#3498db]" />
+                          </div>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Protein (g)
+                          </Text>
+                        </div>
+                        <div className="text-3xl font-bold mb-2" style={{ color: '#3498db' }}>
+                          {totalNutrition.protein}
+                        </div>
+                        <Progress
+                          percent={formatNumber(Math.min((totalNutrition.protein / dailyGoals.protein) * 100, 100))}
+                          size="small"
+                          className="mt-2"
+                          strokeColor="#3498db"
+                          trailColor="#b2d4c7"
+                        />
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                          Goal: {dailyGoals.protein}g
+                        </Text>
+                      </Card>
+                    </motion.div>
+                  </Col>
+                  <Col xs={24} sm={12} md={6}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                    >
+                      <Card 
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #90cbb9/10 0%, white 50%, #90cbb9/5 100%)'
+                        }}
+                      >
+                        <div className="mb-3">
+                          <div className="w-12 h-12 rounded-full bg-[#27ae60]/10 flex items-center justify-center mx-auto mb-2">
+                            <FontAwesomeIcon icon={faLeaf} className="text-xl text-[#27ae60]" />
+                          </div>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Carbs (g)
+                          </Text>
+                        </div>
+                        <div className="text-3xl font-bold mb-2" style={{ color: '#27ae60' }}>
+                          {totalNutrition.carbs}
+                        </div>
+                        <Progress
+                          percent={formatNumber(Math.min((totalNutrition.carbs / dailyGoals.carbs) * 100, 100))}
+                          size="small"
+                          className="mt-2"
+                          strokeColor="#27ae60"
+                          trailColor="#b2d4c7"
+                        />
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                          Goal: {dailyGoals.carbs}g
+                        </Text>
+                      </Card>
+                    </motion.div>
+                  </Col>
+                  <Col xs={24} sm={12} md={6}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.4 }}
+                    >
+                      <Card 
+                        className="text-center shadow-lg border border-[#24604c]/20 rounded-2xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #b2d4c7/10 0%, white 50%, #b2d4c7/5 100%)'
+                        }}
+                      >
+                        <div className="mb-3">
+                          <div className="w-12 h-12 rounded-full bg-[#f39c12]/10 flex items-center justify-center mx-auto mb-2">
+                            <FontAwesomeIcon icon={faSeedling} className="text-xl text-[#f39c12]" />
+                          </div>
+                          <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                            Fat (g)
+                          </Text>
+                        </div>
+                        <div className="text-3xl font-bold mb-2" style={{ color: '#f39c12' }}>
+                          {totalNutrition.fat}
+                        </div>
+                        <Progress
+                          percent={formatNumber(Math.min((totalNutrition.fat / dailyGoals.fat) * 100, 100))}
+                          size="small"
+                          className="mt-2"
+                          strokeColor="#f39c12"
+                          trailColor="#e5e7eb"
+                        />
+                        <Text type="secondary" className="text-xs mt-1" style={{ color: '#7c8784' }}>
+                          Goal: {dailyGoals.fat}g
+                        </Text>
+                      </Card>
+                    </motion.div>
                   </Col>
                 </Row>
-              </Card>
+
+                {/* Macronutrient Chart - Separate Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="mt-6"
+                >
+                  <Card 
+                    title={
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#9b59b6]/10 flex items-center justify-center">
+                          <FontAwesomeIcon icon={faChartPie} className="text-[#9b59b6] text-lg" />
+                        </div>
+                        <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                          Macronutrient Distribution
+                        </span>
+                      </div>
+                    }
+                    className="shadow-lg border border-[#24604c]/20 rounded-2xl"
+                    style={{
+                      background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+                    }}
+                  >
+                    <Row gutter={[24, 24]}>
+                      <Col xs={24} md={12}>
+                        <div className="flex justify-center">
+                          <ResponsiveContainer width="100%" height={240}>
+                            <PieChart>
+                              <Pie
+                                data={macronutrientData}
+                                cx="50%"
+                                cy="50%"
+                                innerRadius={60}
+                                outerRadius={100}
+                                dataKey="value"
+                                stroke="#ffffff"
+                                strokeWidth={3}
+                              >
+                                {macronutrientData.map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                              </Pie>
+                              <Tooltip 
+                                formatter={(value: any) => [`${value} cal`, 'Calories']}
+                                labelStyle={{ color: '#2E2E2E' }}
+                                contentStyle={{
+                                  backgroundColor: 'white',
+                                  border: '1px solid #b2d4c7',
+                                  borderRadius: '12px',
+                                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                                }}
+                              />
+                            </PieChart>
+                          </ResponsiveContainer>
+                        </div>
+                      </Col>
+                      <Col xs={24} md={12}>
+                        <div className="space-y-4 pt-4">
+                          {macronutrientData.map((item, index) => (
+                            <motion.div 
+                              key={index} 
+                              className="flex items-center justify-between p-3 rounded-xl bg-white/60 border border-gray-100"
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: index * 0.1 }}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div 
+                                  className="w-6 h-6 rounded-full shadow-sm" 
+                                  style={{ backgroundColor: item.color }}
+                                />
+                                <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
+                                  {item.name}
+                                </Text>
+                              </div>
+                              <div className="text-right">
+                                <Text strong style={{ color: item.color, fontSize: '16px' }}>
+                                  {item.value} cal
+                                </Text>
+                                <Text type="secondary" className="block text-xs" style={{ color: '#7c8784' }}>
+                                  {((item.value / (macronutrientData.reduce((sum, m) => sum + m.value, 0))) * 100).toFixed(0)}%
+                                </Text>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </Col>
+                    </Row>
+                  </Card>
+                </motion.div>
+              </motion.div>
             </Col>
           </Row>
 
           {/* Food List Table */}
-          <Card title="Your Food List" className="mt-6">
-            {foodList.length > 0 ? (
-              <Table
-                columns={columns}
-                dataSource={foodList}
-                rowKey="id"
-                pagination={false}
-                size="small"
-              />
-            ) : (
-              <div className="text-center py-8">
-                <Text type="secondary">No foods added yet. Search and add foods to start tracking your nutrition!</Text>
-              </div>
-            )}
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <Card 
+              title={
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#16a085]/10 flex items-center justify-center">
+                    <FontAwesomeIcon icon={faUtensils} className="text-[#16a085] text-lg" />
+                  </div>
+                  <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                    Your Food List
+                  </span>
+                </div>
+              }
+              className="mt-8 shadow-lg border border-[#24604c]/20 rounded-2xl"
+              style={{
+                background: 'linear-gradient(135deg, #24604c/5 0%, white 50%, #10b981/5 100%)'
+              }}
+            >
+              {foodList.length > 0 ? (
+                <Table
+                  columns={columns}
+                  dataSource={foodList}
+                  rowKey="id"
+                  pagination={false}
+                  size="middle"
+                  className="rounded-xl overflow-hidden"
+                  style={{
+                    backgroundColor: 'white/80'
+                  }}
+                />
+              ) : (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 rounded-full bg-[#95a5a6]/10 flex items-center justify-center mx-auto mb-4">
+                    <FontAwesomeIcon icon={faUtensils} className="text-[#95a5a6] text-2xl" />
+                  </div>
+                  <Text style={{ color: '#7c8784', fontSize: '16px' }}>
+                    No foods added yet. Search and add foods to start tracking your nutrition!
+                  </Text>
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <FontAwesomeIcon icon={faSearch} className="text-[#3498db] text-sm" />
+                    <Text style={{ color: '#24604c', fontSize: '14px' }}>
+                      Try searching for "chicken breast", "broccoli", or "brown rice"
+                    </Text>
+                  </div>
+                </div>
+              )}
+            </Card>
+          </motion.div>
 
-          {/* Tips */}
-          <Alert
-            message="Nutrition Tips"
-            description="Remember to drink plenty of water throughout the day. Aim for at least 8 glasses (64 oz) of water daily to support your metabolism and overall health."
-            type="info"
-            showIcon
-            className="mt-6"
-          />
         </motion.div>
+
+        {/* Goals Setting Modal */}
+        <Modal
+          title={
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-[#3498db]/10 flex items-center justify-center">
+                <FontAwesomeIcon icon={faEdit} className="text-[#3498db] text-sm" />
+              </div>
+              <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
+                Set Your Daily Goals
+              </span>
+            </div>
+          }
+          open={showGoalModal}
+          onCancel={() => setShowGoalModal(false)}
+          footer={null}
+          className="rounded-2xl"
+          width={500}
+        >
+          <Form
+            layout="vertical"
+            initialValues={dailyGoals}
+            onFinish={handleGoalUpdate}
+            className="mt-4"
+          >
+            <Row gutter={[16, 16]}>
+              <Col xs={24} sm={12}>
+                <Form.Item
+                  label={
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faFire} className="text-[#e74c3c] text-sm" />
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Calories</span>
+                    </div>
+                  }
+                  name="calories"
+                  rules={[{ required: true, message: 'Please enter your calorie goal' }]}
+                >
+                  <InputNumber
+                    min={500}
+                    max={5000}
+                    step={50}
+                    className="w-full rounded-lg"
+                    placeholder="e.g., 2000"
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item
+                  label={
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faUtensils} className="text-[#3498db] text-sm" />
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Protein (g)</span>
+                    </div>
+                  }
+                  name="protein"
+                  rules={[{ required: true, message: 'Please enter your protein goal' }]}
+                >
+                  <InputNumber
+                    min={10}
+                    max={500}
+                    step={5}
+                    className="w-full rounded-lg"
+                    placeholder="e.g., 150"
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item
+                  label={
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faLeaf} className="text-[#27ae60] text-sm" />
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Carbs (g)</span>
+                    </div>
+                  }
+                  name="carbs"
+                  rules={[{ required: true, message: 'Please enter your carbs goal' }]}
+                >
+                  <InputNumber
+                    min={20}
+                    max={800}
+                    step={10}
+                    className="w-full rounded-lg"
+                    placeholder="e.g., 250"
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Form.Item
+                  label={
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faSeedling} className="text-[#f39c12] text-sm" />
+                      <span style={{ color: '#2E2E2E', fontWeight: 'bold' }}>Fat (g)</span>
+                    </div>
+                  }
+                  name="fat"
+                  rules={[{ required: true, message: 'Please enter your fat goal' }]}
+                >
+                  <InputNumber
+                    min={10}
+                    max={200}
+                    step={5}
+                    className="w-full rounded-lg"
+                    placeholder="e.g., 67"
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            
+            <div className="mt-6 text-center">
+              <Space size="middle">
+                <Button
+                  onClick={() => setShowGoalModal(false)}
+                  className="rounded-full px-6"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  icon={<FontAwesomeIcon icon={faSave} />}
+                  className="bg-[#3498db] hover:bg-[#2980b9] border-[#3498db] hover:border-[#2980b9] rounded-full px-6"
+                >
+                  Save Goals
+                </Button>
+              </Space>
+            </div>
+          </Form>
+        </Modal>
+      </div>
       </div>
     </>
   )

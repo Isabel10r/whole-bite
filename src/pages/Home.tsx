@@ -7,43 +7,6 @@ import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faLeaf }
 import { HEADER_HEIGHT } from '../components/Header';
 
 
-// Custom hook for scroll-based gradient animation
-const useScrollGradient = () => {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setScrollDirection('down');
-      } else if (currentScrollY < lastScrollY) {
-        setScrollDirection('up');
-      }
-      
-      setLastScrollY(currentScrollY);
-      setIsScrolling(true);
-      
-      // Reset scrolling state after a delay
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsScrolling(false);
-      }, 300);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [lastScrollY]);
-
-  return { scrollDirection, isScrolling };
-};
 
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
@@ -80,11 +43,21 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; d
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
       
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      // Use a smoother easing function
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentValue = easeOutCubic * end;
+      
+      // Always round to nearest integer for smooth progression
+      const roundedValue = Math.round(currentValue);
+      
+      // Ensure we never exceed the end value and provide smooth increment
+      setCount(Math.min(roundedValue, end));
 
       if (progress < 1) {
         requestAnimationFrame(animate);
+      } else {
+        // Guarantee final value is set
+        setCount(end);
       }
     };
 
@@ -94,11 +67,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; d
   return (
     <span 
       id={`counter-${end}`} 
-      className="text-3xl font-bold text-[#ffbe4f] drop-shadow-lg"
-      style={{
-        textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 190, 79, 0.4)',
-        filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-      }}
+      className="text-3xl font-bold text-[#24604c]"
     >
       {count}{suffix}
     </span>
@@ -110,7 +79,6 @@ const HomePage = () => {
   const [currentBenefitIndex, setCurrentBenefitIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const titleControls = useAnimation();
-  const { scrollDirection, isScrolling } = useScrollGradient();
   const featuresSectionRef = useRef<HTMLElement>(null);
   const benefitsCarouselRef = useRef<HTMLElement>(null);
 
@@ -181,21 +149,21 @@ const HomePage = () => {
       quote: "I went from exhausted by 2 PM to having energy all day long. The meal timing strategies were game-changing!",
       author: "Jane D.",
       icon: faStar,
-      iconColor: "#ffbe4f",
+      iconColor: "#10b981",
       category: "Energy Transformation"
     },
     {
       quote: "Finally reached my goal weight without feeling hungry or deprived. The sustainable approach actually works!",
       author: "Mark S.",
       icon: faDumbbell,
-      iconColor: "#e8702a",
+      iconColor: "#24604c",
       category: "Weight Success"
     },
     {
       quote: "The ongoing support made all the difference. I never felt alone in my journey and always had guidance when I needed it.",
       author: "Emily R.",
       icon: faLeaf,
-      iconColor: "#0ea7b5",
+      iconColor: "#90cbb9",
       category: "Lifestyle Change"
     },
   ];
@@ -207,16 +175,16 @@ const HomePage = () => {
       subtitle: "The beginning of your change",
       description: "Perfect for those who want to start without feeling overwhelmed.",
       icon: faRocket,
-      iconColor: "#0ea7b5",
+      iconColor: "#10b981",
       price: "COP 220,000 / month",
       priceUSD: "USD 55",
       features: [
-        "Initial consultation (60 min) + complete diagnosis",
-        "100% personalized meal plan (hormonal balance, recomposition or anti-inflammatory)",
-        "Weekly shopping list organized by sections",
+        "Initial consultation (60 min) + complete diagnosis with personalized plan",
+        "100% customized meal plan designed for your goals",
+        "Shopping list tailored to your plan",
         "Plan adjustments every 2 weeks",
-        "Access to private community (WhatsApp/Telegram)",
-        "Mini recipe book (5 practical recipes)"
+        "Mini recipe book (5 practical recipes)",
+        "Exclusive access to private community (WhatsApp/Telegram)"
       ]
     },
     {
@@ -225,15 +193,14 @@ const HomePage = () => {
       subtitle: "Your new healthy routine",
       description: "The most popular plan: balance between support and flexibility.",
       icon: faHeart,
-      iconColor: "#e8702a",
+      iconColor: "#24604c",
       price: "COP 380,000 / month",
       priceUSD: "USD 95",
       features: [
         "Everything from the Kickstart plan",
-        "Individual weekly follow-up (30 min virtual)",
-        "Weekly plan adjustments",
-        "Weekly form/checklist",
-        "Access to exclusive video library",
+        "Individual weekly follow-up (25 min virtual)",
+        "Monthly pantry makeover call (30 min virtual session)",
+        "Weekly progress checklist",
         "Extended recipe book (15 recipes)",
         "Direct chat (response < 24h)"
       ]
@@ -244,35 +211,33 @@ const HomePage = () => {
       subtitle: "Complete 360° support",
       description: "Designed for deep change with constant support.",
       icon: faCrown,
-      iconColor: "#ffbe4f",
+      iconColor: "#90cbb9",
       price: "COP 650,000 / month",
       priceUSD: "USD 160",
       features: [
         "Everything from the Lifestyle plan",
-        "Daily WhatsApp review",
-        "Shopping support (virtual)",
-        "Functional training plan",
-        "Monthly coaching (60 min)",
+        "Daily WhatsApp review of meals & habits",
+        "Shop smart & healthy with ease: 45-min guided grocery call",
+        "Functional training plan with certified trainer",
         "Premium recipe book (+30 recipes)",
-        "Access to exclusive monthly challenges",
-        "Bonus: online workshops (e.g., reading labels)"
+        "Access to exclusive monthly challenges based on your nutritional goals"
       ]
     }
   ];
 
   const features = [
     {
-      icon: <HeartOutlined className="text-4xl text-[#0ea7b5]" />,
+      icon: <HeartOutlined className="text-4xl text-[#10b981]" />,
       title: "Science-Backed Methods",
-      description: "Every strategy is rooted in cutting-edge research and clinical evidence."
+      description: "Every strategy is grounded in the latest scientific research and proven clinical evidence."
     },
       {
-        icon: <TrophyOutlined className="text-4xl text-[#e8702a]" />,
+        icon: <TrophyOutlined className="text-4xl text-[#24604c]" />,
         title: "Transformative Outcomes",
-        description: "Real results that stick—no more yo-yo dieting or temporary fixes."
+        description: "Achieve lasting results that endure—sustainable transformation, not short-term fixes."
       },
     {
-      icon: <TeamOutlined className="text-4xl text-[#ffbe4f]" />,
+      icon: <TeamOutlined className="text-4xl text-[#90cbb9]" />,
       title: "Tailored Coaching",
       description: "Customized guidance that adapts to your unique goals and lifestyle."
     }
@@ -281,62 +246,91 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-[#F7F7F7] font-sans">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0ea7b5] via-[#6bd2db] to-[#0c457d] text-white relative overflow-hidden" style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px)` }}>
-        {/* Floating Bubbles */}
+      <section className="bg-white text-[#373837] relative overflow-hidden" style={{ minHeight: `calc(100vh - ${HEADER_HEIGHT}px)` }}>
+        {/* Floating Bubbles with Light Green Fade */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full opacity-10"
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+            }}
             animate={{
               y: [0, -15, 0],
               x: [0, 8, 0],
-              scale: [1, 1.05, 1]
+              scale: [1, 1.1, 1]
             }}
             transition={{
-              duration: 6,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-24 h-24 bg-white rounded-full opacity-10"
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+            }}
             animate={{
               y: [0, 12, 0],
               x: [0, -6, 0],
-              scale: [1, 0.95, 1]
+              scale: [1, 0.9, 1]
             }}
             transition={{
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-16 h-16 bg-white rounded-full opacity-10"
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+            }}
             animate={{
-              y: [0, -10, 0],
+              y: [0, -8, 0],
               x: [0, 5, 0],
-              scale: [1, 1.08, 1]
+              scale: [1, 1.2, 1]
             }}
             transition={{
-              duration: 7,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 2
             }}
           />
           <motion.div
-            className="absolute bottom-40 right-1/3 w-20 h-20 bg-white rounded-full opacity-10"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+            }}
             animate={{
-              y: [0, 14, 0],
-              x: [0, -4, 0],
-              scale: [1, 0.92, 1]
+              y: [0, -10, 0],
+              x: [0, 4, 0],
+              scale: [1, 1.3, 1]
             }}
             transition={{
               duration: 9,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5
+              delay: 3
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
+            }}
+            animate={{
+              y: [0, 15, 0],
+              x: [0, -7, 0],
+              scale: [1, 0.8, 1]
+            }}
+            transition={{
+              duration: 11,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
             }}
           />
         </div>
@@ -344,28 +338,13 @@ const HomePage = () => {
         <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center" style={{ minHeight: `calc(100dvh - ${HEADER_HEIGHT}px)` }}>
           <div className="max-w-5xl mx-auto">
             <motion.h1 
-              className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight"
+              className="text-5xl md:text-6xl font-bold mb-8 tracking-tight leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <motion.span
-                animate={titleControls}
-                className="block"
-              >
-                Transform Your Health with
-              </motion.span>
-              <motion.span 
-                className="block text-[#ffbe4f] drop-shadow-lg"
-                animate={titleControls}
-                transition={{ delay: 0.2 }}
-                style={{
-                  textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 190, 79, 0.4)',
-                  filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-                }}
-              >
-                Expert Nutrition
-              </motion.span>
+              Transform Your Health with{' '}
+              <span className="text-[#10b981]">Expert Nutrition</span>
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed opacity-95"
@@ -373,7 +352,7 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
-              Finally, a nutrition approach that works with your body, not against it. Get personalized coaching that transforms your energy, balances your hormones, and creates lasting habits—all backed by science.
+              Healthy never felt this good—let's make it your lifestyle. Discover personalized nutrition that transforms your energy, balances your hormones, and creates lasting habits backed by science.
             </motion.p>
             
             {/* Stats Row */}
@@ -383,23 +362,17 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             >
-              <div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-              >
+              <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={100} suffix="%" />
-                <div className="text-sm opacity-90 mt-2">Tailored Plans</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">Tailored Plans</div>
               </div>
-              <div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-              >
+              <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={50} suffix="+" />
-                <div className="text-sm opacity-90 mt-2">Recipes & Meal Ideas</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">Recipes & Meal Ideas</div>
               </div>
-              <div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-              >
+              <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={90} suffix="%" />
-                <div className="text-sm opacity-90 mt-2">Report Improved Habits</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">Report Improved Habits</div>
               </div>
             </motion.div>
 
@@ -416,27 +389,7 @@ const HomePage = () => {
                 <Button
                   type="primary"
                   size="large"
-                  className="bg-[#e8702a] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:shadow-xl"
-                  style={{
-                    background: '#e8702a',
-                    borderColor: '#e8702a',
-                    color: 'white'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#ffbe4f';
-                    e.currentTarget.style.borderColor = '#ffbe4f';
-                    e.currentTarget.style.color = '#0c457d';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#e8702a';
-                    e.currentTarget.style.borderColor = '#e8702a';
-                    e.currentTarget.style.color = 'white';
-                  }}
-                  onClick={(e) => {
-                    e.currentTarget.style.background = '#ffbe4f';
-                    e.currentTarget.style.borderColor = '#ffbe4f';
-                    e.currentTarget.style.color = '#0c457d';
-                  }}
+                  className="bg-[#10b981] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#b2d4c7] hover:!text-[#24604c]"
                   href="#contact"
                 >
                   Start Your Journey <ArrowRightOutlined />
@@ -448,22 +401,7 @@ const HomePage = () => {
               >
                 <Button
                   size="large"
-                  className="bg-transparent text-white border-2 border-white px-10 py-4 rounded-full transition-all duration-300 text-lg hover:shadow-lg"
-                  style={{
-                    background: 'transparent',
-                    borderColor: 'white',
-                    color: 'white'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#ffbe4f';
-                    e.currentTarget.style.borderColor = '#ffbe4f';
-                    e.currentTarget.style.color = '#0c457d';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.borderColor = 'white';
-                    e.currentTarget.style.color = 'white';
-                  }}
+                  className="bg-transparent text-[#373837] border-2 border-[#373837] px-10 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#b2d4c7] hover:!border-[#b2d4c7] hover:!text-[#24604c]"
                   href="#services"
                 >
                   Learn More
@@ -476,11 +414,13 @@ const HomePage = () => {
 
       {/* Features Section */}
       <section id="features" ref={featuresSectionRef} className="py-24 bg-white relative overflow-hidden">
-        {/* Background Organic Bubbles */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Bubbles with Light Green Fade */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #4ECDC4 0%, transparent 70%)' }}
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+            }}
             animate={{
               y: [0, -15, 0],
               x: [0, 8, 0],
@@ -493,8 +433,10 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #FF6B6B 0%, transparent 70%)' }}
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+            }}
             animate={{
               y: [0, 12, 0],
               x: [0, -6, 0],
@@ -508,153 +450,54 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #FFE66D 0%, transparent 70%)' }}
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+            }}
             animate={{
-              y: [0, -10, 0],
+              y: [0, -8, 0],
               x: [0, 5, 0],
-              scale: [1, 1.08, 1]
+              scale: [1, 1.2, 1]
             }}
             transition={{
-              duration: 7,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 2
             }}
           />
           <motion.div
-            className="absolute bottom-40 right-1/3 w-28 h-28 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #4ECDC4 0%, transparent 70%)' }}
-            animate={{
-              y: [0, 14, 0],
-              x: [0, -4, 0],
-              scale: [1, 0.92, 1]
-            }}
-            transition={{
-              duration: 9,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-16 h-16 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #FF6B6B 0%, transparent 70%)' }}
-            animate={{
-              y: [0, -25, 0],
-              x: [0, 12, 0],
-              scale: [1, 1.08, 1]
-            }}
-            transition={{
-              duration: 11,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-        </div>
-        {/* Floating Bubbles - Similar to Header */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Bubbles positioned to avoid text overlap */}
-          <motion.div
-            className="absolute top-10 left-5 w-24 h-24 rounded-full opacity-20"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
             style={{
-              background: '#FFB3B3'
-            }}
-            animate={{
-              y: [0, -15, 0],
-              x: [0, 8, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute top-32 right-5 w-20 h-20 rounded-full opacity-20"
-            style={{
-              background: '#FFB3B3'
-            }}
-            animate={{
-              y: [0, 12, 0],
-              x: [0, -6, 0],
-              scale: [1, 0.9, 1]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute bottom-32 left-8 w-16 h-16 rounded-full opacity-20"
-            style={{
-              background: '#FFB3B3'
+              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
             }}
             animate={{
               y: [0, -10, 0],
-              x: [0, 5, 0],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          <motion.div
-            className="absolute bottom-16 right-8 w-18 h-18 rounded-full opacity-20"
-            style={{
-              background: '#FFB3B3'
-            }}
-            animate={{
-              y: [0, 14, 0],
-              x: [0, -4, 0],
-              scale: [1, 0.95, 1]
+              x: [0, 4, 0],
+              scale: [1, 1.3, 1]
             }}
             transition={{
               duration: 9,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 0.5
+              delay: 3
             }}
           />
           <motion.div
-            className="absolute top-1/2 left-2 w-14 h-14 rounded-full opacity-20"
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
             style={{
-              background: '#FFB3B3'
+              background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
             }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              scale: [1, 1.08, 1]
+              y: [0, 15, 0],
+              x: [0, -7, 0],
+              scale: [1, 0.8, 1]
             }}
             transition={{
               duration: 11,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 right-2 w-12 h-12 rounded-full opacity-20"
-            style={{
-              background: '#FFB3B3'
-            }}
-            animate={{
-              y: [0, 16, 0],
-              x: [0, -8, 0],
-              scale: [1, 1.02, 1]
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2.5
+              delay: 4
             }}
           />
         </div>
@@ -662,75 +505,47 @@ const HomePage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
             <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6 text-[#0c457d] px-4 py-2"
+              className="text-4xl md:text-5xl font-bold mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              animate={isScrolling ? {
-                backgroundPosition: scrollDirection === 'down' 
-                  ? ['0% 50%', '100% 50%']
-                  : ['100% 50%', '0% 50%'],
-                scale: [1, 1.02, 1]
-              } : {
-                backgroundPosition: '0% 50%',
-                scale: 1
-              }}
-              transition={{
-                opacity: { duration: 0.8 },
-                y: { duration: 0.8 },
-                backgroundPosition: {
-                  duration: 2,
-                  ease: "easeInOut"
-                },
-                scale: {
-                  duration: 0.6,
-                  ease: "easeInOut"
-                }
-              }}
-              style={{
-                background: 'linear-gradient(45deg, #0c457d, #0ea7b5, #6bd2db)',
-                backgroundSize: '200% 200%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
+              transition={{ duration: 0.8 }}
+              style={{ color: '#2E2E2E' }}
             >
               What Makes My Coaching Different?
             </motion.h2>
-            <p className="text-xl text-[#0c457d] max-w-3xl mx-auto leading-relaxed">
-              Unlike generic diet plans, my approach combines cutting-edge research with personalized strategies that work with your body, not against it.
-            </p>
+            <motion.p 
+              className="text-xl max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ color: '#2E2E2E' }}
+            >
+              Unlike generic diet plans, my approach integrates advanced nutritional science with personalized strategies that work harmoniously with your body's natural processes.
+            </motion.p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="relative group cursor-pointer"
+                className="relative group"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* Modern Gradient Box */}
+                {/* Feature Card */}
                 <div 
                   className={`
-                    relative p-8 rounded-3xl
-                    ${index === 0 ? 'bg-gradient-to-br from-[#0ea7b5]/10 via-[#0ea7b5]/5 to-white border border-[#0ea7b5]/20' : ''}
-                    ${index === 1 ? 'bg-gradient-to-br from-[#e8702a]/10 via-[#e8702a]/5 to-white border border-[#e8702a]/20' : ''}
-                    ${index === 2 ? 'bg-gradient-to-br from-[#ffbe4f]/10 via-[#ffbe4f]/5 to-white border border-[#ffbe4f]/20' : ''}
-                    shadow-lg shadow-black/5
+                    relative p-8 rounded-2xl
+                    ${index === 0 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
+                    ${index === 1 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
+                    ${index === 2 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
+                    shadow-lg shadow-black/8
                   `}
                 >
-                  {/* Background Glow - Static */}
-                  <div
-                    className="absolute inset-0 rounded-3xl"
-                    style={{
-                      background: index === 0 ? 'radial-gradient(circle, rgba(14, 167, 181, 0.1) 0%, transparent 70%)' :
-                                   index === 1 ? 'radial-gradient(circle, rgba(232, 112, 42, 0.1) 0%, transparent 70%)' :
-                                   'radial-gradient(circle, rgba(255, 190, 79, 0.1) 0%, transparent 70%)'
-                    }}
-                  />
                   
                   {/* Centered Icon */}
                   <div className="mb-6 flex justify-center">
@@ -741,19 +556,16 @@ const HomePage = () => {
                   
                   {/* Title with Static Highlight */}
                   <h3 
-                    className={`
-                      text-2xl font-bold mb-4 relative z-10 text-center
-                      ${index === 0 ? 'bg-gradient-to-r from-[#0ea7b5] to-[#0c457d] bg-clip-text text-transparent' : ''}
-                      ${index === 1 ? 'bg-gradient-to-r from-[#e8702a] to-[#0c457d] bg-clip-text text-transparent' : ''}
-                      ${index === 2 ? 'bg-gradient-to-r from-[#ffbe4f] to-[#0c457d] bg-clip-text text-transparent' : ''}
-                    `}
+                    className="text-2xl font-bold mb-4 relative z-10 text-center"
+                    style={{ color: '#2E2E2E' }}
                   >
                     {feature.title}
                   </h3>
                   
                   {/* Description */}
                   <p 
-                    className="text-[#0c457d] leading-relaxed text-lg relative z-10 text-center"
+                    className="leading-relaxed text-lg relative z-10 text-center"
+                    style={{ color: '#2E2E2E' }}
                   >
                     {feature.description}
                   </p>
@@ -766,11 +578,13 @@ const HomePage = () => {
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-[#F7F7F7] relative overflow-hidden">
-        {/* Background Bubbles */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Bubbles with Light Green Fade */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-20 h-20 rounded-full opacity-10"
-            style={{ background: '#4ECDC4' }}
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+            }}
             animate={{
               y: [0, -15, 0],
               x: [0, 8, 0],
@@ -783,8 +597,10 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-16 h-16 rounded-full opacity-10"
-            style={{ background: '#4ECDC4' }}
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+            }}
             animate={{
               y: [0, 12, 0],
               x: [0, -6, 0],
@@ -798,33 +614,54 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/2 left-5 w-12 h-12 rounded-full opacity-10"
-            style={{ background: '#4ECDC4' }}
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+            }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              scale: [1, 1.08, 1]
+              y: [0, -8, 0],
+              x: [0, 5, 0],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+            }}
+            animate={{
+              y: [0, -10, 0],
+              x: [0, 4, 0],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
+            }}
+            animate={{
+              y: [0, 15, 0],
+              x: [0, -7, 0],
+              scale: [1, 0.8, 1]
             }}
             transition={{
               duration: 11,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 right-5 w-14 h-14 rounded-full opacity-10"
-            style={{ background: '#4ECDC4' }}
-            animate={{
-              y: [0, 16, 0],
-              x: [0, -8, 0],
-              scale: [1, 1.02, 1]
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2.5
+              delay: 4
             }}
           />
         </div>
@@ -832,44 +669,25 @@ const HomePage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
             <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6 text-[#0c457d] px-4 py-2"
+              className="text-4xl md:text-5xl font-bold mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              animate={isScrolling ? {
-                backgroundPosition: scrollDirection === 'down' 
-                  ? ['0% 50%', '100% 50%']
-                  : ['100% 50%', '0% 50%'],
-                scale: [1, 1.02, 1]
-              } : {
-                backgroundPosition: '0% 50%',
-                scale: 1
-              }}
-              transition={{
-                opacity: { duration: 0.8 },
-                y: { duration: 0.8 },
-                backgroundPosition: {
-                  duration: 2,
-                  ease: "easeInOut"
-                },
-                scale: {
-                  duration: 0.6,
-                  ease: "easeInOut"
-                }
-              }}
-              style={{
-                background: 'linear-gradient(45deg, #0c457d, #0ea7b5, #6bd2db)',
-                backgroundSize: '200% 200%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
+              transition={{ duration: 0.8 }}
+              style={{ color: '#2E2E2E' }}
             >
               My Services
             </motion.h2>
-            <p className="text-xl text-[#0c457d] max-w-3xl mx-auto leading-relaxed">
+            <motion.p 
+              className="text-xl max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ color: '#2E2E2E' }}
+            >
               Choose the level of support that fits your journey—from getting started to complete transformation with ongoing guidance.
-            </p>
+            </motion.p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -885,70 +703,47 @@ const HomePage = () => {
               >
                 {/* Service Card */}
                 <motion.div 
-                  className="relative p-8 rounded-3xl bg-white shadow-lg shadow-black/5 h-full flex flex-col"
+                  className="relative p-8 rounded-2xl bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white shadow-lg shadow-black/8 h-full flex flex-col border border-[#24604c]/20"
                   whileHover={{ 
-                    scale: 1.05,
-                    y: -8,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                    y: -4,
+                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
                   }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  {/* Animated Background Glow */}
-                  <motion.div
-                    className="absolute inset-0 rounded-3xl transition-opacity duration-300"
+                  {/* Background Glow */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-5"
                     style={{
-                      background: `radial-gradient(circle, ${service.iconColor}30 0%, transparent 70%)`
+                      background: `radial-gradient(circle, ${service.iconColor} 0%, transparent 70%)`
                     }}
-                    whileHover={{
-                      opacity: 1,
-                      scale: 1.1
-                    }}
-                    initial={{ opacity: 0, scale: 1 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   />
                   
                   {/* Icon */}
                   <div className="mb-6 flex justify-center">
-                    <motion.div
-                      className="relative"
-                      whileHover={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 5, -5, 0]
-                      }}
-                      transition={{ duration: 0.6 }}
-                    >
+                    <div className="relative">
                       <FontAwesomeIcon 
                         icon={service.icon} 
                         className="text-4xl"
                         style={{ color: service.iconColor }}
                       />
-                    </motion.div>
+                    </div>
                   </div>
                   
                   {/* Title */}
-                  <motion.h3 
+                  <h3 
                     className="text-2xl font-bold mb-2 text-center relative z-10"
-                    style={{
-                      background: `linear-gradient(45deg, ${service.iconColor}, #0c457d)`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
-                    whileHover={{
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 0.3 }}
+                    style={{ color: '#2E2E2E' }}
                   >
                     {service.title}
-                  </motion.h3>
+                  </h3>
                   
                   {/* Subtitle */}
-                  <p className="text-lg font-semibold text-center mb-4 text-[#0c457d] relative z-10">
+                  <p className="text-lg font-semibold text-center mb-4 relative z-10" style={{ color: '#2E2E2E' }}>
                     {service.subtitle}
                   </p>
                   
                   {/* Description */}
-                  <p className="text-[#0c457d] leading-relaxed text-center mb-6 relative z-10 flex-grow">
+                  <p className="leading-relaxed text-center mb-6 relative z-10 flex-grow" style={{ color: '#2E2E2E' }}>
                     {service.description}
                   </p>
                   
@@ -963,17 +758,11 @@ const HomePage = () => {
                   </div>
                   
                   {/* CTA Button */}
-                  <motion.div
-                    className="text-center relative z-10 mt-auto"
-                    whileHover={{
-                      y: [0, -2, 0]
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
+                  <div className="text-center relative z-10 mt-auto">
                     <Button
                       type="primary"
                       size="large"
-                      className="w-full"
+                      className="w-full hover:shadow-lg hover:!bg-[#373837] hover:!border-[#373837] hover:!text-white"
                       style={{
                         backgroundColor: service.iconColor,
                         borderColor: service.iconColor,
@@ -988,7 +777,7 @@ const HomePage = () => {
                     >
                       Start Now
                     </Button>
-                  </motion.div>
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
@@ -996,182 +785,197 @@ const HomePage = () => {
         </div>
       </section>
 
-       {/* Modern Benefits Carousel Section */}
-       <section ref={benefitsCarouselRef} className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-         {/* Animated Background */}
-         <div className="absolute inset-0">
-           <div className="absolute inset-0 bg-gradient-to-r from-[#0ea7b5]/5 via-transparent to-[#e8702a]/5"></div>
+       {/* Benefits Carousel Section */}
+       <section ref={benefitsCarouselRef} className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+         {/* Floating Bubbles with Light Green Fade */}
+         <div className="absolute inset-0 overflow-hidden">
            <motion.div
-             className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
-             style={{ background: 'radial-gradient(circle, #0ea7b5, transparent)' }}
+             className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+             style={{
+               background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+             }}
              animate={{
-               scale: [1, 1.2, 1],
-               rotate: [0, 180, 360]
+               y: [0, -15, 0],
+               x: [0, 8, 0],
+               scale: [1, 1.1, 1]
              }}
              transition={{
-               duration: 20,
+               duration: 8,
                repeat: Infinity,
-               ease: "linear"
+               ease: "easeInOut"
              }}
            />
            <motion.div
-             className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-20"
-             style={{ background: 'radial-gradient(circle, #e8702a, transparent)' }}
+             className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+             style={{
+               background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+             }}
              animate={{
-               scale: [1.2, 1, 1.2],
-               rotate: [360, 180, 0]
+               y: [0, 12, 0],
+               x: [0, -6, 0],
+               scale: [1, 0.9, 1]
              }}
              transition={{
-               duration: 25,
+               duration: 10,
                repeat: Infinity,
-               ease: "linear"
+               ease: "easeInOut",
+               delay: 1
+             }}
+           />
+           <motion.div
+             className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+             style={{
+               background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+             }}
+             animate={{
+               y: [0, -8, 0],
+               x: [0, 5, 0],
+               scale: [1, 1.2, 1]
+             }}
+             transition={{
+               duration: 12,
+               repeat: Infinity,
+               ease: "easeInOut",
+               delay: 2
+             }}
+           />
+           <motion.div
+             className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+             style={{
+               background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+             }}
+             animate={{
+               y: [0, -10, 0],
+               x: [0, 4, 0],
+               scale: [1, 1.3, 1]
+             }}
+             transition={{
+               duration: 9,
+               repeat: Infinity,
+               ease: "easeInOut",
+               delay: 3
+             }}
+           />
+           <motion.div
+             className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+             style={{
+               background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
+             }}
+             animate={{
+               y: [0, 15, 0],
+               x: [0, -7, 0],
+               scale: [1, 0.8, 1]
+             }}
+             transition={{
+               duration: 11,
+               repeat: Infinity,
+               ease: "easeInOut",
+               delay: 4
              }}
            />
          </div>
 
          <div className="container mx-auto px-6 relative z-10">
            <div className="text-center mb-12">
-             <motion.h2 
-               className="text-5xl md:text-6xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#0c457d] via-[#0ea7b5] to-[#6bd2db]"
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.8 }}
-             >
-               What You'll Achieve
-             </motion.h2>
-             <motion.p 
-               className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.8, delay: 0.2 }}
-             >
-               These aren't just promises—they're the real transformations my clients experience when they commit to their wellness journey.
-             </motion.p>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              style={{ color: '#2E2E2E' }}
+            >
+              What You'll Achieve
+            </motion.h2>
+            <motion.p 
+              className="text-xl max-w-3xl mx-auto leading-relaxed mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ color: '#2E2E2E' }}
+            >
+              These aren't just promises—they're the real transformations my clients experience when they commit to their wellness journey.
+            </motion.p>
            </div>
 
            {/* Modern Carousel Container */}
            <div className="max-w-7xl mx-auto">
              <div className="relative">
                {/* 3D Carousel */}
-               <div className="relative overflow-hidden rounded-2xl shadow-xl max-w-4xl mx-auto">
-                 {/* Navigation Arrows */}
-                 <motion.button
-                   className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-all duration-300 z-20"
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   onClick={() => {
-                     setIsAutoPlaying(false);
-                     setCurrentBenefitIndex(prev => prev === 0 ? benefits.length - 1 : prev - 1);
-                   }}
-                 >
-                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                   </svg>
-                 </motion.button>
+              <div className="relative overflow-hidden rounded-2xl shadow-lg max-w-4xl mx-auto">
+                {/* Navigation Arrows */}
+                <button
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#10b981]/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#10b981] transition-all duration-300 z-20"
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    setCurrentBenefitIndex(prev => prev === 0 ? benefits.length - 1 : prev - 1);
+                  }}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-                 <motion.button
-                   className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-all duration-300 z-20"
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   onClick={() => {
-                     setIsAutoPlaying(false);
-                     setCurrentBenefitIndex(prev => prev === benefits.length - 1 ? 0 : prev + 1);
-                   }}
-                 >
-                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                   </svg>
-                 </motion.button>
+                <button
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#10b981]/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#10b981] transition-all duration-300 z-20"
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    setCurrentBenefitIndex(prev => prev === benefits.length - 1 ? 0 : prev + 1);
+                  }}
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
 
-                 <motion.div 
-                   className="flex"
-                   animate={{ x: `-${currentBenefitIndex * 100}%` }}
-                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                 <div 
+                   className="flex transition-transform duration-700 ease-out"
+                   style={{ transform: `translateX(-${currentBenefitIndex * 100}%)` }}
                  >
                    {benefits.map((benefit, index) => (
                      <div key={index} className="w-full flex-shrink-0">
-                       <div className="relative min-h-[320px] overflow-hidden rounded-2xl">
-                         {/* Background Image with 3D Effect */}
-                         <motion.div
-                           className="absolute inset-0"
-                           initial={{ scale: 1.1, rotateY: 0 }}
-                           animate={{ 
-                             scale: currentBenefitIndex === index ? 1 : 1.1,
-                             rotateY: currentBenefitIndex === index ? 0 : 5
-                           }}
-                           transition={{ duration: 0.7 }}
-                         >
-                           <motion.img
+                       <div className="relative min-h-[400px] overflow-hidden rounded-2xl">
+                         {/* Background Image */}
+                         <div className="absolute inset-0">
+                           <img
                              src={benefit.image}
                              alt={benefit.title}
                              className="w-full h-full object-cover"
-                             initial={{ scale: 1 }}
-                             animate={{ scale: currentBenefitIndex === index ? 1.05 : 1 }}
-                             transition={{ duration: 0.7 }}
                            />
                            
                            {/* Dark Overlay for Text Readability */}
                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                         </motion.div>
+                         </div>
 
-                         {/* Floating Badge */}
-                         <motion.div
-                           className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg z-10"
-                           initial={{ opacity: 0, y: -15 }}
-                           animate={{ 
-                             opacity: currentBenefitIndex === index ? 1 : 0.7,
-                             y: currentBenefitIndex === index ? 0 : -8
-                           }}
-                           transition={{ duration: 0.6, delay: 0.2 }}
-                         >
-                           <span className="text-xs font-bold text-[#0ea7b5]">
+                         {/* Badge */}
+                         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg z-10">
+                           <span className="text-xs font-bold text-[#10b981]">
                              {index + 1} / {benefits.length}
                            </span>
-                         </motion.div>
+                         </div>
 
-                         {/* Overlay Text Content */}
-                         <motion.div
-                           className="absolute bottom-0 left-0 right-0 p-6 z-10"
-                           initial={{ opacity: 0, y: 30 }}
-                           animate={{ 
-                             opacity: currentBenefitIndex === index ? 1 : 0.7,
-                             y: currentBenefitIndex === index ? 0 : 20
-                           }}
-                           transition={{ duration: 0.6, delay: 0.3 }}
-                         >
-                           <motion.h3 
-                             className="text-2xl md:text-3xl font-bold mb-2 text-white drop-shadow-lg"
-                             animate={currentBenefitIndex === index ? {
-                               textShadow: [
-                                 '0 0 15px rgba(14, 167, 181, 0.4)',
-                                 '0 0 25px rgba(14, 167, 181, 0.6)',
-                                 '0 0 15px rgba(14, 167, 181, 0.4)'
-                               ]
-                             } : {}}
-                             transition={{ duration: 2, repeat: Infinity }}
-                           >
+                         {/* Text Content */}
+                         <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                           <h3 className="text-2xl md:text-3xl font-bold mb-2 text-white">
                              {benefit.title}
-                           </motion.h3>
+                           </h3>
                            
-                           <p className="text-sm md:text-base text-white/90 leading-relaxed max-w-xl drop-shadow-md">
+                           <p className="text-sm md:text-base text-white/90 leading-relaxed max-w-xl">
                              {benefit.description}
                            </p>
-                         </motion.div>
+                         </div>
                        </div>
                      </div>
                    ))}
-                 </motion.div>
+                 </div>
                </div>
 
                {/* Bottom Controls */}
                <div className="flex justify-center items-center mt-6 space-x-3">
                  {/* Play/Pause Button */}
-                 <motion.button
-                   className="w-12 h-12 bg-[#e8702a] rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#d65a1a] transition-all duration-300"
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
+                 <button
+                   className="w-12 h-12 bg-[#10b981] rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#24604c] transition-all duration-300"
                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                  >
                    {isAutoPlaying ? (
@@ -1183,28 +987,22 @@ const HomePage = () => {
                        <path d="M8 5v14l11-7z"/>
                      </svg>
                    )}
-                 </motion.button>
+                 </button>
 
                  {/* Dots Navigation */}
                  <div className="flex space-x-2">
                    {benefits.map((_, index) => (
-                     <motion.button
+                     <button
                        key={index}
                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                          index === currentBenefitIndex 
-                           ? 'bg-[#0ea7b5] scale-125' 
+                           ? 'bg-[#10b981] scale-125' 
                            : 'bg-gray-300 hover:bg-gray-400'
                        }`}
-                       whileHover={{ scale: 1.2 }}
-                       whileTap={{ scale: 0.9 }}
                        onClick={() => {
                          setIsAutoPlaying(false);
                          setCurrentBenefitIndex(index);
                        }}
-                       animate={{
-                         scale: index === currentBenefitIndex ? 1.25 : 1
-                       }}
-                       transition={{ duration: 0.3 }}
                      />
                    ))}
                  </div>
@@ -1214,30 +1012,34 @@ const HomePage = () => {
          </div>
        </section>
 
-      {/* Modern Testimonials Section */}
-      <section className="py-24 bg-gradient-to-br from-white via-[#F7F7F7] to-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
+      {/* Testimonials Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Floating Bubbles with Light Green Fade */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #0ea7b5 0%, transparent 70%)' }}
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+            }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
+              y: [0, -15, 0],
+              x: [0, 8, 0],
               scale: [1, 1.1, 1]
             }}
             transition={{
-              duration: 12,
+              duration: 8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-24 h-24 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #e8702a 0%, transparent 70%)' }}
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+            }}
             animate={{
-              y: [0, 15, 0],
-              x: [0, -8, 0],
+              y: [0, 12, 0],
+              x: [0, -6, 0],
               scale: [1, 0.9, 1]
             }}
             transition={{
@@ -1248,18 +1050,54 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/4 w-20 h-20 rounded-full opacity-5"
-            style={{ background: 'radial-gradient(circle, #ffbe4f 0%, transparent 70%)' }}
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+            }}
             animate={{
-              y: [0, -12, 0],
-              x: [0, 6, 0],
-              scale: [1, 1.05, 1]
+              y: [0, -8, 0],
+              x: [0, 5, 0],
+              scale: [1, 1.2, 1]
             }}
             transition={{
-              duration: 8,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
+            }}
+            animate={{
+              y: [0, -10, 0],
+              x: [0, 4, 0],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            style={{
+              background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
+            }}
+            animate={{
+              y: [0, 15, 0],
+              x: [0, -7, 0],
+              scale: [1, 0.8, 1]
+            }}
+            transition={{
+              duration: 11,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
             }}
           />
         </div>
@@ -1267,20 +1105,22 @@ const HomePage = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
             <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#0c457d] via-[#0ea7b5] to-[#6bd2db] leading-tight py-2"
+              className="text-4xl md:text-5xl font-bold mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              style={{ color: '#2E2E2E' }}
             >
               What My Clients Say
             </motion.h2>
             <motion.p 
-              className="text-xl text-[#0c457d] max-w-3xl mx-auto leading-relaxed"
+              className="text-xl max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              style={{ color: '#2E2E2E' }}
             >
               Don't just take my word for it. Here's what happens when you commit to a science-backed approach to wellness.
             </motion.p>
@@ -1299,7 +1139,7 @@ const HomePage = () => {
                 >
                   {/* Modern Testimonial Card */}
                   <div 
-                    className="relative p-8 rounded-3xl bg-white shadow-lg shadow-black/5 h-full flex flex-col border border-gray-100/50"
+                    className="relative p-8 rounded-3xl bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white shadow-lg shadow-black/8 h-full flex flex-col border border-[#24604c]/20"
                   >
                     {/* Background Glow - Static */}
                     <div
@@ -1341,7 +1181,7 @@ const HomePage = () => {
                       >
                         "
                       </div>
-                      <p className="text-lg text-[#0c457d] leading-relaxed italic">
+                      <p className="text-lg leading-relaxed italic" style={{ color: '#2E2E2E' }}>
                         {testimonial.quote}
                       </p>
                     </div>
@@ -1356,7 +1196,7 @@ const HomePage = () => {
                           {testimonial.author.charAt(0)}
                         </div>
                         <div>
-                          <p className="font-semibold text-[#0c457d] text-lg">{testimonial.author}</p>
+                          <p className="font-semibold text-lg" style={{ color: '#2E2E2E' }}>{testimonial.author}</p>
                           <p className="text-sm text-gray-500">Verified Client</p>
                         </div>
                       </div>
@@ -1376,15 +1216,15 @@ const HomePage = () => {
             >
               <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
                 <div className="flex items-center gap-2">
-                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#0ea7b5]" />
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
                   <span>100% Verified Reviews</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#0ea7b5]" />
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
                   <span>Real Client Stories</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#0ea7b5]" />
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
                   <span>Privacy Protected</span>
                 </div>
               </div>
@@ -1394,9 +1234,9 @@ const HomePage = () => {
       </section>
 
       {/* Contact CTA */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-[#0ea7b5] via-[#6bd2db] to-[#0c457d] text-white relative overflow-hidden">
+      <section id="contact" className="py-24 bg-gradient-to-br from-[#10b981] via-[#90cbb9] to-[#24604c] text-white relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-30">
           <div className="absolute top-10 right-10 w-40 h-40 bg-white rounded-full"></div>
           <div className="absolute bottom-10 left-10 w-32 h-32 bg-white rounded-full"></div>
           <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white rounded-full"></div>
@@ -1413,20 +1253,10 @@ const HomePage = () => {
               <Button
                 type="primary"
                 size="large"
-                className="bg-[#e8702a] text-white font-semibold border-none px-12 py-4 rounded-full shadow-lg transition-all duration-300 text-lg"
+                className="bg-[#24604c] text-white font-semibold border-none px-12 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-white hover:!border-white hover:!text-[#24604c] cursor-pointer"
                 style={{
-                  background: '#e8702a',
-                  borderColor: '#e8702a'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffbe4f';
-                  e.currentTarget.style.borderColor = '#ffbe4f';
-                  e.currentTarget.style.color = '#0c457d';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#e8702a';
-                  e.currentTarget.style.borderColor = '#e8702a';
-                  e.currentTarget.style.color = 'white';
+                  background: '#24604c',
+                  borderColor: '#24604c'
                 }}
                 onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
               >
@@ -1435,72 +1265,30 @@ const HomePage = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.3)"
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <div className="text-2xl font-bold text-center">
-                  <div 
-                    className="text-[#ffbe4f] drop-shadow-lg mb-2"
-                    style={{
-                      textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 190, 79, 0.4)',
-                      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-                    }}
-                  >
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="font-bold text-center">
+                  <div className="text-3xl text-[#24604c] mb-2">
                     Free
                   </div>
-                  <div className="text-white">Virtual Consultation</div>
+                  <div className="text-sm text-white font-bold">Virtual Consultation</div>
                 </div>
-              </motion.div>
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.3)"
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <div className="text-2xl font-bold text-center">
-                  <div 
-                    className="text-[#ffbe4f] drop-shadow-lg mb-2"
-                    style={{
-                      textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 190, 79, 0.4)',
-                      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-                    }}
-                  >
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="font-bold text-center">
+                  <div className="text-3xl text-[#24604c] mb-2">
                     4 weeks
                   </div>
-                  <div className="text-white">Follow-up</div>
+                  <div className="text-sm text-white font-bold">Follow-up</div>
                 </div>
-              </motion.div>
-              <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 transition-all duration-300"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.3)"
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                <div className="text-2xl font-bold text-center">
-                  <div 
-                    className="text-[#ffbe4f] drop-shadow-lg mb-2"
-                    style={{
-                      textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 190, 79, 0.4)',
-                      filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))'
-                    }}
-                  >
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <div className="font-bold text-center">
+                  <div className="text-3xl text-[#24604c] mb-2">
                     1:1
                   </div>
-                  <div className="text-white">Personalized Guidance</div>
+                  <div className="text-sm text-white font-bold">Personalized Guidance</div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -1541,10 +1329,10 @@ const HomePage = () => {
                     <h2 className="text-3xl font-bold mb-2" style={{ color: service.iconColor }}>
                       {service.title}
                     </h2>
-                    <p className="text-lg font-semibold text-[#0c457d] mb-1">
+                    <p className="text-lg font-semibold text-black mb-1">
                       {service.subtitle}
                     </p>
-                    <p className="text-base text-[#0c457d] mb-3">
+                    <p className="text-base text-black mb-3">
                       {service.description}
                     </p>
                     <div className="text-2xl font-bold mb-1" style={{ color: service.iconColor }}>
@@ -1557,14 +1345,15 @@ const HomePage = () => {
 
                   {/* Features */}
                   <div className="flex-1 mb-6">
-                    <h3 className="text-xl font-bold mb-4 text-[#0c457d] text-center">
+                    <h3 className="text-xl font-bold mb-4 text-black text-center">
                       What does this plan include?
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
                       {service.features.map((feature, index) => (
                         <motion.div
                           key={index}
-                          className="flex items-start gap-2 p-3 rounded-lg bg-gray-50"
+                          className="flex items-start gap-2 p-3 rounded-lg bg-gray-50 border"
+                          style={{ borderColor: `${service.iconColor}40` }}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -1574,7 +1363,7 @@ const HomePage = () => {
                             className="text-sm mt-0.5 flex-shrink-0"
                             style={{ color: service.iconColor }}
                           />
-                          <span className="text-sm text-[#0c457d] leading-relaxed">{feature}</span>
+                          <span className="text-sm text-black leading-relaxed">{feature}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -1585,7 +1374,7 @@ const HomePage = () => {
                     <Button
                       type="primary"
                       size="large"
-                      className="px-6 py-3 h-auto text-base font-semibold"
+                      className="px-6 py-3 h-auto text-base font-semibold hover:!bg-[#1a4a3c] hover:!border-[#1a4a3c] hover:!text-white"
                       style={{
                         backgroundColor: service.iconColor,
                         borderColor: service.iconColor
@@ -1596,7 +1385,7 @@ const HomePage = () => {
                     </Button>
                     <Button
                       size="large"
-                      className="px-6 py-3 h-auto text-base font-semibold"
+                      className="px-6 py-3 h-auto text-base font-semibold hover:!bg-[#1a4a3c] hover:!border-[#1a4a3c] hover:!text-white"
                       onClick={() => setSelectedService(null)}
                     >
                       Close

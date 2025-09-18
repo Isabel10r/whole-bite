@@ -35,47 +35,47 @@ const About: React.FC = () => {
     {
       name: 'Functional Nutrition',
       description: 'Customized plans to improve health from the root, supporting digestive, hormonal, and metabolic processes.',
-      icon: <HeartOutlined className="text-3xl" style={{ color: '#FF6B6B' }} />,
+      icon: <HeartOutlined className="text-3xl" style={{ color: '#10b981' }} />,
       details: ['Digestive Health', 'Hormonal Balance', 'Metabolic Optimization']
     },
     {
       name: 'Habit Transformation',
       description: 'Practical strategies to achieve lasting lifestyle changes without extreme restrictions.',
-      icon: <TrophyOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      icon: <TrophyOutlined className="text-3xl" style={{ color: '#24604c' }} />,
       details: ['Sustainable Changes', 'Nutritional Education', 'Long-term Adherence']
     },
     {
       name: 'Fitness Lifestyle',
       description: 'Support in body recomposition processes, muscle gain, or fat loss journeys.',
-      icon: <StarOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
+      icon: <StarOutlined className="text-3xl" style={{ color: '#90cbb9' }} />,
       details: ['Body Recomposition', 'Muscle Gain', 'Fat Loss']
     },
     {
       name: 'Nutritional Education',
       description: 'Guides, menus, digital resources, and follow-up to ensure understanding and adherence.',
-      icon: <BulbOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      icon: <BulbOutlined className="text-3xl" style={{ color: '#10b981' }} />,
       details: ['Educational Resources', 'Personalized Follow-up', 'Digital Tools']
     }
   ]
 
   const values = [
     {
-      icon: <SafetyOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      icon: <SafetyOutlined className="text-3xl" style={{ color: '#10b981' }} />,
       title: 'Commitment',
       description: 'Each plan is personalized and adapted to my patients\' real life, with continuous follow-up.'
     },
     {
-      icon: <HeartOutlined className="text-3xl" style={{ color: '#FF6B6B' }} />,
+      icon: <HeartOutlined className="text-3xl" style={{ color: '#24604c' }} />,
       title: 'Balance',
       description: 'I promote flexible, enjoyable, and practical nutrition without extreme diets or unnecessary restrictions.'
     },
     {
-      icon: <BulbOutlined className="text-3xl" style={{ color: '#FFE66D' }} />,
+      icon: <BulbOutlined className="text-3xl" style={{ color: '#90cbb9' }} />,
       title: 'Science & Education',
       description: 'I back every strategy with scientific evidence and strive to teach rather than impose.'
     },
     {
-      icon: <GlobalOutlined className="text-3xl" style={{ color: '#4ECDC4' }} />,
+      icon: <GlobalOutlined className="text-3xl" style={{ color: '#10b981' }} />,
       title: 'Empathy & Closeness',
       description: 'I understand the emotions surrounding food and accompany each process with humanity.'
     }
@@ -163,11 +163,11 @@ const About: React.FC = () => {
                   </Paragraph>
                   <Space size="large">
                     <div className="flex items-center">
-                      <CheckCircleOutlined style={{ color: '#4ECDC4' }} className="mr-2" />
+                      <CheckCircleOutlined style={{ color: '#10b981' }} className="mr-2" />
                       <Text strong style={{ color: '#2E2E2E' }}>Scientific Approach</Text>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircleOutlined style={{ color: '#4ECDC4' }} className="mr-2" />
+                      <CheckCircleOutlined style={{ color: '#10b981' }} className="mr-2" />
                       <Text strong style={{ color: '#2E2E2E' }}>Sustainable Transformation</Text>
                     </div>
                   </Space>
@@ -179,19 +179,19 @@ const About: React.FC = () => {
                   animate={missionInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <div className="bg-gradient-to-br from-[#4ECDC4]/10 to-[#FF6B6B]/10 p-8 rounded-2xl">
+                  <div className="bg-gradient-to-br from-[#10b981]/10 to-[#90cbb9]/10 p-8 rounded-2xl">
                     <Title level={3} className="text-center mb-6" style={{ color: '#2E2E2E' }}>My Impact</Title>
                     <Row gutter={[16, 16]}>
                       {stats.map((stat, index) => (
                         <Col span={12} key={index}>
                           <Card className="text-center border-0 shadow-sm">
-                            <div className="text-2xl mb-2" style={{ color: '#4ECDC4' }}>
+                            <div className="text-2xl mb-2" style={{ color: '#10b981' }}>
                               {stat.icon}
                             </div>
                             <Statistic
                               title={stat.title}
                               value={stat.value}
-                              valueStyle={{ color: '#FF6B6B', fontSize: '24px' }}
+                              valueStyle={{ color: '#24604c', fontSize: '24px' }}
                             />
                           </Card>
                         </Col>
@@ -273,7 +273,7 @@ const About: React.FC = () => {
                           <span
                             key={detailIndex}
                             className="inline-block px-2 py-1 rounded-full mr-1 mb-1 text-xs"
-                            style={{ backgroundColor: '#4ECDC4', color: 'white' }}
+                            style={{ backgroundColor: '#10b981', color: 'white' }}
                           >
                             {detail}
                           </span>
@@ -320,14 +320,14 @@ const About: React.FC = () => {
                       </Paragraph>
                     </div>
                   ),
-                  color: index % 2 === 0 ? '#4ECDC4' : '#FF6B6B'
+                  color: index % 2 === 0 ? '#10b981' : '#24604c'
                 }))}
               />
             </motion.div>
           </section>
 
           {/* CTA Section */}
-          <section className="text-center py-16 bg-gradient-to-r from-[#4ECDC4] to-[#FF6B6B] rounded-2xl">
+          <section className="text-center py-16 bg-gradient-to-r from-[#10b981] to-[#24604c] rounded-2xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -343,12 +343,12 @@ const About: React.FC = () => {
               </Paragraph>
               <Space size="large">
                 <a href="/calculator">
-                  <button className="bg-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" style={{ color: '#4ECDC4' }}>
+                  <button className="bg-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" style={{ color: '#10b981' }}>
                     Try My Calculator
                   </button>
                 </a>
                 <a href="/recipes">
-                  <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#FF6B6B] transition-colors">
+                  <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#24604c] transition-colors">
                     Browse Recipes
                   </button>
                 </a>

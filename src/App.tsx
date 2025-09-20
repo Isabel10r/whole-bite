@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import NutritionCalculator from './pages/NutritionCalculator'
 import BMRCalculator from './pages/BMRCalculator'
 import Recipes from './pages/Recipes'
+import RecipeDetail from './pages/RecipeDetail'
 import About from './pages/About'
 import './App.css'
 
@@ -35,6 +36,7 @@ function App() {
             <Route path="/calculator" element={<NutritionCalculator />} />
             <Route path="/calculator/bmr" element={<BMRCalculator />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/recipes/:id" element={<RecipeDetail />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </Content>

@@ -1,61 +1,46 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, Link } from 'react-router-dom'
 import { 
   Row, 
   Col, 
   Card, 
-  Input, 
-  Select, 
   Button, 
   Tag, 
   Typography, 
-  Space
+  Space,
+  List,
+  Breadcrumb
 } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faSearch, 
-  faFilter, 
   faClock, 
   faUser,
   faFire,
-  faBook,
+  faArrowLeft,
+  faHome,
+  faUtensils,
+  faLeaf,
+  faChartBar,
+  faTag,
+  faDumbbell,
+  faBoltLightning,
+  faDroplet
 } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 
 const { Title, Text, Paragraph } = Typography
-const { Option } = Select
-const { Meta } = Card
 
-const Recipes: React.FC = () => {
-  const navigate = useNavigate()
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [selectedDifficulty, setSelectedDifficulty] = useState('all')
-  const [clickedCard, setClickedCard] = useState<number | null>(null)
+const RecipeDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>()
+  const [recipe, setRecipe] = useState<any>(null)
 
-  const categories = [
-    { value: 'all', label: 'All Categories' },
-    { value: 'breakfast', label: 'Breakfast' },
-    { value: 'lunch', label: 'Lunch' },
-    { value: 'dinner', label: 'Dinner' },
-    { value: 'snacks', label: 'Snacks' },
-    { value: 'desserts', label: 'Desserts' },
-    { value: 'smoothies', label: 'Smoothies' }
-  ]
-
-  const difficulties = [
-    { value: 'all', label: 'All Levels' },
-    { value: 'easy', label: 'Easy' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'hard', label: 'Hard' }
-  ]
-
+  // Recipe data (same as in Recipes.tsx - could be moved to a shared service)
   const recipes = [
     {
       id: 1,
       title: 'Quinoa Buddha Bowl',
-      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400',
+      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800',
       category: 'lunch',
       difficulty: 'easy',
       prepTime: 15,
@@ -87,7 +72,7 @@ const Recipes: React.FC = () => {
     {
       id: 2,
       title: 'Green Smoothie Bowl',
-      image: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400',
+      image: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=800',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 10,
@@ -118,7 +103,7 @@ const Recipes: React.FC = () => {
     {
       id: 3,
       title: 'Baked Salmon with Herbs',
-      image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400',
+      image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 15,
@@ -150,7 +135,7 @@ const Recipes: React.FC = () => {
     {
       id: 4,
       title: 'Mediterranean Chickpea Salad',
-      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400',
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800',
       category: 'lunch',
       difficulty: 'easy',
       prepTime: 20,
@@ -184,7 +169,7 @@ const Recipes: React.FC = () => {
     {
       id: 5,
       title: 'Overnight Oats with Berries',
-      image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400',
+      image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 10,
@@ -215,7 +200,7 @@ const Recipes: React.FC = () => {
     {
       id: 6,
       title: 'Grilled Chicken with Sweet Potato',
-      image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=400',
+      image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 20,
@@ -287,7 +272,7 @@ const Recipes: React.FC = () => {
     {
       id: 8,
       title: 'Ensalada de Pasta Italiana',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fddd5cb37-1dc0-43d6-8740-74b854088fe5/watermark:F/width:427?csig=AAAAAAAAAAAAAAAAAAAAAF7NjUMKcPtzHuud66oC9yf3ED0dSrNGFDGOpE-mmATS&exp=1758256217&osig=AAAAAAAAAAAAAAAAAAAAAIZcG1RblB5WY3i0KgX4G7aDpZ33TJZ-g6bD1IzUEbyx&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fddd5cb37-1dc0-43d6-8740-74b854088fe5/watermark:F/width:427?csig=AAAAAAAAAAAAAAAAAAAAAF7NjUMKcPtzHuud66oC9yf3ED0dSrNGFDGOpE-mmATS&exp=1758256217&osig=AAAAAAAAAAAAAAAAAAAAAIZcG1RblB5WY3i0KgX4G7aDpz33TJZ-g6bD1IzUEbyx&signer=media-rpc&x-canva-quality=thumbnail_large',
       category: 'lunch',
       difficulty: 'easy',
       prepTime: 25,
@@ -862,14 +847,12 @@ const Recipes: React.FC = () => {
     }
   ]
 
-  const filteredRecipes = recipes.filter(recipe => {
-    const matchesSearch = recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         recipe.description.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesCategory = selectedCategory === 'all' || recipe.category === selectedCategory
-    const matchesDifficulty = selectedDifficulty === 'all' || recipe.difficulty === selectedDifficulty
-    
-    return matchesSearch && matchesCategory && matchesDifficulty
-  })
+  useEffect(() => {
+    if (id) {
+      const foundRecipe = recipes.find(r => r.id === parseInt(id))
+      setRecipe(foundRecipe)
+    }
+  }, [id])
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -892,206 +875,311 @@ const Recipes: React.FC = () => {
     return colors[category] || '#10b981'
   }
 
-  const viewRecipe = (recipeId: number) => {
-    setClickedCard(recipeId)
-    // Small delay to allow the tap animation to complete
-    setTimeout(() => {
-      navigate(`/recipes/${recipeId}`)
-    }, 150)
+  if (!recipe) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        <div className="text-center">
+          <Title level={2}>Recipe not found</Title>
+          <Link to="/recipes">
+            <Button type="primary" icon={<FontAwesomeIcon icon={faArrowLeft} />}>
+              Back to Recipes
+            </Button>
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   return (
     <>
       <Helmet>
-        <title>Healthy Recipes - Isabel Diez</title>
-        <meta name="description" content="Discover delicious and nutritious recipes for every meal. From breakfast to dinner, find healthy options that fit your family's lifestyle." />
+        <title>{recipe.title} - Isabel Diez Nutrition</title>
+        <meta name="description" content={recipe.description} />
+        <meta property="og:title" content={`${recipe.title} - Isabel Diez Nutrition`} />
+        <meta property="og:description" content={recipe.description} />
+        <meta property="og:image" content={recipe.image} />
+        <meta property="og:type" content="article" />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
+        <div className="max-w-6xl mx-auto px-4 lg:px-8 py-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ 
+            duration: 0.8, 
+            ease: [0.25, 0.46, 0.45, 0.94],
+            staggerChildren: 0.1
+          }}
         >
-          <div className="text-center mb-8">
-            <Title level={1} className="text-4xl font-bold mb-4" style={{ color: '#2E2E2E' }}>
-              <FontAwesomeIcon icon={faBook} className="mr-3" style={{ color: '#10b981' }} />
-              Healthy Recipes
-            </Title>
-            <Text className="text-lg" style={{ color: '#2E2E2E' }}>
-              Discover delicious and nutritious recipes for every meal
-            </Text>
-          </div>
+          {/* Breadcrumb Navigation */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Breadcrumb className="mb-6 bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-emerald-100/50">
+            <Breadcrumb.Item>
+              <Link to="/">
+                <FontAwesomeIcon icon={faHome} className="mr-1" />
+                Home
+              </Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <Link to="/recipes">
+                <FontAwesomeIcon icon={faUtensils} className="mr-1" />
+                Recipes
+              </Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>{recipe.title}</Breadcrumb.Item>
+          </Breadcrumb>
+          </motion.div>
 
-          {/* Search and Filters */}
-          <Card className="mb-6">
-            <Row gutter={[16, 16]} align="middle">
-              <Col xs={24} sm={12} md={8}>
-                <Input
-                  placeholder="Search recipes..."
-                  prefix={<FontAwesomeIcon icon={faSearch} />}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  size="large"
-                />
+          {/* Back Button */}
+          <motion.div 
+            className="mb-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Link to="/recipes">
+              <Button 
+                type="default" 
+                icon={<FontAwesomeIcon icon={faArrowLeft} />}
+                className="rounded-full bg-white/70 backdrop-blur-sm border-emerald-200 hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 shadow-sm hover:shadow-md"
+                size="large"
+              >
+                Back to All Recipes
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Recipe Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Card className="mb-8 border-0 shadow-2xl rounded-2xl overflow-hidden bg-white/90 backdrop-blur-sm">
+            <Row gutter={[32, 32]}>
+              <Col xs={24} lg={12}>
+                <div className="relative overflow-hidden rounded-2xl group">
+                  <img
+                    src={recipe.image}
+                    alt={recipe.title}
+                    className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <div className="flex gap-2">
+                      <Tag className="rounded-full font-semibold px-3 py-1 text-sm backdrop-blur-sm bg-white/90" style={{ color: getCategoryColor(recipe.category), border: `1px solid ${getCategoryColor(recipe.category)}20` }}>
+                        {recipe.category}
+                      </Tag>
+                      <Tag className="rounded-full font-semibold px-3 py-1 text-sm backdrop-blur-sm bg-white/90" style={{ color: getDifficultyColor(recipe.difficulty), border: `1px solid ${getDifficultyColor(recipe.difficulty)}20` }}>
+                        {recipe.difficulty}
+                      </Tag>
+                    </div>
+                  </div>
+                </div>
               </Col>
-              <Col xs={12} sm={6} md={4}>
-                <Select
-                  placeholder="Category"
-                  value={selectedCategory}
-                  onChange={setSelectedCategory}
-                  size="large"
-                  className="w-full"
-                >
-                  {categories.map(cat => (
-                    <Option key={cat.value} value={cat.value}>
-                      {cat.label}
-                    </Option>
-                  ))}
-                </Select>
-              </Col>
-              <Col xs={12} sm={6} md={4}>
-                <Select
-                  placeholder="Difficulty"
-                  value={selectedDifficulty}
-                  onChange={setSelectedDifficulty}
-                  size="large"
-                  className="w-full"
-                >
-                  {difficulties.map(diff => (
-                    <Option key={diff.value} value={diff.value}>
-                      {diff.label}
-                    </Option>
-                  ))}
-                </Select>
-              </Col>
-              <Col xs={24} sm={12} md={8}>
-                <Space>
-                  <Button 
-                    icon={<FontAwesomeIcon icon={faFilter} />} 
-                    onClick={() => {
-                      setSearchTerm('')
-                      setSelectedCategory('all')
-                      setSelectedDifficulty('all')
-                    }}
-                  >
-                    Clear Filters
-                  </Button>
-                </Space>
+              <Col xs={24} lg={12}>
+                <div className="h-full flex flex-col justify-center p-4">
+                  
+                  <Title level={1} className="mb-4 text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 to-green-600 bg-clip-text text-transparent">
+                    {recipe.title}
+                  </Title>
+                  
+                  <Paragraph className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
+                    {recipe.description}
+                  </Paragraph>
+
+                  {/* Recipe Stats */}
+                  <Row gutter={[12, 12]}>
+                    <Col span={8}>
+                      <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl border border-emerald-200/50 hover:shadow-lg transition-all duration-300">
+                        <div className="w-12 h-12 mx-auto mb-2 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
+                          <FontAwesomeIcon icon={faClock} className="text-white text-lg" />
+                        </div>
+                        <Text strong className="text-lg block" style={{ color: '#065f46' }}>{recipe.prepTime + recipe.cookTime} min</Text>
+                        <Text className="text-emerald-600 text-sm font-medium">Total Time</Text>
+                      </div>
+                    </Col>
+                    <Col span={8}>
+                      <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200/50 hover:shadow-lg transition-all duration-300">
+                        <div className="w-12 h-12 mx-auto mb-2 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                          <FontAwesomeIcon icon={faUser} className="text-white text-lg" />
+                        </div>
+                        <Text strong className="text-lg block" style={{ color: '#1e40af' }}>{recipe.servings}</Text>
+                        <Text className="text-blue-600 text-sm font-medium">Servings</Text>
+                      </div>
+                    </Col>
+                    <Col span={8}>
+                      <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border border-orange-200/50 hover:shadow-lg transition-all duration-300">
+                        <div className="w-12 h-12 mx-auto mb-2 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                          <FontAwesomeIcon icon={faFire} className="text-white text-lg" />
+                        </div>
+                        <Text strong className="text-lg block" style={{ color: '#c2410c' }}>{recipe.calories}</Text>
+                        <Text className="text-orange-600 text-sm font-medium">Calories</Text>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
               </Col>
             </Row>
           </Card>
+          </motion.div>
 
-          {/* Recipe Grid */}
-          <Row gutter={[24, 32]}>
-            {filteredRecipes.map((recipe, index) => (
-              <Col xs={24} sm={12} lg={8} key={recipe.id} className="flex">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    scale: clickedCard === recipe.id ? 0.98 : 1
-                  }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: index * 0.08,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  whileTap={{ 
-                    scale: 0.98,
-                    transition: { duration: 0.1, ease: "easeInOut" }
-                  }}
-                >
-                  <Card
-                    hoverable
-                    className="h-full flex flex-col overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 border-0 cursor-pointer"
-                    bodyStyle={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}
-                    onClick={() => viewRecipe(recipe.id)}
-                    cover={
-                      <div className="relative overflow-hidden">
-                        <img
-                          alt={recipe.title}
-                          src={recipe.image}
-                          className="h-56 w-full object-cover transition-transform duration-300 hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                        <div className="absolute top-3 right-3">
-                          <Tag className="rounded-full font-medium capitalize" style={{ backgroundColor: getCategoryColor(recipe.category), color: 'white', border: 'none' }}>
-                            {recipe.category}
-                          </Tag>
+          {/* Recipe Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Row gutter={[24, 24]}>
+            {/* Ingredients */}
+            <Col xs={24} lg={12}>
+              <Card className="h-full shadow-xl rounded-2xl border-0 bg-gradient-to-br from-green-50/50 to-emerald-50/50 backdrop-blur-sm">
+                <Title level={3} className="mb-6 text-2xl font-bold flex items-center" style={{ color: '#065f46' }}>
+                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                    <FontAwesomeIcon icon={faLeaf} className="text-white text-sm" />
+                  </div>
+                  Ingredients
+                </Title>
+                <List
+                  dataSource={recipe.ingredients}
+                  renderItem={(item: string, index: number) => (
+                    <List.Item className="border-0 px-0 py-3 hover:bg-white/50 rounded-lg transition-all duration-200">
+                      <div className="flex items-start w-full px-2">
+                        <div 
+                          className="w-7 h-7 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0 mt-1 shadow-md" 
+                          style={{ backgroundColor: '#10b981' }}
+                        >
+                          {index + 1}
                         </div>
-                        <div className="absolute top-3 left-3">
-                          <Tag className="rounded-full font-medium capitalize" style={{ backgroundColor: getDifficultyColor(recipe.difficulty), color: 'white', border: 'none' }}>
-                            {recipe.difficulty}
-                          </Tag>
-                        </div>
+                        <Text className="text-gray-700 font-medium leading-relaxed">{item}</Text>
                       </div>
-                    }
-                  >
-                    <Meta
-                      title={recipe.title}
-                      description={
-                        <div className="flex flex-col h-full">
-                          <Paragraph ellipsis={{ rows: 2 }} className="text-gray-600 leading-relaxed mb-4 flex-grow">
-                            {recipe.description}
-                          </Paragraph>
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center">
-                              <Space wrap>
-                                <Text type="secondary" className="flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faClock} className="text-emerald-600" /> {recipe.prepTime + recipe.cookTime} min
-                                </Text>
-                                <Text type="secondary" className="flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faUser} className="text-emerald-600" /> {recipe.servings} servings
-                                </Text>
-                              </Space>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <Space wrap>
-                                <Text type="secondary" className="flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faFire} className="text-orange-500" /> {recipe.calories} cal
-                                </Text>
-                                <Text type="secondary" className="text-emerald-700 font-medium">
-                                  Protein: {recipe.protein}g
-                                </Text>
-                              </Space>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <Space wrap>
-                                {recipe.tags.slice(0, 2).map((tag: string) => (
-                                  <Tag key={tag} className="rounded-full text-xs" style={{ backgroundColor: '#dcfce7', color: '#16a34a', border: 'none' }}>
-                                    {tag}
-                                  </Tag>
-                                ))}
-                              </Space>
-                              <Text type="secondary" className="text-xs flex items-center gap-1 mt-2 opacity-70 hover:opacity-100 transition-opacity duration-200">
-                                <FontAwesomeIcon icon={faBook} className="text-emerald-500 text-xs" />
-                                Click to view
-                              </Text>
-                            </div>
-                          </div>
-                        </div>
-                      }
-                    />
-                  </Card>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
+                    </List.Item>
+                  )}
+                />
+              </Card>
+            </Col>
 
-          {filteredRecipes.length === 0 && (
-            <div className="text-center py-12">
-              <Text className="text-lg" style={{ color: '#2E2E2E' }}>
-                No recipes found matching your criteria. Try adjusting your search or filters.
-              </Text>
-            </div>
-          )}
+            {/* Instructions */}
+            <Col xs={24} lg={12}>
+              <Card className="h-full shadow-xl rounded-2xl border-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 backdrop-blur-sm">
+                <Title level={3} className="mb-6 text-2xl font-bold flex items-center" style={{ color: '#1e40af' }}>
+                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                    <FontAwesomeIcon icon={faUtensils} className="text-white text-sm" />
+                  </div>
+                  Instructions
+                </Title>
+                <List
+                  dataSource={recipe.instructions}
+                  renderItem={(item: string, index: number) => (
+                    <List.Item className="border-0 px-0 py-4 hover:bg-white/50 rounded-lg transition-all duration-200">
+                      <div className="flex items-start w-full px-2">
+                        <div 
+                          className="w-8 h-8 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0 mt-1 shadow-md" 
+                          style={{ backgroundColor: '#3B82F6' }}
+                        >
+                          {index + 1}
+                        </div>
+                        <Text className="text-gray-700 leading-relaxed font-medium">{item}</Text>
+                      </div>
+                    </List.Item>
+                  )}
+                />
+              </Card>
+            </Col>
+          </Row>
+          </motion.div>
+
+          {/* Nutrition Facts */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Card className="mt-8 shadow-xl rounded-2xl border-0 bg-gradient-to-br from-orange-50/50 to-amber-50/50 backdrop-blur-sm">
+            <Title level={3} className="mb-6 text-2xl font-bold flex items-center" style={{ color: '#c2410c' }}>
+              <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                <FontAwesomeIcon icon={faChartBar} className="text-white text-sm" />
+              </div>
+              Nutrition Facts (per serving)
+            </Title>
+            <Row gutter={[16, 16]}>
+              <Col xs={12} sm={6}>
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 border border-red-200/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-10 h-10 mx-auto mb-2 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+                    <FontAwesomeIcon icon={faFire} className="text-white text-sm" />
+                  </div>
+                  <Text strong className="text-xl block" style={{ color: '#dc2626' }}>{recipe.calories}</Text>
+                  <Text className="text-red-600 text-sm font-medium">Calories</Text>
+                </div>
+              </Col>
+              <Col xs={12} sm={6}>
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-10 h-10 mx-auto mb-2 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                    <FontAwesomeIcon icon={faDumbbell} className="text-white text-sm" />
+                  </div>
+                  <Text strong className="text-xl block" style={{ color: '#7c3aed' }}>{recipe.protein}g</Text>
+                  <Text className="text-purple-600 text-sm font-medium">Protein</Text>
+                </div>
+              </Col>
+              <Col xs={12} sm={6}>
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#d97706' }}>
+                    <FontAwesomeIcon icon={faBoltLightning} className="text-white text-lg" style={{ color: '#ffffff' }} />
+                  </div>
+                  <Text strong className="text-xl block" style={{ color: '#d97706' }}>{recipe.carbs}g</Text>
+                  <Text className="text-yellow-600 text-sm font-medium">Carbs</Text>
+                </div>
+              </Col>
+              <Col xs={12} sm={6}>
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-pink-50 to-pink-100 border border-pink-200/50 hover:shadow-lg transition-all duration-300">
+                  <div className="w-10 h-10 mx-auto mb-2 bg-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                    <FontAwesomeIcon icon={faDroplet} className="text-white text-sm" />
+                  </div>
+                  <Text strong className="text-xl block" style={{ color: '#ec4899' }}>{recipe.fat}g</Text>
+                  <Text className="text-pink-600 text-sm font-medium">Fat</Text>
+                </div>
+              </Col>
+            </Row>
+          </Card>
+          </motion.div>
+
+          {/* Tags */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Card className="mt-8 shadow-xl rounded-2xl border-0 bg-gradient-to-br from-emerald-50/50 to-green-50/50 backdrop-blur-sm">
+            <Title level={4} className="mb-6 text-xl font-bold flex items-center" style={{ color: '#065f46' }}>
+              <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                <FontAwesomeIcon icon={faTag} className="text-white text-sm" />
+              </div>
+              Recipe Tags
+            </Title>
+            <Space wrap size={[12, 12]}>
+              {recipe.tags.map((tag: string) => (
+                <Tag 
+                  key={tag} 
+                  className="rounded-full px-6 py-2 text-sm font-semibold border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105" 
+                  style={{ backgroundColor: '#dcfce7', color: '#16a34a' }}
+                >
+                  {tag}
+                </Tag>
+              ))}
+            </Space>
+          </Card>
+          </motion.div>
         </motion.div>
+        </div>
       </div>
     </>
   )
 }
 
-export default Recipes
+export default RecipeDetail

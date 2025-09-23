@@ -792,10 +792,10 @@ const HomePage = () => {
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.open('https://calendly.com/isabel10ramirez06', '_blank');
+                        setSelectedService(service.id);
                       }}
                     >
-                      Start Now
+                      Learn More
                     </Button>
                   </div>
                 </motion.div>

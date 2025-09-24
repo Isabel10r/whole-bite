@@ -33,7 +33,7 @@ function App() {
         <Content className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/calculator" element={<NutritionCalculator />} />
+            {/* <Route path="/calculator" element={<NutritionCalculator />} /> */}
             <Route path="/calculator/bmr" element={<BMRCalculator />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />

@@ -542,7 +542,7 @@ const HomePage = () => {
                 {/* Feature Card */}
                 <div 
                   className={`
-                    relative rounded-2xl overflow-hidden
+                    relative rounded-2xl overflow-hidden h-[377.75px] flex flex-col
                     ${index === 0 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
                     ${index === 1 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
                     ${index === 2 ? 'bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20' : ''}
@@ -572,7 +572,7 @@ const HomePage = () => {
                   </div>
                   
                   {/* Content Section */}
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1 justify-center">
                     {/* Title */}
                     <h3 
                       className="text-2xl font-bold mb-4 text-center"
@@ -583,7 +583,7 @@ const HomePage = () => {
                     
                     {/* Description */}
                     <p 
-                      className="leading-relaxed text-lg text-center"
+                      className="leading-relaxed text-lg text-center flex-1 flex items-center"
                       style={{ color: '#2E2E2E' }}
                     >
                       {feature.description}

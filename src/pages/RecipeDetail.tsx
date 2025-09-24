@@ -71,7 +71,7 @@ const RecipeDetail: React.FC = () => {
     {
       id: 3,
       title: 'Baked Salmon with Herbs',
-      image: 'https://i.pinimg.com/1200x/c8/57/13/c8571321ccc66ead5af35e23dee9e0dc.jpg?v=' + Date.now(), 
+      image: 'https://i.pinimg.com/1200x/d1/fd/be/d1fdbe528e726216e4cead2b0fd02647.jpg?v=' + Date.now(), 
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 15,
@@ -209,98 +209,59 @@ const RecipeDetail: React.FC = () => {
       tags: ['high-protein', 'gluten-free', 'balanced']
     },
     {
-      id: 7,
-      title: 'Curry de Pollo',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F45c371ae-46a9-4c66-83a2-71dbe211272d/watermark:F/width:550?csig=AAAAAAAAAAAAAAAAAAAAABluGMKFsjzKQYERILb77hb3VZcCcSWzxuoEYqwDKSwE&exp=1758255847&osig=AAAAAAAAAAAAAAAAAAAAAKSTlY0oCTYye-AhDbhM7IqTDXTgDLW5mFZIk3WSnDNt&signer=media-rpc&x-canva-quality=thumbnail_large',
-      category: 'dinner',
-      difficulty: 'medium',
-      prepTime: 15,
-      cookTime: 25,
-      servings: 4,
-      calories: 520,
-      protein: 35,
-      carbs: 18,
-      fat: 32,
-      description: 'Un curry cremoso y aromático de pollo con leche de coco y especias exóticas, perfecto para una cena reconfortante.',
-      ingredients: [
-        '570 g de pechuga de pollo en cubos',
-        '1 cebolla, finamente picada',
-        '2 dientes de ajo, triturados',
-        '1 cucharadita de jengibre fresco rallado',
-        '2 cucharadas de curry en polvo',
-        '½ cucharadita de comino molido',
-        '½ cucharadita de cúrcuma',
-        '½ cucharadita de paprika',
-        '⅓ cucharadita de chile',
-        '1 cucharada de pasta de tomate',
-        '1 taza de leche de coco',
-        '½ taza de caldo de pollo o agua',
-        '2 cucharadas de aceite de oliva',
-        'Sal y pimienta al gusto',
-        'Cilantro o perejil fresco para decorar'
-      ],
-      instructions: [
-        'Sofríe la cebolla en aceite hasta dorar. Añade ajo y jengibre, cocina 1 minuto.',
-        'Agrega especias, cocina 1-2 minutos.',
-        'Incorpora pollo, salpimienta y cocina hasta dorar.',
-        'Añade pasta de tomate, leche de coco y caldo. Cocina tapado a fuego bajo 20 min hasta espesar.',
-        'Sirve con arroz blanco o pan pita, decora con cilantro.'
-      ],
-      tags: ['high-protein', 'creamy', 'aromatic', 'spicy']
-    },
-    {
       id: 8,
-      title: 'Ensalada de Pasta Italiana',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fddd5cb37-1dc0-43d6-8740-74b854088fe5/watermark:F/width:427?csig=AAAAAAAAAAAAAAAAAAAAAF7NjUMKcPtzHuud66oC9yf3ED0dSrNGFDGOpE-mmATS&exp=1758256217&osig=AAAAAAAAAAAAAAAAAAAAAIZcG1RblB5WY3i0KgX4G7aDpz33TJZ-g6bD1IzUEbyx&signer=media-rpc&x-canva-quality=thumbnail_large',
+      title: 'Italian Pasta Salad',
+      image: 'https://i.pinimg.com/1200x/2e/4e/8e/2e4e8e9829a4f526bcdf25adb58d07cb.jpg',
       category: 'lunch',
       difficulty: 'easy',
       prepTime: 25,
       cookTime: 15,
       servings: 4,
-      calories: 385,
-      protein: 18,
-      carbs: 42,
-      fat: 16,
-      description: 'Una fresca ensalada de pasta con ingredientes mediterráneos, perfecta para comidas ligeras y refrescantes.',
+      calories: 590,
+      protein: 19,
+      carbs: 68,
+      fat: 29,
+      description: 'A fresh pasta salad with Mediterranean ingredients, perfect for light and refreshing meals.',
       ingredients: [
-        '115 g de pasta',
-        '½ taza de tomates cherry',
-        '¼ taza de aceitunas negras en rodajas',
-        '⅓ taza de mozzarella en bolitas',
-        '¼ taza de salami en cubos',
-        '¼ pimentón rojo y ¼ verde en cubos',
-        '2 cdas de cebolla morada picada',
-        '½ cda de perejil fresco picado',
-        'Queso parmesano rallado al gusto',
-        '2 cdas de aceite de oliva extra virgen',
-        '1 cda de vinagre balsámico',
-        '¼ cdta de mostaza Dijon',
-        '¼ diente de ajo triturado',
-        '¼ cdta de orégano seco',
-        'Sal y pimienta al gusto'
+        '300 g dry pasta',
+        '2 cups cherry tomatoes (300 g)',
+        '½ cup sliced black olives (60 g)',
+        '¾ cup mozzarella balls (100 g)',
+        '½ cup cubed salami (60 g)',
+        '1 medium red bell pepper, cubed (60 g)',
+        '1 medium green bell pepper, cubed (60 g)',
+        '¼ cup chopped red onion (40 g)',
+        '2 tsp fresh chopped parsley (4 g)',
+        '2 tbsp grated parmesan cheese (10 g)',
+        '4 tbsp extra virgin olive oil (56 g)',
+        '4 tbsp balsamic vinegar (60 g)',
+        '¼ tsp Dijon mustard',
+        '¼ clove crushed garlic',
+        '¼ tsp dried oregano',
+        'Salt and pepper to taste'
       ],
       instructions: [
-        'Cocina pasta al dente, enjuaga y reserva.',
-        'Mezcla ingredientes de la vinagreta.',
-        'Combina pasta, tomates, aceitunas, quesos, salami, pimientos, cebolla y perejil.',
-        'Vierte vinagreta, mezcla bien, reposa 20 min en nevera.',
-        'Sirve fría con parmesano y perejil fresco.'
+        'Cook pasta al dente, rinse and set aside.',
+        'Mix vinaigrette ingredients.',
+        'Combine pasta, tomatoes, olives, cheeses, salami, peppers, onion and parsley.',
+        'Pour vinaigrette, mix well, let rest 20 min in refrigerator.',
+        'Serve cold with parmesan and fresh parsley.'
       ],
       tags: ['mediterranean', 'cold-salad', 'refreshing', 'meal-prep']
     },
     {
       id: 9,
       title: 'Persian Kebab with Rice',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Ff63a221d-dad0-4f27-8001-733f17febf19/watermark:F/width:404?csig=AAAAAAAAAAAAAAAAAAAAAOJv3GQ48MzZ-u2N88KhVD4USzJKmU-jlk3WHp8fscBM&exp=1758254380&osig=AAAAAAAAAAAAAAAAAAAAAEbv1vxwSJ9Vv7o5lX0tDoNjLtzMRuh15WNRsaesCZNm&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/16/00/06/160006d3e66845ff737bc1c7dc52839d.jpg',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 20,
       cookTime: 15,
       servings: 4,
-      calories: 485,
-      protein: 32,
+      calories: 577,
+      protein: 34,
       carbs: 38,
-      fat: 22,
+      fat: 31,
       description: 'Aromatic Persian-style beef kebabs seasoned with traditional spices, served with fluffy basmati rice.',
       ingredients: [
         '570g ground beef',
@@ -327,16 +288,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 10,
       title: 'Beef Fajitas',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F1c43df2e-b72e-457b-b79e-9bd7e7743b27/watermark:F/width:366?csig=AAAAAAAAAAAAAAAAAAAAAG3Ti6HL9CDQnvTkGQuYOay2DLxZGFCIIXHzOkxfaxOY&exp=1758255147&osig=AAAAAAAAAAAAAAAAAAAAAAOn1v3kfR8SVqZO2hJ6pD2LmFZKNOyF1W4RMLURhsVB&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/01/3b/33/013b3390367cb05d2edaf3df835236a8.jpg',
       category: 'dinner',
       difficulty: 'easy',
       prepTime: 25,
       cookTime: 10,
       servings: 4,
-      calories: 420,
-      protein: 28,
-      carbs: 32,
-      fat: 18,
+      calories: 468,
+      protein: 33,
+      carbs: 25,
+      fat: 27,
       description: 'Sizzling beef fajitas with colorful peppers and onions, perfect for a quick and flavorful dinner.',
       ingredients: [
         '570g beef strips',
@@ -359,55 +320,18 @@ const RecipeDetail: React.FC = () => {
       tags: ['mexican', 'quick-meal', 'high-protein', 'spicy']
     },
     {
-      id: 12,
-      title: 'Deluxe Overnight Oats',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fa5043e45-6b3c-4f4a-a2e6-ee18f395e66a/watermark:F/width:447?csig=AAAAAAAAAAAAAAAAAAAAANC-mMHbzw1RZWk0mz66HPIXeTmsiSmq7D6KCvCnpI9p&exp=1758257720&osig=AAAAAAAAAAAAAAAAAAAAAKuAyXg8I1kPk2DlNM59PnD8-UDCK3S4Qs6gC9QZDf26&signer=media-rpc&x-canva-quality=thumbnail_large',
-      category: 'breakfast',
-      difficulty: 'easy',
-      prepTime: 15,
-      cookTime: 0,
-      servings: 4,
-      calories: 380,
-      protein: 22,
-      carbs: 48,
-      fat: 14,
-      description: 'Creamy overnight oats with Greek yogurt, chia seeds and fresh fruits. A nutritious and delicious option to start the day.',
-      ingredients: [
-        '2 cups rolled oats',
-        '3 cups plain Greek yogurt',
-        '1 cup almond milk',
-        '4 tablespoons chia seeds',
-        '2 ripe bananas, sliced',
-        '4 tablespoons chopped walnuts',
-        '4 tablespoons honey',
-        '8 hard-boiled eggs (optional for extra protein)',
-        '1 teaspoon vanilla extract',
-        '1/2 teaspoon ground cinnamon',
-        'Mixed berries for topping'
-      ],
-      instructions: [
-        'In 4 jars or containers, mix 1/2 cup oats, 3/4 cup Greek yogurt, and 1/4 cup milk in each one.',
-        'Add 1 tablespoon chia seeds, a few drops of vanilla, and a pinch of cinnamon to each jar.',
-        'Stir in 1 tablespoon honey into each container and mix well.',
-        'Refrigerate overnight or for at least 4 hours.',
-        'When serving, top with banana slices, walnuts, berries, and 2 hard-boiled eggs if desired for extra protein.',
-        'You can add an extra drizzle of honey to taste before serving.'
-      ],
-      tags: ['high-protein', 'meal-prep', 'gluten-free', 'healthy']
-    },
-    {
       id: 13,
-      title: 'Gourmet French Toast',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F33d082f7-ef02-48c5-aaa0-0d522772610d/watermark:F/width:309?csig=AAAAAAAAAAAAAAAAAAAAAIntbMIK4FESBQgXGf38tvV7yu0Gsx16H3AAtF9_U5W5&exp=1758259655&osig=AAAAAAAAAAAAAAAAAAAAANs6hriNXFhTtpDpHlOami1WDTeG9_Bo5qL2zaPUTyJ9&signer=media-rpc&x-canva-quality=thumbnail_large',
+      title: 'Healthy French Toast',
+      image: '/images/french-toast.png',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 12,
       servings: 4,
-      calories: 320,
-      protein: 16,
-      carbs: 38,
-      fat: 12,
+      calories: 603,
+      protein: 25,
+      carbs: 68,
+      fat: 25,
       description: 'Golden and fluffy French toast with a touch of vanilla and cinnamon, served with fresh fruits and creamy Greek yogurt.',
       ingredients: [
         '8 slices thick brioche or whole grain bread',
@@ -437,55 +361,52 @@ const RecipeDetail: React.FC = () => {
     {
       id: 14,
       title: 'Supreme Avocado Toast',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F666545be-839f-456c-b7e7-9d44b86d1649/watermark:F/width:369?csig=AAAAAAAAAAAAAAAAAAAAABBkgKjkg5Ao96S6FxqgTBqiMVfadGSm5jihmSNUzcyB&exp=1758255449&osig=AAAAAAAAAAAAAAAAAAAAALwcJ4iFtd8qPWQraqdJZwn6fMIk3cHVC_OFv9jl5Dwd&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/2b/c5/4a/2bc54ab609fc9d71785c17a39fb2587e.jpg',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 8,
       servings: 4,
-      calories: 420,
-      protein: 24,
-      carbs: 28,
-      fat: 26,
+      calories: 493,
+      protein: 23,
+      carbs: 32,
+      fat: 33,
       description: 'Elevated avocado toast with perfect eggs, cherry tomatoes and a touch of lemon. Rich in healthy fats and protein.',
       ingredients: [
-        '8 slices artisanal whole grain bread',
-        '2 large ripe avocados',
-        '12 fresh eggs',
+        '4 slices sourdough bread',
+        '1 medium avocado',
+        '8 large eggs',
         '1 cup cherry tomatoes, halved',
-        '4 tablespoons extra virgin olive oil',
+        '2 tablespoons olive oil',
         '2 lemons (juice)',
-        '1 teaspoon sea salt',
-        '1/2 teaspoon freshly ground black pepper',
-        '1/2 teaspoon paprika',
-        '4 tablespoons pumpkin seeds',
-        'Arugula leaves for garnish',
-        'Crumbled feta cheese (optional)'
+        '2 tablespoons pumpkin seeds',
+        'Salt, pepper, paprika to taste',
+        'Arugula leaves for garnish'
       ],
       instructions: [
         'Toast the bread slices until golden and crispy.',
         'In a bowl, mash the avocados with lemon juice, salt, pepper and paprika.',
         'Heat olive oil in a large pan and fry the eggs until whites are firm.',
         'Generously spread the seasoned avocado over each toast.',
-        'Place 3 eggs over each portion of 2 toasts.',
+        'Place 2 eggs over each toast.',
         'Garnish with cherry tomatoes, pumpkin seeds and arugula.',
-        'Add feta cheese if desired and serve immediately.'
+        'Serve immediately.'
       ],
       tags: ['healthy-fats', 'high-protein', 'fresh', 'omega-3']
     },
     {
       id: 15,
       title: 'Fluffy Oat Pancakes',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fa96a0f8a-2823-4841-ba31-ac9c26dced62/watermark:F/width:496?csig=AAAAAAAAAAAAAAAAAAAAACK743DielYmoghvbyNJ49gaPSEIVXdbrtU5OLeqR0yF&exp=1758256292&osig=AAAAAAAAAAAAAAAAAAAAADslgiO4YjteUdjbbkm-zKAca67p2IX7-jSQAO2TXR75&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/90/d2/be/90d2bef86d180392d3c30929a11a3347.jpg',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 20,
       servings: 4,
-      calories: 340,
-      protein: 18,
-      carbs: 42,
-      fat: 12,
+      calories: 603,
+      protein: 20,
+      carbs: 78,
+      fat: 18,
       description: 'Nutritious and fluffy pancakes made with oats, banana and spices. A healthy and delicious option for the whole family.',
       ingredients: [
         '2 cups rolled oats',
@@ -516,20 +437,20 @@ const RecipeDetail: React.FC = () => {
     {
       id: 11,
       title: 'Zucchini Lasagna',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fbd916d4c-8cf6-4fa3-9d45-4f0ea2065d11/watermark:F/width:366?csig=AAAAAAAAAAAAAAAAAAAAABdfR-00GTSl1xaIwo8IbVggGDe-qiM4_pgKJdjHWB0Y&exp=1758254331&osig=AAAAAAAAAAAAAAAAAAAAACphPLtz9jy9rK_qaK5QiF63DrVDNnC0TckizxRVkaxk&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/6b/e3/f5/6be3f534d13fdcd1574aeeaee47dfa88.jpg',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 30,
       cookTime: 30,
       servings: 4,
-      calories: 320,
-      protein: 24,
-      carbs: 12,
-      fat: 20,
+      calories: 399,
+      protein: 29,
+      carbs: 14,
+      fat: 26,
       description: 'A healthy twist on classic lasagna using zucchini slices instead of pasta, layered with meat sauce and cheese.',
       ingredients: [
         '2 large zucchinis, sliced thin',
-        '285g ground beef or chicken',
+        '285g ground beef',
         '½ onion, chopped',
         '1 garlic clove, minced',
         '1 cup natural tomato sauce',
@@ -551,27 +472,29 @@ const RecipeDetail: React.FC = () => {
     },
     {
       id: 16,
-      title: 'Peanut Butter & Jelly Toast',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fb3302b5f-fb05-4d90-9fc9-f0d4f7f373d2/watermark:F/width:550?csig=AAAAAAAAAAAAAAAAAAAAAHXhQ6YJ3rt91dChhxlFiouZ0GIvW8dwgjUva05inuCC&exp=1758263271&osig=AAAAAAAAAAAAAAAAAAAAAEUFpBNt89NLOUaeYeN0ewVs3PK46elFFpCN20_T_EVa&signer=media-rpc&x-canva-quality=thumbnail_large',
+      title: 'Peanut Butter & Jelly Sandwich',
+      image: 'https://i.pinimg.com/1200x/ff/62/58/ff62585d4745e1b2d11092effc3c7031.jpg',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 5,
       cookTime: 3,
       servings: 4,
-      calories: 285,
-      protein: 12,
-      carbs: 32,
-      fat: 14,
-      description: 'Classic peanut butter and jelly toast made with whole grain bread and sugar-free jam for a healthier twist on the childhood favorite.',
+      calories: 318,
+      protein: 11.5,
+      carbs: 51.5,
+      fat: 10,
+      description: 'Classic peanut butter and jelly sandwich made with whole grain bread, sugar-free jam, and fresh banana slices for a healthier twist on the childhood favorite.',
       ingredients: [
         '8 slices whole grain bread',
         '4 tbsp natural peanut butter',
-        '4 tbsp sugar-free jam'
+        '4 tbsp sugar-free jam',
+        '2 bananas, sliced'
       ],
       instructions: [
         'Toast the bread slices until golden brown.',
         'Spread 1 tbsp of peanut butter on one slice of bread.',
         'Add 1 tbsp of sugar-free jam on top of the peanut butter.',
+        'Layer banana slices on top of the jam.',
         'Top with another slice of bread.',
         'Cut in halves and serve immediately.'
       ],
@@ -580,19 +503,19 @@ const RecipeDetail: React.FC = () => {
     {
       id: 17,
       title: 'Healthy Snickers Bites',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fb9dfde52-e39a-4ce4-9c3e-4d4d83d2e3ad/watermark:F/width:366?csig=AAAAAAAAAAAAAAAAAAAAAEC8QIiR_hT1E0QyuJ_LSO8dhGHUawE6IAvAmfaJJF-J&exp=1758262652&osig=AAAAAAAAAAAAAAAAAAAAALyGUivdkzaQPUomXP_zpAcNbM6K8rfPKe6gb2nAVrBM&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/0e/70/cc/0e70cc95e6516ccee781505b8ab6fd4c.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 0,
       servings: 4,
-      calories: 180,
-      protein: 4,
-      carbs: 28,
-      fat: 8,
+      calories: 342,
+      protein: 5,
+      carbs: 64,
+      fat: 10.8,
       description: 'Naturally sweet date bites filled with peanut butter and drizzled with dark chocolate - a healthier take on the classic candy bar.',
       ingredients: [
-        '20 Medjool dates, pitted',
+        '12 Medjool dates, pitted',
         '4 tbsp peanut butter',
         '4 tbsp dark chocolate (70%), melted'
       ],
@@ -608,17 +531,17 @@ const RecipeDetail: React.FC = () => {
     },
     {
       id: 18,
-      title: 'Tropical Smoothie Bowl',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fe8c79369-0684-4ed3-9923-b40217d068a1/watermark:F/width:412?csig=AAAAAAAAAAAAAAAAAAAAAAfdGpD1Fe0nwNQcyp3cNPsJoFwxiHXNa_pWjGdAWOv-&exp=1758263393&osig=AAAAAAAAAAAAAAAAAAAAAFYpff-QDDZUw6tR4pyRD2Ta2g5omn8agOW71je8iRy9&signer=media-rpc&x-canva-quality=thumbnail_large',
+      title: 'Fruity Smoothie Bowl',
+      image: '/images/fruity-smoothie-bowl-2.jpg',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 10,
       cookTime: 0,
       servings: 4,
-      calories: 353,
-      protein: 6,
-      carbs: 53,
-      fat: 16,
+      calories: 136,
+      protein: 5.5,
+      carbs: 30,
+      fat: 0.5,
       description: 'A refreshing tropical smoothie bowl bursting with frozen fruits, creamy Greek yogurt, and topped with fresh fruits and granola.',
       ingredients: [
         '2 cups frozen banana',
@@ -640,28 +563,29 @@ const RecipeDetail: React.FC = () => {
     },
     {
       id: 19,
-      title: 'Nutty Granola Bars',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F94ada965-bec2-4db7-ab75-7f5ed44b85c6/watermark:F/width:366?csig=AAAAAAAAAAAAAAAAAAAAAGTLqfM8RYtCPZ7VJ-zjCNwDA9Pz5nso08k9EkpyMKE1&exp=1758262017&osig=AAAAAAAAAAAAAAAAAAAAAAHPloq3s6CCgsriwzdkF83gLL35rnwCCCHzf5epP2JH&signer=media-rpc&x-canva-quality=thumbnail_large',
+      title: 'Easy Granola Bars',
+      image: 'https://i.pinimg.com/1200x/42/5f/58/425f588c7400d57cf65bd482bfc2ccb4.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 0,
       servings: 4,
-      calories: 265,
+      calories: 351,
       protein: 8,
-      carbs: 28,
-      fat: 14,
-      description: 'No-bake granola bars packed with oats, nuts, and a touch of dark chocolate - perfect for on-the-go energy or afternoon snacks.',
+      carbs: 49,
+      fat: 17,
+      description: 'No-bake granola bars packed with oats, nuts, dried fruits, and a touch of dark chocolate - perfect for on-the-go energy or afternoon snacks.',
       ingredients: [
         '1 cup rolled oats',
         '4 tbsp honey',
-        '4 tbsp chopped almonds',
+        '2 tbsp chopped almonds',
         '2 tbsp dark chocolate chips',
         '4 tbsp nut butter (almond, peanut, or cashew)',
-        '4 tbsp pecans, chopped'
+        '2 tbsp pecans, chopped',
+        '4 tbsp dried blueberries/cranberries'
       ],
       instructions: [
-        'In a large bowl, mix rolled oats, chopped almonds, pecans, and dark chocolate chips.',
+        'In a large bowl, mix rolled oats, chopped almonds, pecans, dark chocolate chips, and dried blueberries/cranberries.',
         'In a separate bowl, warm the honey slightly and mix with nut butter until smooth.',
         'Pour the honey-nut butter mixture over the dry ingredients.',
         'Mix everything together until well combined and sticky.',
@@ -674,7 +598,7 @@ const RecipeDetail: React.FC = () => {
     {
       id: 20,
       title: 'Cheesy Quesadillas',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fa2edae50-f0ff-451c-9174-78c6f1ebc29c/watermark:F/width:440?csig=AAAAAAAAAAAAAAAAAAAAAOTdxkhxZR18Af4wn-tIykXtF1y9tgftJmmeamfJCtLA&exp=1758263015&osig=AAAAAAAAAAAAAAAAAAAAALxbB6PxxS7mdCCUOiEF_9jqIcjCczLQOAl4-_IlWERN&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/736x/fd/fb/08/fdfb08a605bbbb30a236d15a2851dc75.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 10,
@@ -704,23 +628,23 @@ const RecipeDetail: React.FC = () => {
     {
       id: 21,
       title: 'Mini Pizza Toasts',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F89175a5e-f78f-48f7-9c07-5ee0c70362b8/watermark:F/width:343?csig=AAAAAAAAAAAAAAAAAAAAAB8l87X2lV9ojCvcN5rw72JLY7R1WMRGAcepY0ven_eq&exp=1758262021&osig=AAAAAAAAAAAAAAAAAAAAAOVsUV-51oKP0uSY51pNZofiAodzGt26mk1kxXe9NI0Y&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/ec/35/51/ec35511de2ddd391134ec2abd35ec83a.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 10,
       cookTime: 8,
       servings: 4,
-      calories: 280,
-      protein: 14,
-      carbs: 32,
-      fat: 12,
+      calories: 230,
+      protein: 17,
+      carbs: 24,
+      fat: 9,
       description: 'Delicious mini pizza toasts on whole grain bread with tomato sauce, mozzarella, and fresh toppings.',
       ingredients: [
         '4 slices whole grain bread',
         '4 tbsp tomato sauce or napolitan sauce',
         '120 g shredded mozzarella cheese',
         'Pepperoni or ham',
-        '20 cherry tomato slices',
+        '2 tomatoes sliced',
         '1 tsp dried oregano or italian blend'
       ],
       instructions: [
@@ -735,23 +659,23 @@ const RecipeDetail: React.FC = () => {
     {
       id: 22,
       title: 'Yogurt Custard Toast',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2F314be65f-fe57-4145-9aca-8aca41a90402/watermark:F/width:314?csig=AAAAAAAAAAAAAAAAAAAAAP6bamHVccluRcTUefv7gmwalbZPSbDhFHKkJkWO10VY&exp=1758262760&osig=AAAAAAAAAAAAAAAAAAAAAGBaWPZZQI2QW8Vj5J66ddC3LnLtlyb1Ew0atcRJjt2I&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/ae/b7/2a/aeb72ad4706e4e8a2c8ea954bc41351c.jpg',
       category: 'breakfast',
       difficulty: 'easy',
       prepTime: 8,
       cookTime: 5,
       servings: 4,
-      calories: 240,
-      protein: 18,
-      carbs: 28,
-      fat: 8,
+      calories: 184,
+      protein: 9,
+      carbs: 26,
+      fat: 4,
       description: 'Creamy yogurt custard toast topped with fresh blueberries, baked to perfection for a healthy breakfast treat.',
       ingredients: [
         '4 slices whole grain bread',
         '8 tbsp Greek yogurt',
         '4 tsp honey',
-        '4 eggs, lightly beaten',
-        '40 fresh blueberries'
+        '2 eggs, lightly beaten',
+        '10 fresh blueberries'
       ],
       instructions: [
         'Mix yogurt, honey, and eggs until smooth.',
@@ -765,16 +689,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 23,
       title: 'Healthy Baked Nachos',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Fc40ebab9-6ede-46ba-8c7d-b9665c99d6f2/watermark:F/width:440?csig=AAAAAAAAAAAAAAAAAAAAAAjF966TTlLXfYiUn1sbogjsKnrs3sFhr6PClBXjiRvA&exp=1758262780&osig=AAAAAAAAAAAAAAAAAAAAACMaaj0QsTt0mV1L5Tj3yHw-gh1NHhTjxiRjYU0noIoQ&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/736x/f0/82/ad/f082adbcd46fe982f7e0fdbd3e8799da.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 10,
       servings: 4,
-      calories: 290,
-      protein: 8,
-      carbs: 35,
-      fat: 14,
+      calories: 280,
+      protein: 6,
+      carbs: 27,
+      fat: 17.5,
       description: 'Crispy baked tortilla chips served with fresh homemade guacamole for a healthy twist on nachos.',
       ingredients: [
         '4 whole wheat tortillas',
@@ -782,11 +706,12 @@ const RecipeDetail: React.FC = () => {
         '2 ripe avocados',
         '2 tsp lime juice',
         '1 small tomato, diced',
+        '1/2 small red onion, diced',
         'Salt to taste'
       ],
       instructions: [
         'Cut tortillas into triangles, brush with olive oil, and bake until crispy.',
-        'Mash avocados with lime juice, tomato, and salt to make guacamole.',
+        'Mash avocados with lime juice, tomato, diced red onion, and salt to make guacamole.',
         'Serve nacho chips with guacamole on the side.',
         'Enjoy immediately for best crispiness.'
       ],
@@ -795,16 +720,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 24,
       title: 'Cucumber Tuna Boats',
-      image: 'https://media.canva.com/v2/image-resize/format:PNG/height:550/quality:100/uri:ifs%3A%2F%2FM%2Face4f621-608c-4779-8858-7ab6cdf043e7/watermark:F/width:345?csig=AAAAAAAAAAAAAAAAAAAAAFtx7eY4ONcauMZQGApSicq_lDXyvf6eF0HQylPZGH4H&exp=1758261082&osig=AAAAAAAAAAAAAAAAAAAAAEn1xySorkjO7gOFNtbsm16WLiVOUhchPTpfxbEsCC44&signer=media-rpc&x-canva-quality=thumbnail_large',
+      image: 'https://i.pinimg.com/1200x/89/44/a6/8944a66fd065f30baf4b4c196a6c69d0.jpg',
       category: 'lunch',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 0,
       servings: 4,
-      calories: 180,
-      protein: 22,
-      carbs: 8,
-      fat: 8,
+      calories: 155,
+      protein: 14,
+      carbs: 6,
+      fat: 8.5,
       description: 'Fresh cucumber boats filled with a creamy tuna salad mixture, topped with sesame seeds for crunch.',
       ingredients: [
         '2 medium cucumbers',
@@ -827,16 +752,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 25,
       title: 'Sheet Pan Chicken Fajitas',
-      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800',
+      image: 'https://i.pinimg.com/1200x/35/e8/de/35e8def3b68ab53deeaf7e94c3ec6a8d.jpg',
       category: 'dinner',
       difficulty: 'easy',
       prepTime: 15,
       cookTime: 25,
       servings: 4,
-      calories: 470,
-      protein: 33,
-      carbs: 33,
-      fat: 22,
+      calories: 586,
+      protein: 49,
+      carbs: 43,
+      fat: 24,
       description: 'Easy one-pan chicken fajitas with bell peppers and onions, served with homemade guacamole and warm corn tortillas.',
       ingredients: [
         '3 bell peppers, sliced',
@@ -878,16 +803,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 26,
       title: 'BBQ Chicken',
-      image: 'https://i.pinimg.com/736x/a4/86/ab/a486ab1190d96d1c5a6ebfe9d6652e40.jpg',
+      image: 'https://i.pinimg.com/1200x/0d/46/0b/0d460b8c1bf4bf6cdef5095e85445796.jpg',
       category: 'dinner',
       difficulty: 'easy',
       prepTime: 10,
       cookTime: 15,
       servings: 4,
-      calories: 260,
-      protein: 42,
-      carbs: 8,
-      fat: 6,
+      calories: 385,
+      protein: 62,
+      carbs: 6,
+      fat: 10.5,
       description: 'Grilled chicken breasts with BBQ sauce, perfect for a flavorful and high-protein dinner.',
       ingredients: [
         '4 boneless, skinless chicken breasts (~800 g total)',
@@ -908,16 +833,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 27,
       title: 'Buddha Bowl',
-      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800',
+      image: 'https://i.pinimg.com/1200x/d7/43/41/d743416cab32f71bf2f0894d7c6e8fc8.jpg',
       category: 'lunch',
       difficulty: 'medium',
       prepTime: 20,
       cookTime: 25,
       servings: 4,
-      calories: 540,
-      protein: 17,
-      carbs: 58,
-      fat: 27,
+      calories: 672,
+      protein: 16,
+      carbs: 70,
+      fat: 25,
       description: 'A nutritious and colorful bowl with quinoa, roasted vegetables, chickpeas, and tahini dressing.',
       ingredients: [
         '¾ cup raw quinoa (~130 g)',
@@ -962,10 +887,10 @@ const RecipeDetail: React.FC = () => {
       prepTime: 15,
       cookTime: 20,
       servings: 4,
-      calories: 355,
-      protein: 45,
-      carbs: 17,
-      fat: 11,
+      calories: 533,
+      protein: 46,
+      carbs: 20.5,
+      fat: 16,
       description: 'A healthier version of the classic Kung Pao chicken with green beans, featuring a spicy and flavorful sauce.',
       ingredients: [
         '1 Tbsp garlic, minced',
@@ -977,7 +902,7 @@ const RecipeDetail: React.FC = () => {
         '900 g (2 lb) chicken breast, boneless, skinless',
         'Salt & pepper to taste',
         '2 Tbsp olive oil (divided)',
-        '900 g (2 lb) green beans, trimmed',
+        '400 g green beans, trimmed',
         '2 tsp cornstarch + 1 Tbsp warm water',
         'Sesame seeds (optional)',
         'Roasted peanuts (optional)'
@@ -1002,15 +927,15 @@ const RecipeDetail: React.FC = () => {
     {
       id: 29,
       title: 'Oven-Baked Potato Wedges',
-      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800',
+      image: 'https://i.pinimg.com/1200x/b2/f6/85/b2f6859ae855dfdf4842f7f8b7ab3fb8.jpg',
       category: 'snacks',
       difficulty: 'easy',
       prepTime: 10,
       cookTime: 30,
       servings: 4,
-      calories: 225,
+      calories: 206,
       protein: 4,
-      carbs: 40,
+      carbs: 33,
       fat: 7,
       description: 'Crispy and flavorful potato wedges baked to perfection with aromatic herbs and spices.',
       ingredients: [
@@ -1043,10 +968,10 @@ const RecipeDetail: React.FC = () => {
       prepTime: 15,
       cookTime: 25,
       servings: 4,
-      calories: 210,
-      protein: 12,
-      carbs: 9,
-      fat: 14,
+      calories: 347,
+      protein: 21,
+      carbs: 13,
+      fat: 25,
       description: 'A delicious Spanish-style casserole with layers of zucchini, tomatoes, serrano ham, and cheese, baked to perfection.',
       ingredients: [
         '2 zucchini',
@@ -1072,16 +997,16 @@ const RecipeDetail: React.FC = () => {
     {
       id: 31,
       title: 'Italian Marinated Chicken',
-      image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800',
+      image: 'https://i.pinimg.com/1200x/83/01/4d/83014da51a21d0727ac8d713a675f27e.jpg',
       category: 'dinner',
       difficulty: 'easy',
       prepTime: 10,
       cookTime: 25,
       servings: 4,
-      calories: 230,
-      protein: 30,
-      carbs: 2,
-      fat: 11,
+      calories: 312,
+      protein: 35,
+      carbs: 1,
+      fat: 18,
       description: 'Tender chicken breast marinated in Italian herbs and spices, then baked to perfection.',
       ingredients: [
         '1 lb (450 g) boneless, skinless chicken breast',
@@ -1108,7 +1033,7 @@ const RecipeDetail: React.FC = () => {
     {
       id: 32,
       title: 'Potato Purée au Gratin',
-      image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=800',
+      image: 'https://i.pinimg.com/1200x/54/2f/4f/542f4f109fdaccf71a06699fdc5d9fe4.jpg',
       category: 'dinner',
       difficulty: 'easy',
       prepTime: 15,
@@ -1138,24 +1063,19 @@ const RecipeDetail: React.FC = () => {
     },
     {
       id: 33,
-      title: 'Potatoes with Beef Tenderloin, Chimichurri & Fresh Salad',
-      image: 'https://i.pinimg.com/736x/2c/90/ee/2c90ee4e75331b83f2146678597b7122.jpg',
+      title: 'Beef Tenderloin with Chimichurri',
+      image: 'https://i.pinimg.com/1200x/23/da/0b/23da0b02a0560981d3a081c903053411.jpg',
       category: 'dinner',
       difficulty: 'medium',
-      prepTime: 20,
-      cookTime: 25,
+      prepTime: 15,
+      cookTime: 15,
       servings: 4,
-      calories: 523,
-      protein: 27,
-      carbs: 35,
-      fat: 30,
-      description: 'A complete and flavorful meal featuring sautéed baby potatoes, tender beef strips, fresh chimichurri sauce, and a crisp salad.',
+      calories: 424,
+      protein: 25,
+      carbs: 5,
+      fat: 34,
+      description: 'Tender beef strips perfectly seasoned and topped with fresh chimichurri sauce.',
       ingredients: [
-        '640 g baby potatoes (papas criollas)',
-        '¾ tbsp fresh rosemary, chopped',
-        '1½ lemons (juice + zest)',
-        '1½ tbsp olive oil',
-        'Salt & pepper to taste',
         '480 g beef tenderloin, cut into strips',
         '2 garlic cloves',
         '¾ tbsp soy sauce',
@@ -1165,64 +1085,17 @@ const RecipeDetail: React.FC = () => {
         '1½ tbsp red wine vinegar',
         '¾ tsp dried oregano',
         '¼ tsp chili flakes (optional)',
-        '2 medium tomatoes, diced',
-        '¾ cucumber, sliced',
-        '¾ head lettuce (romaine or curly)',
-        'Juice of ¾ lemon',
-        'Olive oil & salt to taste'
+        '2 medium tomatoes, diced'
       ],
       instructions: [
-        'For potatoes: Boil potatoes in salted water until tender, about 15-20 minutes.',
-        'Drain potatoes and sauté with olive oil, rosemary, and lemon zest until golden.',
-        'For beef: Season beef strips with salt and pepper.',
+        'Season beef strips with salt and pepper.',
         'Sear beef strips with garlic and soy sauce in a hot pan until browned but juicy, about 3-4 minutes per side.',
         'For chimichurri: Blend or finely chop parsley, garlic, olive oil, vinegar, oregano, and chili flakes.',
         'Season chimichurri with salt to taste.',
-        'For salad: Mix tomatoes, cucumber, and lettuce with lemon juice, olive oil, and salt just before serving.',
-        'Plate the potatoes, salad, and beef. Top the meat with chimichurri sauce.',
-        'Serve immediately while hot.'
+        'Plate the beef and top with chimichurri sauce.',
+        'Garnish with diced tomatoes and serve immediately.'
       ],
-      tags: ['high-protein', 'complete-meal', 'chimichurri', 'fresh']
-    },
-    {
-      id: 34,
-      title: 'Costillas BBQ Carnudas en Instant Pot',
-      image: 'https://i.pinimg.com/1200x/e7/05/76/e70576d6255a966151423b476066a5b2.jpg',
-      category: 'dinner',
-      difficulty: 'medium',
-      prepTime: 20,
-      cookTime: 45,
-      servings: 8,
-      calories: 420,
-      protein: 35,
-      carbs: 15,
-      fat: 25,
-      description: 'Tender and juicy BBQ ribs cooked in the Instant Pot, then finished in the oven for that perfect caramelized glaze.',
-      ingredients: [
-        '2.5-3 kg pork ribs (baby back or loin ribs)',
-        'Salt and pepper to taste',
-        '2 tbsp garlic powder',
-        '1 tbsp paprika (sweet or spicy)',
-        '½ tbsp cumin',
-        '1 cup beef broth or water',
-        '1 tbsp apple cider vinegar (optional)',
-        '2 cups BBQ sauce (store-bought or homemade)',
-        'Cooking oil for searing'
-      ],
-      instructions: [
-        'Remove the membrane from the back of the ribs. Cut ribs into sections of 3-4 bones.',
-        'Mix salt, pepper, garlic powder, paprika, and cumin. Rub the spice mixture all over the ribs.',
-        'Optional: Use "Sauté" mode to lightly brown the ribs on both sides with a little oil for enhanced flavor.',
-        'Add beef broth and vinegar to the Instant Pot.',
-        'Place ribs in a fan shape or stacked on the metal rack.',
-        'Close the lid with valve in "Sealing" position.',
-        'Cook on "Pressure Cook" or "Manual" for 25 minutes at high pressure.',
-        'Allow natural pressure release for 10 minutes, then release remaining pressure.',
-        'Optional but recommended: Place ribs on a baking sheet, brush with BBQ sauce, and bake at 200°C for 10-15 minutes until caramelized.',
-        'Alternative: Use air fryer at 200°C for 5-7 minutes.',
-        'Serve hot with additional BBQ sauce on the side.'
-      ],
-      tags: ['bbq', 'instant-pot', 'high-protein', 'comfort-food']
+      tags: ['high-protein', 'chimichurri', 'fresh', 'quick-meal']
     },
     {
       id: 35,
@@ -1233,10 +1106,10 @@ const RecipeDetail: React.FC = () => {
       prepTime: 15,
       cookTime: 0,
       servings: 4,
-      calories: 207,
-      protein: 3,
-      carbs: 18,
-      fat: 15,
+      calories: 199,
+      protein: 4,
+      carbs: 25,
+      fat: 11,
       description: 'A vibrant and refreshing tropical salad with purple cabbage, pineapple, avocado, and arugula - perfect for a healthy lunch.',
       ingredients: [
         '4 cups purple cabbage, finely shredded (~280 g)',
@@ -1305,17 +1178,17 @@ const RecipeDetail: React.FC = () => {
     },
     {
       id: 37,
-      title: 'Spicy Chicken Curry with Jasmine Rice & Naan',
+      title: 'Spicy Chicken Curry with Jasmine Rice',
       image: 'https://gridrecipes.com/wp-content/uploads/2025/06/0_2-2025-06-13T030606.152.png',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 20,
       cookTime: 45,
       servings: 4,
-      calories: 781,
-      protein: 49,
-      carbs: 45,
-      fat: 21,
+      calories: 528,
+      protein: 48,
+      carbs: 23,
+      fat: 27,
       description: 'Aromatic and spicy chicken curry with fragrant jasmine rice and homemade naan bread - a complete Indian feast.',
       ingredients: [
         '800 g (1.75 lb) chicken breast or thighs, skinless, cubed',
@@ -1334,13 +1207,7 @@ const RecipeDetail: React.FC = () => {
         'Salt to taste',
         'Fresh cilantro for garnish',
         'Juice of ½ lemon (optional)',
-        '⅓ cup jasmine rice (about 60 g, uncooked)',
-        '1 cup plain unsweetened yogurt',
-        '1 cup wheat flour (about 125 g)',
-        '½ tsp salt',
-        '½ tsp baking powder',
-        'Garlic and cilantro for brushing (optional)',
-        'Melted ghee or butter for brushing'
+        '⅓ cup jasmine rice (about 60 g, uncooked)'
       ],
       instructions: [
         'For the curry: In a large pot, heat the oil and sauté the onion until golden.',
@@ -1352,27 +1219,24 @@ const RecipeDetail: React.FC = () => {
         'For the rice: Rinse the rice well.',
         'Cook with water and a pinch of salt. Cover and simmer gently for 15 minutes.',
         'Turn off heat and let it rest, covered, for 5 minutes.',
-        'For the naan: Mix yogurt, flour, salt, and baking powder until a soft dough forms.',
-        'Divide into 4 balls, roll out each one, and cook in a hot skillet for 2–3 minutes per side.',
-        'Brush with ghee and, if desired, garlic and cilantro.',
-        'Serve the curry over jasmine rice with warm naan bread.'
+        'Serve the curry over jasmine rice.'
       ],
       tags: ['spicy', 'indian', 'curry', 'aromatic', 'complete-meal']
     },
     {
       id: 38,
-      title: 'Chicken Gyro with Homemade Naan, Cucumber-Tomato-Mint Salad & Tzatziki',
+      title: 'Chicken Gyro with Homemade Naan and fresh salad',
       image: 'https://evarecipe.com/wp-content/uploads/2025/04/0425175136.webp',
       category: 'dinner',
       difficulty: 'medium',
       prepTime: 30,
       cookTime: 20,
       servings: 4,
-      calories: 543,
-      protein: 56,
-      carbs: 34,
-      fat: 16,
-      description: 'Authentic Greek-style chicken gyro with homemade naan bread, fresh cucumber-tomato-mint salad, and creamy tzatziki sauce.',
+      calories: 373,
+      protein: 35,
+      carbs: 27,
+      fat: 12.5,
+      description: 'Authentic Greek-style chicken gyro with homemade naan bread and fresh cucumber-tomato-mint salad.',
       ingredients: [
         '480 g (1 lb) chicken breast, cut into thick strips',
         '¼ cup plain Greek yogurt',
@@ -1393,14 +1257,7 @@ const RecipeDetail: React.FC = () => {
         '¼ red onion, thinly sliced',
         '¼ cup fresh mint, chopped',
         '1 tbsp olive oil',
-        '2 tsp lemon juice',
-        '¾ cup plain Greek yogurt',
-        '½ large cucumber, grated and drained',
-        '¾ clove garlic, minced',
-        '2 tsp lemon juice',
-        '½ tbsp olive oil',
-        '½ tbsp dill (optional)',
-        '¼ tsp salt'
+        '2 tsp lemon juice'
       ],
       instructions: [
         'For the chicken gyro marinade: Mix all ingredients in a large bowl.',
@@ -1410,11 +1267,41 @@ const RecipeDetail: React.FC = () => {
         'Divide into 4 balls, roll out each, and cook on a hot skillet (no oil) 1–2 minutes per side until bubbly and golden.',
         'Optional: brush with garlic + olive oil + parsley.',
         'For the salad: Mix all ingredients in a bowl. Chill 15–20 minutes before serving.',
-        'For the tzatziki: Drain cucumber well. Mix with the rest of the ingredients and refrigerate 30–60 minutes before serving.',
-        'Assemble gyros by placing chicken on naan, topping with salad and tzatziki sauce.',
+        'Assemble gyros by placing chicken on naan and topping with salad.',
         'Serve immediately while warm.'
       ],
       tags: ['greek', 'mediterranean', 'fresh', 'homemade', 'complete-meal']
+    },
+    {
+      id: 39,
+      title: 'Tzatziki Sauce',
+      image: 'https://i.pinimg.com/1200x/f8/f8/90/f8f8908317c102edafd00ae7023f24ba.jpg',
+      category: 'snacks',
+      difficulty: 'easy',
+      prepTime: 15,
+      cookTime: 0,
+      servings: 4,
+      calories: 30,
+      protein: 1,
+      carbs: 2,
+      fat: 1,
+      description: 'Fresh and creamy Greek tzatziki sauce made with cucumber, Greek yogurt, and herbs. Perfect as a dip or accompaniment to grilled meats and vegetables.',
+      ingredients: [
+        '200 g cucumber',
+        '150 g Greek yogurt (unsweetened and thick)',
+        '1 garlic clove',
+        '1 tbsp fresh dill, chopped (or 1 tsp dried dill)',
+        '1 tbsp lemon juice or white wine vinegar',
+        '2 tbsp extra virgin olive oil',
+        'Salt and black pepper to taste'
+      ],
+      instructions: [
+        'Grate the cucumber and place it in a colander. Press with a spoon or your hands to remove as much water as possible.',
+        'In a bowl, mix the drained cucumber with Greek yogurt, minced garlic, dill, lemon juice or vinegar, olive oil, salt, and pepper.',
+        'Refrigerate the mixture for at least 30 minutes to allow the flavors to blend.',
+        'Serve cold as an accompaniment to meats, fish, salads, or as a dip with pita bread or vegetables.'
+      ],
+      tags: ['greek', 'low-calorie', 'fresh', 'dip']
     }
   ]
 
@@ -1539,7 +1426,7 @@ const RecipeDetail: React.FC = () => {
                   <img
                     src={recipe.image}
                     alt={recipe.title}
-                    className="w-full h-80 object-cover object-[center_60%] transition-transform duration-700 group-hover:scale-105"
+                    className={`w-full h-80 object-cover ${recipe.id === 15 || recipe.id === 5 ? 'object-[center_67%]' : recipe.id === 16 ? 'object-[center_50%]' : recipe.id === 18 ? 'object-center' : recipe.id === 20 ? 'object-[center_80%]' : recipe.id === 22 ? 'object-[center_20%]' : recipe.id === 26 ? 'object-[center_60%]' : recipe.id === 28 ? 'object-[center_50%]' : recipe.id === 39 ? 'object-[center_50%]' : 'object-[center_40%]'}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
@@ -1568,7 +1455,7 @@ const RecipeDetail: React.FC = () => {
                   {/* Recipe Stats */}
                   <Row gutter={[12, 12]}>
                     <Col span={8}>
-                      <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl border border-emerald-200/50 hover:shadow-lg transition-all duration-300">
+                      <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl border border-emerald-200/50">
                         <div className="w-12 h-12 mx-auto mb-2 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
                           <FontAwesomeIcon icon={faClock} className="text-white text-lg" />
                         </div>
@@ -1577,7 +1464,7 @@ const RecipeDetail: React.FC = () => {
                       </div>
                     </Col>
                     <Col span={8}>
-                      <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200/50 hover:shadow-lg transition-all duration-300">
+                      <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200/50">
                         <div className="w-12 h-12 mx-auto mb-2 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
                           <FontAwesomeIcon icon={faUser} className="text-white text-lg" />
                         </div>
@@ -1586,7 +1473,7 @@ const RecipeDetail: React.FC = () => {
                       </div>
                     </Col>
                     <Col span={8}>
-                      <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border border-orange-200/50 hover:shadow-lg transition-all duration-300">
+                      <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl border border-orange-200/50">
                         <div className="w-12 h-12 mx-auto mb-2 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
                           <FontAwesomeIcon icon={faFire} className="text-white text-lg" />
                         </div>
@@ -1681,7 +1568,7 @@ const RecipeDetail: React.FC = () => {
             </Title>
             <Row gutter={[16, 16]}>
               <Col xs={12} sm={6}>
-                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 border border-red-200/50 hover:shadow-lg transition-all duration-300">
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 border border-red-200/50">
                   <div className="w-10 h-10 mx-auto mb-2 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
                     <FontAwesomeIcon icon={faFire} className="text-white text-sm" />
                   </div>
@@ -1690,7 +1577,7 @@ const RecipeDetail: React.FC = () => {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200/50 hover:shadow-lg transition-all duration-300">
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200/50">
                   <div className="w-10 h-10 mx-auto mb-2 bg-purple-500 rounded-full flex items-center justify-center shadow-lg">
                     <FontAwesomeIcon icon={faDumbbell} className="text-white text-sm" />
                   </div>
@@ -1699,7 +1586,7 @@ const RecipeDetail: React.FC = () => {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200/50 hover:shadow-lg transition-all duration-300">
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-200/50">
                   <div className="w-10 h-10 mx-auto mb-2 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#d97706' }}>
                     <FontAwesomeIcon icon={faBoltLightning} className="text-white text-lg" style={{ color: '#ffffff' }} />
                   </div>
@@ -1708,7 +1595,7 @@ const RecipeDetail: React.FC = () => {
                 </div>
               </Col>
               <Col xs={12} sm={6}>
-                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-pink-50 to-pink-100 border border-pink-200/50 hover:shadow-lg transition-all duration-300">
+                <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-pink-50 to-pink-100 border border-pink-200/50">
                   <div className="w-10 h-10 mx-auto mb-2 bg-pink-500 rounded-full flex items-center justify-center shadow-lg">
                     <FontAwesomeIcon icon={faDroplet} className="text-white text-sm" />
                   </div>
@@ -1737,7 +1624,7 @@ const RecipeDetail: React.FC = () => {
               {recipe.tags.map((tag: string) => (
                 <Tag 
                   key={tag} 
-                  className="rounded-full px-6 py-2 text-sm font-semibold border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105" 
+                  className="rounded-full px-6 py-2 text-sm font-semibold border-0 shadow-md" 
                   style={{ backgroundColor: '#dcfce7', color: '#16a34a' }}
                 >
                   {tag}

@@ -26,34 +26,17 @@ const Header = () => {
   }, []);
 
   const calculatorItems = [
-    {
-      key: '/calculator',
-      label: 'Nutrition Calculator',
-    },
+    // {
+    //   key: '/calculator',
+    //   label: 'Nutrition Calculator',
+    // },
     {
       key: '/calculator/bmr',
       label: 'BMR Calculator',
     },
   ];
 
-  const recipesItems = [
-    {
-      key: '/recipes',
-      label: 'All Recipes',
-    },
-    {
-      key: '/recipes/healthy',
-      label: 'Healthy Meals',
-    },
-    {
-      key: '/recipes/quick',
-      label: 'Quick & Easy',
-    },
-    {
-      key: '/recipes/special-diets',
-      label: 'Special Diets',
-    },
-  ];
+  const recipesItems = [];
 
   const mainMenuItems = [
     {
@@ -75,18 +58,8 @@ const Header = () => {
       ),
     },
     {
-      key: 'recipes',
-      label: (
-        <Dropdown
-          menu={{ items: recipesItems, onClick: (e) => navigate(e.key) }}
-          placement="bottomLeft"
-          trigger={['hover']}
-        >
-          <span className="flex items-center gap-1">
-            Recipes <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
-          </span>
-        </Dropdown>
-      ),
+      key: '/recipes',
+      label: 'Recipes',
     },
     {
       key: '/about',
@@ -95,7 +68,7 @@ const Header = () => {
   ];
 
   const onClick = (e: any) => {
-    if (e.key !== 'calculator' && e.key !== 'recipes') {
+    if (e.key !== 'calculator') {
       navigate(e.key);
     }
   };

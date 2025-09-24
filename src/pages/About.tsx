@@ -1,4 +1,4 @@
-import { Timeline, Button } from 'antd'
+import { Button } from 'antd'
 import { 
   HeartOutlined, 
   BulbOutlined,
@@ -26,23 +26,23 @@ const About: React.FC = () => {
   // Professional highlights images from Unsplash
   const professionalHighlights = [
     {
-      title: "Academic Excellence",
-      description: "Earned my degree from a prestigious university program, gaining deep expertise in nutritional science and metabolism.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Nutrition Science",
+      description: "Evidence-based approach using proven nutrition principles to help you reach your health goals.",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: faGraduationCap,
       iconColor: "#10b981"
     },
     {
-      title: "Root-Cause Focus",
-      description: "I don't just treat symptoms—I investigate and address the underlying factors that impact your health and energy.",
+      title: "Practical Solutions",
+      description: "Real-world strategies that work with your schedule, budget, and lifestyle preferences.",
       image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: faHeartbeat,
       iconColor: "#24604c"
     },
     {
-      title: "Supportive Community",
-      description: "My clients become part of a caring network where everyone feels heard, encouraged, and celebrated for their progress.",
-      image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      title: "Personalized Support",
+      description: "Tailored guidance and ongoing encouragement to help you build lasting healthy habits.",
+      image: "https://plus.unsplash.com/premium_photo-1661602402476-33da1a389921?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: faUsers,
       iconColor: "#90cbb9"
     }
@@ -52,53 +52,26 @@ const About: React.FC = () => {
   const values = [
     {
       icon: <SafetyOutlined className="text-3xl" style={{ color: '#10b981' }} />,
-      title: 'Personalized Commitment',
-      description: 'Your plan is designed specifically for you—built around your lifestyle, preferences, and goals, with continuous support to guarantee success.'
+      title: 'Personalized Plans',
+      description: 'Custom nutrition strategies that fit your lifestyle, preferences, and goals.'
     },
     {
       icon: <HeartOutlined className="text-3xl" style={{ color: '#24604c' }} />,
-      title: 'Sustainable Balance',
-      description: 'Forget extreme diets and restrictions. I help you develop a positive, flexible relationship with food that feels natural and enjoyable.'
+      title: 'Sustainable Approach',
+      description: 'No extreme diets. Just practical habits that feel natural and enjoyable.'
     },
     {
       icon: <BulbOutlined className="text-3xl" style={{ color: '#90cbb9' }} />,
-      title: 'Science-Driven Results',
-      description: 'Every strategy is backed by current research and proven methods, giving you confidence that your efforts will lead to real, measurable outcomes.'
+      title: 'Evidence-Based',
+      description: 'Strategies backed by research and proven methods for real results.'
     },
     {
       icon: <GlobalOutlined className="text-3xl" style={{ color: '#10b981' }} />,
-      title: 'Empathetic Support',
-      description: 'Change isn\'t always easy. I provide understanding, encouragement, and practical solutions to help you navigate challenges with confidence.'
+      title: 'Ongoing Support',
+      description: 'Guidance and encouragement to help you stay on track and succeed.'
     }
   ]
 
-  const milestones = [
-    {
-      year: '2018',
-      title: 'Academic Foundation',
-      description: 'Began intensive university studies in Nutrition and Dietetics, mastering the science of how food impacts our bodies at the cellular level.'
-    },
-    {
-      year: '2020',
-      title: 'Functional Medicine Specialization',
-      description: 'Dove deep into functional approaches, learning to uncover why health issues occur and how targeted nutrition can restore optimal wellness.'
-    },
-    {
-      year: '2022',
-      title: 'Professional Practice Launch',
-      description: 'Earned my certification and started my practice, immediately seeing incredible results as clients discovered the power of personalized nutrition plans.'
-    },
-    {
-      year: '2023',
-      title: 'Lifestyle Integration Mastery',
-      description: 'Focused on making healthy habits stick by developing systems that work with busy schedules and real-world challenges.'
-    },
-    {
-      year: '2024',
-      title: 'Digital Innovation',
-      description: 'Expanded my reach through technology, creating tools and resources that bring expert guidance directly to people wherever they are.'
-    }
-  ]
 
 
   return (
@@ -187,7 +160,7 @@ const About: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     style={{ color: '#24604c' }}
                   >
-                    Certified Nutritionist | Functional & Lifestyle Nutrition
+                    Nutritionist & Health Coach
                   </motion.p>
                   <motion.p 
                     className="text-xl md:text-2xl mb-12 leading-relaxed opacity-95"
@@ -196,7 +169,7 @@ const About: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                     style={{ color: '#2E2E2E' }}
                   >
-                    Helping you achieve lasting results through balance, science, and real-life habits.
+                    Simple, sustainable nutrition solutions that work in real life.
                   </motion.p>
 
                   {/* Key Features List */}
@@ -215,7 +188,7 @@ const About: React.FC = () => {
                           transition={{ duration: 0.6, delay: 0.8 }}
                         >
                           <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Healthy Recipes & Meal Ideas</strong> that fit your lifestyle</span>
+                          <span><strong className="text-[#24604c]">Healthy Recipes</strong> for busy lifestyles</span>
                         </motion.li>
                         <motion.li 
                           className="flex items-center text-lg text-[#2E2E2E]"
@@ -224,7 +197,7 @@ const About: React.FC = () => {
                           transition={{ duration: 0.6, delay: 1.0 }}
                         >
                           <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Results that last a lifetime</strong> through sustainable habits</span>
+                          <span><strong className="text-[#24604c]">Sustainable habits</strong> that actually work</span>
                         </motion.li>
                         <motion.li 
                           className="flex items-center text-lg text-[#2E2E2E]"
@@ -233,7 +206,7 @@ const About: React.FC = () => {
                           transition={{ duration: 0.6, delay: 1.2 }}
                         >
                           <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Ongoing Support that adapts to you</strong> every step of the way</span>
+                          <span><strong className="text-[#24604c]">Personalized support</strong> every step of the way</span>
                         </motion.li>
                       </ul>
                     </div>
@@ -283,10 +256,10 @@ const About: React.FC = () => {
                 >
                   <div className="relative">
                     <img 
-                      src="/images/isabel-graduation.jpg" 
-                      alt="Isabel Diez - Certified Nutritionist Graduation" 
+                      src="https://plus.unsplash.com/premium_photo-1733342485605-42058eb2daf3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                      alt="Isabel Diez - Professional Nutritionist" 
                       className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
-                      style={{ objectPosition: "center 5%" }}
+                      style={{ objectPosition: "center center" }}
                     />
                     
                     {/* Floating badge */}
@@ -380,7 +353,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{ color: '#2E2E2E' }}
               >
-                Solid academic preparation combined with a personalized approach to create wellness strategies that truly work in your daily life.
+                My approach combines nutrition science with practical, real-world solutions that fit your lifestyle.
               </motion.p>
             </div>
             
@@ -395,7 +368,7 @@ const About: React.FC = () => {
                   viewport={{ once: true }}
                 >
                   {/* Highlight Card */}
-                  <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20 shadow-lg shadow-black/8 hover:shadow-xl transition-all duration-300">
+                  <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white border border-[#24604c]/20 shadow-lg shadow-black/8 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                     
                     {/* Image Section */}
                     <div className="relative h-48 overflow-hidden">
@@ -417,7 +390,7 @@ const About: React.FC = () => {
                     </div>
                     
                     {/* Content Section */}
-                    <div className="p-6">
+                    <div className="p-6 flex-1 flex flex-col justify-between">
                       <h3 
                         className="text-2xl font-bold mb-4 text-center"
                         style={{ color: '#2E2E2E' }}
@@ -426,7 +399,7 @@ const About: React.FC = () => {
                       </h3>
                       
                       <p 
-                        className="leading-relaxed text-lg text-center"
+                        className="leading-relaxed text-lg text-center flex-1 flex items-center justify-center"
                         style={{ color: '#2E2E2E' }}
                       >
                         {highlight.description}
@@ -498,7 +471,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{ color: '#2E2E2E' }}
               >
-                The core beliefs that drive my approach and ensure every client receives exceptional, personalized support throughout their journey.
+                My core principles for helping you build healthy habits that last.
               </motion.p>
             </div>
 
@@ -525,102 +498,6 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Professional Journey Timeline Section */}
-        <section className="py-24 bg-white relative overflow-hidden">
-          {/* Floating Bubbles */}
-          <div className="absolute inset-0 overflow-hidden">
-            <motion.div
-              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
-              style={{
-                background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
-              }}
-              animate={{
-                y: [0, -15, 0],
-                x: [0, 8, 0],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute bottom-20 right-20 w-32 h-32 rounded-full opacity-30"
-              style={{
-                background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
-              }}
-              animate={{
-                y: [0, 12, 0],
-                x: [0, -6, 0],
-                scale: [1, 0.9, 1]
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1
-              }}
-            />
-          </div>
-
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                style={{ color: '#2E2E2E' }}
-              >
-                My Professional Journey
-              </motion.h2>
-              <motion.p 
-                className="text-xl max-w-3xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                style={{ color: '#2E2E2E' }}
-              >
-                The milestones and experiences that have shaped my expertise in helping people achieve sustainable and lasting health changes.
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="max-w-4xl mx-auto"
-            >
-              <Timeline
-                items={milestones.map((milestone, index) => ({
-                  children: (
-                    <div className="bg-gradient-to-br from-[#24604c]/5 to-white p-6 rounded-xl shadow-sm border border-[#24604c]/10">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div 
-                          className="px-3 py-1 rounded-full text-sm font-bold text-white"
-                          style={{ backgroundColor: index % 2 === 0 ? '#10b981' : '#24604c' }}
-                        >
-                          {milestone.year}
-                        </div>
-                        <h4 className="text-xl font-bold" style={{ color: '#2E2E2E' }}>
-                          {milestone.title}
-                        </h4>
-                      </div>
-                      <p className="leading-relaxed" style={{ color: '#2E2E2E' }}>
-                        {milestone.description}
-                      </p>
-                    </div>
-                  ),
-                  color: index % 2 === 0 ? '#10b981' : '#24604c'
-                }))}
-              />
-            </motion.div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className="py-24 bg-gradient-to-br from-[#10b981] via-[#90cbb9] to-[#24604c] text-white relative overflow-hidden">
@@ -649,7 +526,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Skip the confusion and overwhelm. Together, we'll build simple, effective habits that work with your schedule and create the healthy life you want.
+                Ready to build healthy habits that actually work? Let's create a plan that fits your life.
               </motion.p>
               
               <motion.div 

@@ -34,9 +34,13 @@ const Header = () => {
       key: '/calculator/bmr',
       label: 'BMR Calculator',
     },
+    {
+      key: '/calculator/water',
+      label: 'Water Intake Calculator',
+    },
   ];
 
-  const recipesItems = [];
+  // const recipesItems = [];
 
   const mainMenuItems = [
     {

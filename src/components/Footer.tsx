@@ -1,15 +1,13 @@
 import { Layout, Row, Col, Typography, Space } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faUtensils, 
-  faEnvelope,
-  faPhone
+  faUtensils,
+  faHome,
+  faBookOpen,
+  faUser,
+  faCalculator,
+  faDroplet
 } from '@fortawesome/free-solid-svg-icons'
-import { 
-  faGithub, 
-  faTwitter, 
-  faLinkedin
-} from '@fortawesome/free-brands-svg-icons'
 import { Link } from 'react-router-dom'
 
 const { Footer: AntFooter } = Layout
@@ -42,56 +40,53 @@ const Footer: React.FC = () => {
           <Col xs={24} sm={12} md={6}>
             <Title level={5} className="text-[#10b981] mb-4 font-bold">Quick Links</Title>
             <Space direction="vertical" size="small">
-              <Link to="/" className="text-gray-600 hover:text-[#10b981] transition-colors">
+              <Link to="/" className="text-gray-600 hover:text-[#10b981] transition-colors flex items-center">
+                <FontAwesomeIcon icon={faHome} className="mr-2 text-sm" />
                 Home
               </Link>
-              <Link to="/calculator" className="text-gray-600 hover:text-[#10b981] transition-colors">
-                Nutrition Calculator
-              </Link>
-              <Link to="/recipes" className="text-gray-600 hover:text-[#10b981] transition-colors">
+              <Link to="/recipes" className="text-gray-600 hover:text-[#10b981] transition-colors flex items-center">
+                <FontAwesomeIcon icon={faBookOpen} className="mr-2 text-sm" />
                 Healthy Recipes
               </Link>
-              <Link to="/about" className="text-gray-600 hover:text-[#10b981] transition-colors">
+              <Link to="/about" className="text-gray-600 hover:text-[#10b981] transition-colors flex items-center">
+                <FontAwesomeIcon icon={faUser} className="mr-2 text-sm" />
                 About Me
               </Link>
             </Space>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
-            <Title level={5} className="text-[#24604c] mb-4 font-bold">Resources</Title>
+            <Title level={5} className="text-[#24604c] mb-4 font-bold">Calculators</Title>
             <Space direction="vertical" size="small">
-              <Text className="text-gray-600 hover:text-[#24604c] transition-colors cursor-pointer">Nutrition Guide</Text>
-              <Text className="text-gray-600 hover:text-[#24604c] transition-colors cursor-pointer">Diet Plans</Text>
-              <Text className="text-gray-600 hover:text-[#24604c] transition-colors cursor-pointer">Health Tips</Text>
-              <Text className="text-gray-600 hover:text-[#24604c] transition-colors cursor-pointer">FAQ</Text>
+              <Link to="/calculator/bmr" className="text-gray-600 hover:text-[#24604c] transition-colors flex items-center">
+                <FontAwesomeIcon icon={faCalculator} className="mr-2 text-sm" />
+                BMR Calculator
+              </Link>
+              <Link to="/calculator/water" className="text-gray-600 hover:text-[#24604c] transition-colors flex items-center">
+                <FontAwesomeIcon icon={faDroplet} className="mr-2 text-sm" />
+                Water Calculator
+              </Link>
             </Space>
           </Col>
           
           <Col xs={24} sm={12} md={6}>
             <Title level={5} className="text-[#90cbb9] mb-4 font-bold">Contact</Title>
             <Space direction="vertical" size="small">
-              <div className="flex items-center space-x-2">
-                <FontAwesomeIcon icon={faEnvelope} style={{ color: '#90cbb9' }} />
-                <Text className="text-gray-600 hover:text-[#90cbb9] transition-colors cursor-pointer">isabel@nutrition.com</Text>
-              </div>
-              <div className="flex items-center space-x-2">
-                <FontAwesomeIcon icon={faPhone} style={{ color: '#90cbb9' }} />
-                <Text className="text-gray-600 hover:text-[#90cbb9] transition-colors cursor-pointer">+1 (555) 123-4567</Text>
-              </div>
-              <Space size="middle" className="mt-2">
-                <FontAwesomeIcon icon={faGithub} className="text-2xl text-gray-600 hover:text-[#90cbb9] cursor-pointer transition-colors" />
-                <FontAwesomeIcon icon={faTwitter} className="text-2xl text-gray-600 hover:text-[#90cbb9] cursor-pointer transition-colors" />
-                <FontAwesomeIcon icon={faLinkedin} className="text-2xl text-gray-600 hover:text-[#90cbb9] cursor-pointer transition-colors" />
-              </Space>
+              <a 
+                href="https://wa.link/6bmfto" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-[#90cbb9] transition-colors"
+              >
+                Get in Touch
+              </a>
             </Space>
           </Col>
         </Row>
         
         <div className="border-t border-[#10b981]/30 mt-12 pt-8 text-center">
           <Text className="text-gray-500 text-sm">
-            © 2024 Isabel Diez. All rights reserved. | 
-            <span className="text-[#10b981] hover:text-[#24604c] transition-colors cursor-pointer mx-2">Privacy Policy</span> | 
-            <span className="text-[#10b981] hover:text-[#24604c] transition-colors cursor-pointer mx-2">Terms of Service</span>
+            © 2024 Isabel Diez. All rights reserved.
           </Text>
         </div>
       </div>

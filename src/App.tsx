@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet-async'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import NutritionCalculator from './pages/NutritionCalculator'
+// import NutritionCalculator from './pages/NutritionCalculator'
 import BMRCalculator from './pages/BMRCalculator'
+import WaterCalculator from './pages/WaterCalculator'
 import Recipes from './pages/Recipes'
 import RecipeDetail from './pages/RecipeDetail'
 import About from './pages/About'
@@ -35,6 +36,7 @@ function App() {
             <Route path="/" element={<Home />} />
             {/* <Route path="/calculator" element={<NutritionCalculator />} /> */}
             <Route path="/calculator/bmr" element={<BMRCalculator />} />
+            <Route path="/calculator/water" element={<WaterCalculator />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
             <Route path="/about" element={<About />} />

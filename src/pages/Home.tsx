@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { ArrowRightOutlined, HeartOutlined, TrophyOutlined, TeamOutlined } from '@ant-design/icons';
 import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faLeaf, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell,  } from '@fortawesome/free-solid-svg-icons';
 import { HEADER_HEIGHT } from '../components/Header';
 
 

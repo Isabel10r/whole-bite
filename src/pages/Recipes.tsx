@@ -1373,7 +1373,7 @@ const Recipes: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Healthy Recipes - Isabel Diez</title>
+        <title>Healthy Recipes - Whole Bite</title>
         <meta name="description" content="Discover delicious and nutritious recipes for every meal. From breakfast to dinner, find healthy options that fit your family's lifestyle." />
       </Helmet>
 

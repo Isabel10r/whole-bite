@@ -18,14 +18,14 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Isabel Diez - Expert Nutritionist for Mothers & Babies</title>
-        <meta name="description" content="Expert nutrition guidance for mothers and babies. Specialized in prenatal nutrition, postnatal recovery, and baby weaning. Book your consultation today." />
-        <meta name="keywords" content="nutritionist, maternal nutrition, baby nutrition, prenatal nutrition, postnatal recovery, baby weaning, family nutrition" />
-        <meta property="og:title" content="Isabel Diez - Expert Nutritionist for Mothers & Babies" />
-        <meta property="og:description" content="Expert nutrition guidance for mothers and babies. Specialized in prenatal nutrition, postnatal recovery, and baby weaning." />
+        <title>Whole Bite - Expert Nutrition</title>
+        <meta name="description" content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits. Book your consultation today." />
+        <meta name="keywords" content="nutritionist, nutrition, healthy eating, meal plans, recipes, wellness, lifestyle, health" />
+        <meta property="og:title" content="Whole Bite - Expert Nutrition" />
+        <meta property="og:description" content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Isabel Diez - Expert Nutritionist for Mothers & Babies" />
+        <meta name="twitter:title" content="Whole Bite - Expert Nutrition" />
         <meta name="twitter:description" content="Expert nutrition guidance for mothers and babies. Specialized in prenatal nutrition, postnatal recovery, and baby weaning." />
       </Helmet>
       

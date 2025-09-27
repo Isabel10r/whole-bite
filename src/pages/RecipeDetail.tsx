@@ -1351,9 +1351,9 @@ const RecipeDetail: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{recipe.title} - Isabel Diez Nutrition</title>
+        <title>{recipe.title} - Whole Bite Nutrition</title>
         <meta name="description" content={recipe.description} />
-        <meta property="og:title" content={`${recipe.title} - Isabel Diez Nutrition`} />
+        <meta property="og:title" content={`${recipe.title} - Whole Bite Nutrition`} />
         <meta property="og:description" content={recipe.description} />
         <meta property="og:image" content={recipe.image} />
         <meta property="og:type" content="article" />

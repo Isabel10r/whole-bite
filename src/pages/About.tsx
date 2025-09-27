@@ -77,17 +77,17 @@ const About: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>About Me - Isabel Diez</title>
+        <title>About Me - Whole Bite</title>
         <meta name="description" content="Learn about Isabel Diez's mission as a certified nutritionist specializing in functional nutrition, balance, and creating lasting healthy habits." />
       </Helmet>
 
-      <div className="min-h-screen bg-[#F7F7F7] font-sans">
-        {/* Hero Section */}
-        <section className="bg-white text-[#373837] relative overflow-hidden py-24">
+      <div className="min-h-screen bg-white font-sans">
+        {/* About Me Header */}
+        <section className="bg-gradient-to-br from-[#F7F7F7] via-white to-[#F0FDF4] py-24 relative overflow-hidden">
           {/* Floating Bubbles with Light Green Fade */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
               }}
@@ -103,7 +103,7 @@ const About: React.FC = () => {
               }}
             />
             <motion.div
-              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
               }}
@@ -120,7 +120,113 @@ const About: React.FC = () => {
               }}
             />
             <motion.div
-              className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+              className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
+              style={{
+                background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+              }}
+              animate={{
+                y: [0, -8, 0],
+                x: [0, 5, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-5xl mx-auto text-center">
+              <motion.h1 
+                className="text-6xl md:text-7xl font-bold mb-6 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                style={{ 
+                  background: 'linear-gradient(135deg, #2E2E2E 0%, #10b981 50%, #24604c 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
+              >
+                About Me
+              </motion.h1>
+              
+              <motion.p 
+                className="text-2xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Meet the nutritionist and health coach behind{' '}
+                <span className="text-[#10b981] font-semibold">Whole Bite</span>
+              </motion.p>
+              
+              <motion.div
+                className="flex flex-wrap justify-center gap-4 text-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <span className="bg-white px-4 py-2 rounded-full shadow-md border border-[#10b981]/20 flex items-center gap-2">
+                  <FontAwesomeIcon icon={faGraduationCap} className="text-[#10b981]" />
+                  Certified Nutritionist
+                </span>
+                <span className="bg-white px-4 py-2 rounded-full shadow-md border border-[#10b981]/20 flex items-center gap-2">
+                  <FontAwesomeIcon icon={faHeartbeat} className="text-[#24604c]" />
+                  Health Coach
+                </span>
+                <span className="bg-white px-4 py-2 rounded-full shadow-md border border-[#10b981]/20 flex items-center gap-2">
+                  <FontAwesomeIcon icon={faUsers} className="text-[#90cbb9]" />
+                  Sustainable Living
+                </span>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Personal Introduction */}
+        <section className="py-20 bg-white relative overflow-hidden">
+          {/* Floating Bubbles with Light Green Fade */}
+          <div className="absolute inset-0 overflow-hidden">
+            <motion.div
+              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
+              style={{
+                background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
+              }}
+              animate={{
+                y: [0, -15, 0],
+                x: [0, 8, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
+              style={{
+                background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
+              }}
+              animate={{
+                y: [0, 12, 0],
+                x: [0, -6, 0],
+                scale: [1, 0.9, 1]
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            />
+            <motion.div
+              className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
               }}
@@ -139,120 +245,15 @@ const About: React.FC = () => {
           </div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                {/* Left Column - Text Content */}
-                <div className="text-left">
-                  <motion.h1 
-                    className="text-5xl md:text-6xl font-bold mb-4 tracking-tight leading-tight"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    style={{ color: '#2E2E2E' }}
-                  >
-                    Meet{' '}
-                    <span className="text-[#10b981]">Isabel Diez</span>
-                  </motion.h1>
-                  <motion.p 
-                    className="text-lg md:text-xl mb-6 leading-relaxed opacity-90 font-semibold"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    style={{ color: '#24604c' }}
-                  >
-                    Nutritionist & Health Coach
-                  </motion.p>
-                  <motion.p 
-                    className="text-xl md:text-2xl mb-12 leading-relaxed opacity-95"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                    style={{ color: '#2E2E2E' }}
-                  >
-                    Simple, sustainable nutrition solutions that work in real life.
-                  </motion.p>
-
-                  {/* Key Features List */}
-                  <motion.div 
-                    className="mb-8"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                  >
-                    <div className="bg-gradient-to-r from-[#24604c]/5 to-[#10b981]/5 rounded-2xl p-6 border-l-4 border-[#10b981]">
-                      <ul className="space-y-3">
-                        <motion.li 
-                          className="flex items-center text-lg text-[#2E2E2E]"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 0.8 }}
-                        >
-                          <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Healthy Recipes</strong> for busy lifestyles</span>
-                        </motion.li>
-                        <motion.li 
-                          className="flex items-center text-lg text-[#2E2E2E]"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 1.0 }}
-                        >
-                          <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Sustainable habits</strong> that actually work</span>
-                        </motion.li>
-                        <motion.li 
-                          className="flex items-center text-lg text-[#2E2E2E]"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 1.2 }}
-                        >
-                          <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
-                          <span><strong className="text-[#24604c]">Personalized support</strong> every step of the way</span>
-                        </motion.li>
-                      </ul>
-                    </div>
-                  </motion.div>
-
-                  {/* CTA Buttons */}
-                  <motion.div 
-                    className="flex flex-col sm:flex-row gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button
-                        type="primary"
-                        size="large"
-                        className="bg-[#10b981] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!text-white"
-                        onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
-                      >
-                        Book Consultation <ArrowRightOutlined />
-                      </Button>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button
-                        size="large"
-                        className="bg-transparent text-[#373837] border-2 border-[#373837] px-10 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
-                        href="/calculator"
-                      >
-                        Free Calculator
-                      </Button>
-                    </motion.div>
-                  </motion.div>
-                </div>
-
-                {/* Right Column - Hero Image */}
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {/* Image */}
                 <motion.div
                   className="relative"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
                 >
                   <div className="relative">
                     <img 
@@ -262,7 +263,7 @@ const About: React.FC = () => {
                       style={{ objectPosition: "center center" }}
                     />
                     
-                    {/* Floating badge */}
+                    {/* Floating badges */}
                     <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-[#24604c]/20">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-[#10b981] rounded-full flex items-center justify-center">
@@ -275,7 +276,6 @@ const About: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Floating badge 2 */}
                     <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl border border-[#24604c]/20">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-[#24604c] rounded-full flex items-center justify-center">
@@ -289,17 +289,72 @@ const About: React.FC = () => {
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-4xl font-bold mb-6" style={{ color: '#2E2E2E' }}>
+                    Hi, I'm Isabel Diez
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <strong className="text-[#24604c]">Nutritionist & Health Coach</strong>
+                  </p>
+                  <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                    At Whole Bite, we believe healthy eating shouldn't be complicated. Our mission is to make nutrition simple, sustainable, and realistic—so it fits into your life.
+                  </p>
+                  
+                  {/* Key Features */}
+                  <div className="bg-gradient-to-r from-[#24604c]/5 to-[#10b981]/5 rounded-2xl p-6 border-l-4 border-[#10b981] mb-8">
+                    <ul className="space-y-3">
+                      <li className="flex items-center text-lg text-[#2E2E2E]">
+                        <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
+                        <span><strong className="text-[#24604c]">Healthy recipes</strong> for busy lifestyles</span>
+                      </li>
+                      <li className="flex items-center text-lg text-[#2E2E2E]">
+                        <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
+                        <span><strong className="text-[#24604c]">Habits</strong> that truly last</span>
+                      </li>
+                      <li className="flex items-center text-lg text-[#2E2E2E]">
+                        <div className="w-2 h-2 bg-[#10b981] rounded-full mr-4 flex-shrink-0"></div>
+                        <span><strong className="text-[#24604c]">Personalized support</strong> every step of the way</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      type="primary"
+                      size="large"
+                      className="bg-[#10b981] text-white font-semibold border-none px-8 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!text-white"
+                      onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
+                    >
+                      Book Consultation <ArrowRightOutlined />
+                    </Button>
+                    <Button
+                      size="large"
+                      className="bg-transparent text-[#373837] border-2 border-[#373837] px-8 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
+                      href="/calculator"
+                    >
+                      Free Calculator
+                    </Button>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Professional Highlights Section */}
-        <section ref={missionRef} className="py-24 bg-white relative overflow-hidden">
-          {/* Floating Bubbles */}
+        {/* My Approach Section */}
+        <section ref={missionRef} className="py-20 bg-[#F7F7F7] relative overflow-hidden">
+          {/* Floating Bubbles with Light Green Fade */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
               }}
@@ -315,7 +370,7 @@ const About: React.FC = () => {
               }}
             />
             <motion.div
-              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
               }}
@@ -331,10 +386,27 @@ const About: React.FC = () => {
                 delay: 1
               }}
             />
+            <motion.div
+              className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
+              style={{
+                background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+              }}
+              animate={{
+                y: [0, -8, 0],
+                x: [0, 5, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
           </div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
+            <div className="max-w-4xl mx-auto text-center mb-16">
               <motion.h2 
                 className="text-4xl md:text-5xl font-bold mb-6"
                 initial={{ opacity: 0, y: 30 }}
@@ -343,17 +415,16 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 style={{ color: '#2E2E2E' }}
               >
-                My Professional Foundation
+                My Approach
               </motion.h2>
               <motion.p 
-                className="text-xl max-w-3xl mx-auto leading-relaxed"
+                className="text-xl leading-relaxed text-gray-600"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                style={{ color: '#2E2E2E' }}
               >
-                My approach combines nutrition science with practical, real-world solutions that fit your lifestyle.
+                As a certified nutritionist and health coach, I believe in creating sustainable nutrition solutions that work with your real life, not against it.
               </motion.p>
             </div>
             
@@ -412,12 +483,12 @@ const About: React.FC = () => {
           </div>
         </section>
 
-        {/* Values Section */}
-        <section ref={valuesRef} className="py-24 bg-[#F7F7F7] relative overflow-hidden">
-          {/* Floating Bubbles */}
+        {/* My Values Section */}
+        <section ref={valuesRef} className="py-20 bg-white relative overflow-hidden">
+          {/* Floating Bubbles with Light Green Fade */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+              className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
               }}
@@ -433,7 +504,7 @@ const About: React.FC = () => {
               }}
             />
             <motion.div
-              className="absolute bottom-20 right-20 w-32 h-32 rounded-full opacity-30"
+              className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
               style={{
                 background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
               }}
@@ -449,10 +520,27 @@ const About: React.FC = () => {
                 delay: 1
               }}
             />
+            <motion.div
+              className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
+              style={{
+                background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
+              }}
+              animate={{
+                y: [0, -8, 0],
+                x: [0, 5, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
           </div>
-
+          
           <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
+            <div className="max-w-4xl mx-auto text-center mb-16">
               <motion.h2 
                 className="text-4xl md:text-5xl font-bold mb-6"
                 initial={{ opacity: 0, y: 30 }}
@@ -461,17 +549,16 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 style={{ color: '#2E2E2E' }}
               >
-                Core Values That Guide My Practice
+                My Values
               </motion.h2>
               <motion.p 
-                className="text-xl max-w-3xl mx-auto leading-relaxed"
+                className="text-xl leading-relaxed text-gray-600"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                style={{ color: '#2E2E2E' }}
               >
-                My core principles for helping you build healthy habits that last.
+                These are the principles that guide how I work with my clients to create lasting change.
               </motion.p>
             </div>
 
@@ -499,10 +586,10 @@ const About: React.FC = () => {
         </section>
 
 
-        {/* CTA Section */}
-        <section className="py-24 bg-gradient-to-br from-[#10b981] via-[#90cbb9] to-[#24604c] text-white relative overflow-hidden">
+        {/* Contact CTA Section */}
+        <section className="py-20 bg-gradient-to-br from-[#10b981] via-[#90cbb9] to-[#24604c] text-white relative overflow-hidden">
           {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-20 blur-sm">
             <div className="absolute top-10 right-10 w-40 h-40 bg-white rounded-full"></div>
             <div className="absolute bottom-10 left-10 w-32 h-32 bg-white rounded-full"></div>
             <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white rounded-full"></div>
@@ -511,22 +598,22 @@ const About: React.FC = () => {
           <div className="container mx-auto px-6 text-center relative z-10">
             <div className="max-w-4xl mx-auto">
               <motion.h2 
-                className="text-4xl md:text-6xl font-bold mb-8"
+                className="text-4xl md:text-5xl font-bold mb-6"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                Ready to Start Your Transformation?
+                Let's Work Together
               </motion.h2>
               <motion.p 
-                className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed opacity-95"
+                className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed opacity-95"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Ready to build healthy habits that actually work? Let's create a plan that fits your life.
+                I'm here to help you create sustainable nutrition habits that work with your lifestyle. Let's start your journey to better health.
               </motion.p>
               
               <motion.div 

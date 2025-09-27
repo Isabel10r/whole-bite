@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { ArrowRightOutlined, HeartOutlined, TrophyOutlined, TeamOutlined } from '@ant-design/icons';
 import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faLeaf, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { HEADER_HEIGHT } from '../components/Header';
 
 
@@ -146,25 +146,25 @@ const HomePage = () => {
 
   const testimonials = [
     {
-      quote: "I went from exhausted by 2 PM to having energy all day long. The meal timing strategies were game-changing!",
-      author: "Jane D.",
+      quote: "Went from 3 cups of coffee daily to natural energy all day. Lost 15 pounds in 3 months!",
+      author: "Sarah M., 24",
       icon: faStar,
       iconColor: "#10b981",
-      category: "Energy Transformation"
+      category: "Energy & Weight"
     },
     {
-      quote: "Finally reached my goal weight without feeling hungry or deprived. The sustainable approach actually works!",
-      author: "Mark S.",
+      quote: "As a busy mom, I thought healthy eating was impossible. Isabel's meal prep strategies changed everything!",
+      author: "María C., 26",
       icon: faDumbbell,
       iconColor: "#24604c",
-      category: "Weight Success"
+      category: "Family Health"
     },
     {
-      quote: "The ongoing support made all the difference. I never felt alone in my journey and always had guidance when I needed it.",
-      author: "Emily R.",
-      icon: faLeaf,
-      iconColor: "#90cbb9",
-      category: "Lifestyle Change"
+      quote: "After my diabetes diagnosis, I was overwhelmed. Isabel made nutrition simple and sustainable - I feel amazing now!",
+      author: "Roberto S., 28",
+      icon: faHeart,
+      iconColor: "#10b981",
+      category: "Health Management"
     },
   ];
 
@@ -253,7 +253,7 @@ const HomePage = () => {
         {/* Floating Bubbles with Light Green Fade */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -269,7 +269,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
             }}
@@ -286,7 +286,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
             }}
@@ -303,7 +303,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
             }}
@@ -320,7 +320,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -420,7 +420,7 @@ const HomePage = () => {
         {/* Floating Bubbles with Light Green Fade */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -436,7 +436,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
             }}
@@ -453,7 +453,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
             }}
@@ -470,7 +470,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
             }}
@@ -487,7 +487,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -601,7 +601,7 @@ const HomePage = () => {
         {/* Floating Bubbles with Light Green Fade */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -617,7 +617,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
             }}
@@ -634,7 +634,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
             }}
@@ -651,7 +651,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
             }}
@@ -668,7 +668,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -810,7 +810,7 @@ const HomePage = () => {
          {/* Floating Bubbles with Light Green Fade */}
          <div className="absolute inset-0 overflow-hidden">
            <motion.div
-             className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+             className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
              style={{
                background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
              }}
@@ -826,7 +826,7 @@ const HomePage = () => {
              }}
            />
            <motion.div
-             className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+             className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
              style={{
                background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
              }}
@@ -843,7 +843,7 @@ const HomePage = () => {
              }}
            />
            <motion.div
-             className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+             className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
              style={{
                background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
              }}
@@ -860,7 +860,7 @@ const HomePage = () => {
              }}
            />
            <motion.div
-             className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+             className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
              style={{
                background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
              }}
@@ -877,7 +877,7 @@ const HomePage = () => {
              }}
            />
            <motion.div
-             className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+             className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
              style={{
                background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
              }}
@@ -1038,7 +1038,7 @@ const HomePage = () => {
         {/* Floating Bubbles with Light Green Fade */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-30"
+            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -1054,7 +1054,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-30"
+            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
             }}
@@ -1071,7 +1071,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-30"
+            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
             }}
@@ -1088,7 +1088,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-30"
+            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
             }}
@@ -1105,7 +1105,7 @@ const HomePage = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-30"
+            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
             style={{
               background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
             }}
@@ -1196,12 +1196,6 @@ const HomePage = () => {
                     
                     {/* Quote */}
                     <div className="flex-1 mb-6 relative z-10">
-                      <div
-                        className="text-4xl mb-4"
-                        style={{ color: testimonial.iconColor }}
-                      >
-                        "
-                      </div>
                       <p className="text-lg leading-relaxed italic" style={{ color: '#2E2E2E' }}>
                         {testimonial.quote}
                       </p>
@@ -1257,7 +1251,7 @@ const HomePage = () => {
       {/* Contact CTA */}
       <section id="contact" className="py-24 bg-gradient-to-br from-[#10b981] via-[#90cbb9] to-[#24604c] text-white relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-20 blur-sm">
           <div className="absolute top-10 right-10 w-40 h-40 bg-white rounded-full"></div>
           <div className="absolute bottom-10 left-10 w-32 h-32 bg-white rounded-full"></div>
           <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white rounded-full"></div>

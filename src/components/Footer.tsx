@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           <Col xs={24} sm={12} md={6}>
             <div className="flex items-center space-x-2 mb-4">
               <FontAwesomeIcon icon={faUtensils} className="text-2xl" style={{ color: '#10b981' }} />
-              <Title level={4} className="text-[#10b981] mb-0 font-bold">Isabel Diez</Title>
+              <Title level={4} className="text-[#10b981] mb-0 font-bold">Whole Bite</Title>
             </div>
             <Text className="text-gray-600">
               Transforming lives through personalized nutrition that works with your body, not against it.
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-[#10b981]/30 mt-12 pt-8 text-center">
           <Text className="text-gray-500 text-sm">
-            © 2024 Isabel Diez. All rights reserved.
+            © 2024 Whole Bite. All rights reserved.
           </Text>
         </div>
       </div>

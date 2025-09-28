@@ -1374,7 +1374,7 @@ const Recipes: React.FC = () => {
     <>
       <Helmet>
         <title>Healthy Recipes - Whole Bite</title>
-        <meta name="description" content="Discover delicious and nutritious recipes for every meal. From breakfast to dinner, find healthy options that fit your family's lifestyle." />
+        <meta name="description" content="Discover delicious and nutritious recipes for every meal of the day" />
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
@@ -1389,7 +1389,7 @@ const Recipes: React.FC = () => {
               Healthy Recipes
             </Title>
             <Text className="text-lg" style={{ color: '#2E2E2E' }}>
-              Discover delicious and nutritious recipes for every meal
+              Discover delicious and nutritious recipes for every meal of the day
             </Text>
           </div>
 
@@ -1520,14 +1520,14 @@ const Recipes: React.FC = () => {
                                   <FontAwesomeIcon icon={faClock} className="text-emerald-600" /> {recipe.prepTime + recipe.cookTime} min
                                 </Text>
                                 <Text type="secondary" className="flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faUser} className="text-emerald-600" /> {recipe.servings} servings
+                                  <FontAwesomeIcon icon={faUser} className="text-emerald-600" /> {recipe.servings} people
                                 </Text>
                               </Space>
                             </div>
                             <div className="flex justify-between items-center">
                               <Space wrap>
                                 <Text type="secondary" className="flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faFire} className="text-orange-500" /> {recipe.calories} cal
+                                  <FontAwesomeIcon icon={faFire} className="text-orange-500" /> {recipe.calories} kcal
                                 </Text>
                                 <Text type="secondary" className="text-emerald-700 font-medium">
                                   Protein: {recipe.protein}g
@@ -1684,7 +1684,7 @@ const Recipes: React.FC = () => {
           {filteredRecipes.length === 0 && (
             <div className="text-center py-12">
               <Text className="text-lg" style={{ color: '#2E2E2E' }}>
-                No recipes found matching your criteria. Try adjusting your search or filters.
+                No recipes found matching your criteria
               </Text>
             </div>
           )}

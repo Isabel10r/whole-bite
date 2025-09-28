@@ -57,18 +57,18 @@ const WaterCalculator: React.FC = () => {
   const [result, setResult] = useState<WaterResult | null>(null);
 
   const activityLevels = [
-    { value: 'sedentary', label: 'Sedentary', description: 'Little to no exercise, desk job', multiplier: 0.03 },
-    { value: 'light', label: 'Light Activity', description: 'Light exercise 1-3 days per week', multiplier: 0.035 },
-    { value: 'moderate', label: 'Moderate Activity', description: 'Moderate exercise 3-5 days per week', multiplier: 0.04 },
-    { value: 'high', label: 'High Activity', description: 'Intense exercise 6-7 days per week', multiplier: 0.045 },
-    { value: 'very_high', label: 'Very High Activity', description: 'Very intense exercise, physical job', multiplier: 0.05 }
+    { value: 'sedentary', label: 'Low (sedentary)', description: 'Low (sedentary)', multiplier: 0.03 },
+    { value: 'light', label: 'Moderate', description: 'Moderate', multiplier: 0.035 },
+    { value: 'moderate', label: 'Moderate', description: 'Moderate', multiplier: 0.04 },
+    { value: 'high', label: 'High (very active)', description: 'High (very active)', multiplier: 0.045 },
+    { value: 'very_high', label: 'High (very active)', description: 'High (very active)', multiplier: 0.05 }
   ];
 
   const climateConditions = [
-    { value: 'temperate', label: 'Temperate', description: 'Normal room temperature', adjustment: 0 },
-    { value: 'warm', label: 'Warm Climate', description: 'Hot weather, increased sweating', adjustment: 0.5 },
-    { value: 'hot', label: 'Hot Climate', description: 'Very hot weather or intense heat', adjustment: 1.0 },
-    { value: 'humid', label: 'Humid Environment', description: 'High humidity, increased fluid loss', adjustment: 0.3 }
+    { value: 'temperate', label: 'Temperate', description: 'Temperate', adjustment: 0 },
+    { value: 'warm', label: 'Hot', description: 'Hot', adjustment: 0.5 },
+    { value: 'hot', label: 'Hot', description: 'Hot', adjustment: 1.0 },
+    { value: 'humid', label: 'Humid', description: 'Humid', adjustment: 0.3 }
   ];
 
   const calculateWaterIntake = async (values: any) => {
@@ -172,8 +172,8 @@ const WaterCalculator: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Water Intake Calculator - Daily Hydration Recommendations</title>
-        <meta name="description" content="Calculate your daily water intake needs based on weight, activity level, and climate conditions. Get personalized hydration recommendations." />
+        <title>Water Intake Calculator - Whole Bite</title>
+        <meta name="description" content="Calculate your daily water intake needs" />
         <meta name="keywords" content="water calculator, hydration, daily water intake, fluid needs, hydration recommendations" />
       </Helmet>
 

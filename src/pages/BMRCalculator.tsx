@@ -112,11 +112,11 @@ const BMRCalculator: React.FC = () => {
       
       // Additional validation after conversion
       if (weightInKg < 20 || weightInKg > 300) {
-        throw new Error('Weight must be reasonable (20-300 kg equivalent)');
+        throw new Error('Weight must be between 30 and 300 kg');
       }
       
       if (heightInCm < 100 || heightInCm > 250) {
-        throw new Error('Height must be reasonable (100-250 cm equivalent)');
+        throw new Error('Height must be between 100 and 250 cm');
       }
 
       // Try to use RapidAPI first, fallback to local calculation
@@ -261,7 +261,7 @@ const BMRCalculator: React.FC = () => {
     <>
       <Helmet>
         <title>BMR Calculator - Calculate Your Basal Metabolic Rate</title>
-        <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) and daily calorie needs. Get personalized recommendations for weight loss, maintenance, and weight gain." />
+        <meta name="description" content="Calculate your Basal Metabolic Rate and daily calorie needs with our free BMR calculator. Get personalized nutrition recommendations." />
         <meta name="keywords" content="BMR calculator, basal metabolic rate, calorie calculator, metabolism, weight loss, weight gain" />
       </Helmet>
 
@@ -353,7 +353,7 @@ const BMRCalculator: React.FC = () => {
               style={{ color: '#2E2E2E' }}
             >
               <FontAwesomeIcon icon={faCalculator} className="mr-4 text-[#10b981]" />
-              BMR Calculator
+            BMR Calculator
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
@@ -362,7 +362,7 @@ const BMRCalculator: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               style={{ color: '#2E2E2E' }}
             >
-              Calculate your Basal Metabolic Rate and daily calorie needs with precision and personalized recommendations
+            Calculate your Basal Metabolic Rate and daily calorie needs
             </motion.p>
           </div>
 
@@ -652,7 +652,7 @@ const BMRCalculator: React.FC = () => {
                         <FontAwesomeIcon icon={faCalculator} className="text-[#16a085] text-lg" />
                       </div>
                       <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
-                        Your Results
+{t('calculators.bmr.results.title')}
                       </span>
                     </div>
                   }
@@ -689,7 +689,7 @@ const BMRCalculator: React.FC = () => {
                                 <FontAwesomeIcon icon={faFire} className="text-xl text-[#e74c3c]" />
                               </div>
                               <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
-                                Basal Metabolic Rate (BMR)
+{t('calculators.bmr.results.bmr')}
                               </Text>
                             </div>
                             <div className="text-3xl font-bold mb-2" style={{ color: '#e74c3c' }}>
@@ -742,7 +742,7 @@ const BMRCalculator: React.FC = () => {
                           <FontAwesomeIcon icon={faFire} className="text-[#f39c12] text-lg" />
                         </div>
                         <Text strong style={{ color: '#2E2E2E', fontSize: '18px' }}>
-                          Calorie Goals
+{t('calculators.bmr.results.goals.title')}
                         </Text>
                       </div>
                     </motion.div>

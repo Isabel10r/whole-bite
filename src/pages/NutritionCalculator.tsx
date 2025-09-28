@@ -234,7 +234,7 @@ const NutritionCalculator: React.FC = () => {
     updateTotalNutrition(newList)
     
     // Mostrar mensaje de éxito
-    message.success(`Added ${nutrition.name} to your list!`)
+    message.success('Food added successfully')
     
     // Reset para siguiente alimento
     setQuantity(100)
@@ -550,15 +550,15 @@ const handleSearch = async (query: string) => {
       fat: values.fat || 67
     })
     setShowGoalModal(false)
-    message.success('Goals updated successfully!')
+    message.success('Food updated successfully')
   }
 
 
   return (
     <>
       <Helmet>
-        <title>Nutrition Calculator - NutriGuide</title>
-        <meta name="description" content="Calculate calories, macronutrients, and micronutrients for any food or recipe. Track your daily nutrition intake." />
+        <title>Nutrition Calculator - Whole Bite</title>
+        <meta name="description" content="Track your daily nutrition and analyze your food intake" />
       </Helmet>
 
       <div className="min-h-screen bg-[#F7F7F7] font-sans relative overflow-hidden">
@@ -657,7 +657,7 @@ const handleSearch = async (query: string) => {
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               style={{ color: '#2E2E2E' }}
             >
-              Track your daily nutrition intake and make informed dietary choices with precision and ease
+              Track your daily nutrition and analyze your food intake
             </motion.p>
           </div>
 
@@ -704,7 +704,7 @@ const handleSearch = async (query: string) => {
                       )}
                     </div>
                     <Input
-                      placeholder="Search for food items like 'chicken breast' or 'avocado'..."
+                      placeholder="Search for foods..."
                       prefix={<FontAwesomeIcon icon={faSearch} className="text-[#3498db]" />}
                       suffix={isLoading ? <Spin size="small" /> : null}
                       value={searchTerm}

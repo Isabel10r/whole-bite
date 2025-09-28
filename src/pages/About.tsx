@@ -52,23 +52,23 @@ const About: React.FC = () => {
   const values = [
     {
       icon: <SafetyOutlined className="text-3xl" style={{ color: '#10b981' }} />,
-      title: 'Personalized Plans',
-      description: 'Custom nutrition strategies that fit your lifestyle, preferences, and goals.'
+      title: "Personalized Plans",
+      description: "Custom nutrition strategies that fit your lifestyle, preferences, and goals."
     },
     {
       icon: <HeartOutlined className="text-3xl" style={{ color: '#24604c' }} />,
-      title: 'Sustainable Approach',
-      description: 'No extreme diets. Just practical habits that feel natural and enjoyable.'
+      title: "Sustainable Approach",
+      description: "No extreme diets. Just practical habits that feel natural and enjoyable."
     },
     {
       icon: <BulbOutlined className="text-3xl" style={{ color: '#90cbb9' }} />,
-      title: 'Evidence-Based',
-      description: 'Strategies backed by research and proven methods for real results.'
+      title: "Evidence-Based",
+      description: "Strategies backed by research and proven methods for real results."
     },
     {
       icon: <GlobalOutlined className="text-3xl" style={{ color: '#10b981' }} />,
-      title: 'Ongoing Support',
-      description: 'Guidance and encouragement to help you stay on track and succeed.'
+      title: "Ongoing Support",
+      description: "Guidance and encouragement to help you stay on track and succeed."
     }
   ]
 

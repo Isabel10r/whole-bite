@@ -11,6 +11,7 @@ import Recipes from './pages/Recipes'
 import RecipeDetail from './pages/RecipeDetail'
 import About from './pages/About'
 import './App.css'
+import './i18n'
 
 const { Content } = Layout
 

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faChevronDown, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
 
 // Header height constant for consistent spacing across components
 export const HEADER_HEIGHT = 74;
@@ -12,6 +14,7 @@ export const HEADER_HEIGHT = 74;
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,15 +33,15 @@ const Header = () => {
   const calculatorItems = [
     // {
     //   key: '/calculator',
-    //   label: 'Nutrition Calculator',
+    //   label: t('navigation.nutritionCalculator'),
     // },
     {
       key: '/calculator/bmr',
-      label: 'BMR Calculator',
+      label: t('navigation.bmrCalculator'),
     },
     {
       key: '/calculator/water',
-      label: 'Water Intake Calculator',
+      label: t('navigation.waterCalculator'),
     },
   ];
 
@@ -47,7 +50,7 @@ const Header = () => {
   const mainMenuItems = [
     {
       key: '/',
-      label: 'Home',
+      label: t('navigation.home'),
     },
     {
       key: 'calculator',
@@ -58,18 +61,18 @@ const Header = () => {
           trigger={['hover']}
         >
           <span className="flex items-center gap-1">
-            Calculator <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
+            {t('navigation.calculator')} <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
           </span>
         </Dropdown>
       ),
     },
     {
       key: '/recipes',
-      label: 'Recipes',
+      label: t('navigation.recipes'),
     },
     {
       key: '/about',
-      label: 'About Me',
+      label: t('navigation.about'),
     },
   ];
 
@@ -176,9 +179,14 @@ const Header = () => {
                 minWidth: '120px'
               }}
             >
-              Book Now
+              {t('navigation.bookNow')}
             </Button>
           </motion.div>
+
+          {/* Language Selector */}
+          <div className="hidden md:block">
+            <LanguageSelector />
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -223,7 +231,7 @@ const Header = () => {
                 <div className="flex flex-col h-full">
                   {/* Mobile Menu Header */}
                   <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                    <h2 className="text-xl font-bold text-[#24604c]">Menu</h2>
+                    <h2 className="text-xl font-bold text-[#24604c]">{t('navigation.menu')}</h2>
                     <Button
                       type="text"
                       size="large"
@@ -248,13 +256,13 @@ const Header = () => {
                             : 'text-gray-700 hover:bg-gray-100'
                         }`}
                       >
-                        <span className="text-lg font-medium">Home</span>
+                        <span className="text-lg font-medium">{t('navigation.home')}</span>
                       </motion.button>
 
                       {/* Calculator Section */}
                       <div className="space-y-2">
                         <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide px-4 py-2">
-                          Calculators
+                          {t('navigation.calculators')}
                         </div>
                         
                         <motion.button
@@ -267,7 +275,7 @@ const Header = () => {
                               : 'text-gray-700 hover:bg-gray-100'
                           }`}
                         >
-                          <span className="text-lg font-medium">BMR Calculator</span>
+                          <span className="text-lg font-medium">{t('navigation.bmrCalculator')}</span>
                         </motion.button>
 
                         <motion.button
@@ -280,7 +288,7 @@ const Header = () => {
                               : 'text-gray-700 hover:bg-gray-100'
                           }`}
                         >
-                          <span className="text-lg font-medium">Water Intake Calculator</span>
+                          <span className="text-lg font-medium">{t('navigation.waterCalculator')}</span>
                         </motion.button>
                       </div>
 
@@ -295,7 +303,7 @@ const Header = () => {
                             : 'text-gray-700 hover:bg-gray-100'
                         }`}
                       >
-                        <span className="text-lg font-medium">Recipes</span>
+                        <span className="text-lg font-medium">{t('navigation.recipes')}</span>
                       </motion.button>
 
                       {/* About Me */}
@@ -309,13 +317,18 @@ const Header = () => {
                             : 'text-gray-700 hover:bg-gray-100'
                         }`}
                       >
-                        <span className="text-lg font-medium">About Me</span>
+                        <span className="text-lg font-medium">{t('navigation.about')}</span>
                       </motion.button>
                     </div>
                   </div>
 
                   {/* Mobile Menu Footer */}
-                  <div className="p-4 border-t border-gray-200">
+                  <div className="p-4 border-t border-gray-200 space-y-4">
+                    {/* Language Selector for Mobile */}
+                    <div className="md:hidden">
+                      <LanguageSelector />
+                    </div>
+                    
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -325,7 +338,7 @@ const Header = () => {
                       }}
                       className="w-full bg-[#10b981] hover:bg-[#24604c] text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg"
                     >
-                      Book Now
+                      {t('navigation.bookNow')}
                     </motion.button>
                   </div>
                 </div>

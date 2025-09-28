@@ -1558,9 +1558,9 @@ const Recipes: React.FC = () => {
             </Row>
           </motion.div>
 
-          {/* Pagination Info */}
+          {/* Pagination Info - Desktop Only */}
           {totalRecipes > 0 && (
-            <div className="flex justify-between items-center mb-6 mt-8">
+            <div className="hidden md:flex justify-between items-center mb-6 mt-8">
               <Text className="text-gray-600">
                 Showing {startIndex + 1}-{Math.min(endIndex, totalRecipes)} of {totalRecipes} recipes
               </Text>
@@ -1587,46 +1587,97 @@ const Recipes: React.FC = () => {
 
           {/* Pagination Component */}
           {totalRecipes > pageSize && (
-            <div className="flex justify-center mb-8">
-              <Pagination
-                current={currentPage}
-                total={totalRecipes}
-                pageSize={pageSize}
-                onChange={(page) => setCurrentPage(page)}
-                showSizeChanger={false}
-                showQuickJumper
-                showTotal={(total, range) => (
-                  <span style={{ color: '#2E2E2E' }}>
-                    {range[0]}-{range[1]} of {total} recipes
-                  </span>
-                )}
-                itemRender={(_, type, originalElement) => {
-                  if (type === 'prev') {
-                    return (
-                      <Button 
-                        type="text" 
-                        icon={<FontAwesomeIcon icon={faBook} />}
-                        className="flex items-center gap-1"
-                      >
-                        Previous
-                      </Button>
-                    )
-                  }
-                  if (type === 'next') {
-                    return (
-                      <Button 
-                        type="text" 
-                        icon={<FontAwesomeIcon icon={faBook} />}
-                        className="flex items-center gap-1"
-                      >
-                        Next
-                      </Button>
-                    )
-                  }
-                  return originalElement
-                }}
-                className="pagination-custom"
-              />
+            <div className="mb-8">
+              {/* Mobile Pagination */}
+              <div className="block md:hidden">
+                <div className="flex flex-col items-center space-y-4">
+                  {/* Page Info */}
+                  <div className="text-center">
+                    <Text className="text-sm text-gray-600">
+                      Page {currentPage} of {Math.ceil(totalRecipes / pageSize)}
+                    </Text>
+                  </div>
+                  
+                  {/* Navigation Buttons */}
+                  <div className="flex items-center justify-center space-x-4 w-full max-w-xs">
+                    <Button
+                      type="default"
+                      size="large"
+                      disabled={currentPage === 1}
+                      onClick={() => setCurrentPage(currentPage - 1)}
+                      className="flex-1 h-12 rounded-lg font-semibold"
+                      style={{
+                        backgroundColor: currentPage === 1 ? '#f5f5f5' : '#10b981',
+                        borderColor: currentPage === 1 ? '#d9d9d9' : '#10b981',
+                        color: currentPage === 1 ? '#999' : 'white'
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faBook} className="mr-2" />
+                      Previous
+                    </Button>
+                    
+                    <Button
+                      type="default"
+                      size="large"
+                      disabled={currentPage === Math.ceil(totalRecipes / pageSize)}
+                      onClick={() => setCurrentPage(currentPage + 1)}
+                      className="flex-1 h-12 rounded-lg font-semibold"
+                      style={{
+                        backgroundColor: currentPage === Math.ceil(totalRecipes / pageSize) ? '#f5f5f5' : '#10b981',
+                        borderColor: currentPage === Math.ceil(totalRecipes / pageSize) ? '#d9d9d9' : '#10b981',
+                        color: currentPage === Math.ceil(totalRecipes / pageSize) ? '#999' : 'white'
+                      }}
+                    >
+                      Next
+                      <FontAwesomeIcon icon={faBook} className="ml-2" />
+                    </Button>
+                  </div>
+                  
+                </div>
+              </div>
+              
+              {/* Desktop Pagination */}
+              <div className="hidden md:flex justify-center">
+                <Pagination
+                  current={currentPage}
+                  total={totalRecipes}
+                  pageSize={pageSize}
+                  onChange={(page) => setCurrentPage(page)}
+                  showSizeChanger={false}
+                  showQuickJumper
+                  showTotal={(total, range) => (
+                    <span style={{ color: '#2E2E2E' }}>
+                      {range[0]}-{range[1]} of {total} recipes
+                    </span>
+                  )}
+                  itemRender={(_, type, originalElement) => {
+                    if (type === 'prev') {
+                      return (
+                        <Button 
+                          type="text" 
+                          icon={<FontAwesomeIcon icon={faBook} />}
+                          className="flex items-center gap-1"
+                        >
+                          Previous
+                        </Button>
+                      )
+                    }
+                    if (type === 'next') {
+                      return (
+                        <Button 
+                          type="text" 
+                          icon={<FontAwesomeIcon icon={faBook} />}
+                          className="flex items-center gap-1"
+                        >
+                          Next
+                        </Button>
+                      )
+                    }
+                    return originalElement
+                  }}
+                  className="pagination-custom"
+                />
+              </div>
             </div>
           )}
 

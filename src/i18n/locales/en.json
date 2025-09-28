@@ -1,0 +1,151 @@
+{
+  "navigation": {
+    "home": "Home",
+    "calculator": "Calculator",
+    "calculators": "Calculators",
+    "bmrCalculator": "BMR Calculator",
+    "waterCalculator": "Water Intake Calculator",
+    "recipes": "Recipes",
+    "about": "About Me",
+    "bookNow": "Book Now",
+    "menu": "Menu"
+  },
+  "home": {
+    "hero": {
+      "title": "Transform Your Health with",
+      "titleHighlight": "Expert Nutrition",
+      "subtitle": "Healthy never felt this good—let's make it your lifestyle. Discover personalized nutrition that transforms your energy, balances your hormones, and creates lasting habits backed by science.",
+      "stats": {
+        "tailoredPlans": "Tailored Plans",
+        "recipes": "Recipes & Meal Ideas",
+        "improvedHabits": "Report Improved Habits"
+      },
+      "cta": {
+        "startJourney": "Start Your Journey",
+        "learnMore": "Learn More"
+      }
+    },
+    "features": {
+      "title": "What Makes My Coaching Different?",
+      "subtitle": "Unlike generic diet plans, my approach integrates advanced nutritional science with personalized strategies that work harmoniously with your body's natural processes.",
+      "scienceBacked": {
+        "title": "Science-Backed Methods",
+        "description": "Every strategy is grounded in the latest scientific research and proven clinical evidence."
+      },
+      "transformativeOutcomes": {
+        "title": "Transformative Outcomes",
+        "description": "Achieve lasting results that endure—sustainable transformation, not short-term fixes."
+      },
+      "tailoredCoaching": {
+        "title": "Tailored Coaching",
+        "description": "Customized guidance that adapts to your unique goals and lifestyle."
+      }
+    },
+    "services": {
+      "title": "My Services",
+      "subtitle": "Choose the level of support that fits your journey—from getting started to complete transformation with ongoing guidance.",
+      "kickstart": {
+        "title": "Kickstart",
+        "subtitle": "The beginning of your change",
+        "description": "Perfect for those who want to start without feeling overwhelmed.",
+        "price": "COP 220,000 / month",
+        "priceUSD": "USD 55",
+        "learnMore": "Learn More"
+      },
+      "lifestyle": {
+        "title": "Lifestyle",
+        "subtitle": "Your new healthy routine",
+        "description": "The most popular plan: balance between support and flexibility.",
+        "price": "COP 380,000 / month",
+        "priceUSD": "USD 95",
+        "learnMore": "Learn More"
+      },
+      "transform": {
+        "title": "Transform",
+        "subtitle": "Complete 360° support",
+        "description": "Designed for deep change with constant support.",
+        "price": "COP 650,000 / month",
+        "priceUSD": "USD 160",
+        "learnMore": "Learn More"
+      }
+    },
+    "benefits": {
+      "title": "What You'll Achieve",
+      "subtitle": "These aren't just promises—they're the real transformations my clients experience when they commit to their wellness journey.",
+      "sustainedEnergy": {
+        "title": "Sustained Energy All Day",
+        "description": "No more afternoon crashes or energy dips. Fuel your body strategically for consistent vitality from morning to night."
+      },
+      "restorativeSleep": {
+        "title": "Deep, Restorative Sleep",
+        "description": "Wake up refreshed and ready. Optimize your evening routine and nutrient timing for quality sleep and faster recovery."
+      },
+      "weightBalance": {
+        "title": "Effortless Weight Balance",
+        "description": "Achieve your ideal weight without counting calories or feeling deprived. Build sustainable habits that work with your lifestyle."
+      },
+      "peakPerformance": {
+        "title": "Peak Performance Mode",
+        "description": "Unlock your athletic potential with targeted fueling strategies that enhance strength, endurance, and recovery."
+      },
+      "foodFreedom": {
+        "title": "Food Freedom & Joy",
+        "description": "Transform your relationship with food from stress to celebration. Enjoy meals without guilt or restriction."
+      },
+      "lifelongVitality": {
+        "title": "Lifelong Vitality",
+        "description": "Invest in your future self. Create lasting wellness habits that support your health, energy, and longevity for years to come."
+      }
+    },
+    "testimonials": {
+      "title": "What My Clients Say",
+      "subtitle": "Don't just take my word for it. Here's what happens when you commit to a science-backed approach to wellness.",
+      "sarah": {
+        "quote": "Went from 3 cups of coffee daily to natural energy all day. Lost 15 pounds in 3 months!",
+        "author": "Sarah M., 24",
+        "category": "Energy & Weight"
+      },
+      "maria": {
+        "quote": "As a busy mom, I thought healthy eating was impossible. Isabel's meal prep strategies changed everything!",
+        "author": "María C., 26",
+        "category": "Family Health"
+      },
+      "roberto": {
+        "quote": "After my diabetes diagnosis, I was overwhelmed. Isabel made nutrition simple and sustainable - I feel amazing now!",
+        "author": "Roberto S., 28",
+        "category": "Health Management"
+      },
+      "verifiedReviews": "100% Verified Reviews",
+      "realStories": "Real Client Stories",
+      "privacyProtected": "Privacy Protected"
+    },
+    "contact": {
+      "title": "Ready to Transform Your Life?",
+      "subtitle": "Be the next success story. Join others who've already transformed their energy, weight, and relationship with food. Your transformation starts with one decision.",
+      "getStarted": "Get Started Today",
+      "freeConsultation": "Free",
+      "virtualConsultation": "Virtual Consultation",
+      "followUp": "4 weeks",
+      "followUpText": "Follow-up",
+      "personalizedGuidance": "1:1",
+      "personalizedGuidanceText": "Personalized Guidance"
+    },
+    "serviceModal": {
+      "whatIncludes": "What does this plan include?",
+      "startNow": "Start Now!",
+      "close": "Close"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

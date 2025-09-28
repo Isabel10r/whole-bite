@@ -1,0 +1,151 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "calculator": "Calculadora",
+    "calculators": "Calculadoras",
+    "bmrCalculator": "Calculadora BMR",
+    "waterCalculator": "Calculadora de Agua",
+    "recipes": "Recetas",
+    "about": "Acerca de Mí",
+    "bookNow": "Reservar Ahora",
+    "menu": "Menú"
+  },
+  "home": {
+    "hero": {
+      "title": "Transforma Tu Salud con",
+      "titleHighlight": "Nutrición Experta",
+      "subtitle": "Nunca antes se sintió tan bien estar saludable—hagamos de esto tu estilo de vida. Descubre nutrición personalizada que transforma tu energía, equilibra tus hormonas y crea hábitos duraderos respaldados por la ciencia.",
+      "stats": {
+        "tailoredPlans": "Planes Personalizados",
+        "recipes": "Recetas e Ideas de Comidas",
+        "improvedHabits": "Reportan Hábitos Mejorados"
+      },
+      "cta": {
+        "startJourney": "Inicia Tu Camino",
+        "learnMore": "Saber Más"
+      }
+    },
+    "features": {
+      "title": "¿Qué Hace Diferente Mi Coaching?",
+      "subtitle": "A diferencia de los planes de dieta genéricos, mi enfoque integra ciencia nutricional avanzada con estrategias personalizadas que trabajan armoniosamente con los procesos naturales de tu cuerpo.",
+      "scienceBacked": {
+        "title": "Métodos Basados en Ciencia",
+        "description": "Cada estrategia está fundamentada en la investigación científica más reciente y evidencia clínica probada."
+      },
+      "transformativeOutcomes": {
+        "title": "Resultados Transformadores",
+        "description": "Logra resultados duraderos que perduran—transformación sostenible, no soluciones a corto plazo."
+      },
+      "tailoredCoaching": {
+        "title": "Coaching Personalizado",
+        "description": "Guía personalizada que se adapta a tus objetivos únicos y estilo de vida."
+      }
+    },
+    "services": {
+      "title": "Mis Servicios",
+      "subtitle": "Elige el nivel de apoyo que se ajuste a tu camino—desde comenzar hasta una transformación completa con orientación continua.",
+      "kickstart": {
+        "title": "Arranque",
+        "subtitle": "El comienzo de tu cambio",
+        "description": "Perfecto para aquellos que quieren comenzar sin sentirse abrumados.",
+        "price": "COP 220,000 / mes",
+        "priceUSD": "USD 55",
+        "learnMore": "Saber Más"
+      },
+      "lifestyle": {
+        "title": "Estilo de Vida",
+        "subtitle": "Tu nueva rutina saludable",
+        "description": "El plan más popular: equilibrio entre apoyo y flexibilidad.",
+        "price": "COP 380,000 / mes",
+        "priceUSD": "USD 95",
+        "learnMore": "Saber Más"
+      },
+      "transform": {
+        "title": "Transformación",
+        "subtitle": "Apoyo completo 360°",
+        "description": "Diseñado para un cambio profundo con apoyo constante.",
+        "price": "COP 650,000 / mes",
+        "priceUSD": "USD 160",
+        "learnMore": "Saber Más"
+      }
+    },
+    "benefits": {
+      "title": "Lo Que Lograrás",
+      "subtitle": "Estos no son solo promesas—son las transformaciones reales que mis clientes experimentan cuando se comprometen con su camino hacia el bienestar.",
+      "sustainedEnergy": {
+        "title": "Energía Sostenida Todo el Día",
+        "description": "No más bajones de energía por la tarde. Alimenta tu cuerpo estratégicamente para una vitalidad consistente desde la mañana hasta la noche."
+      },
+      "restorativeSleep": {
+        "title": "Sueño Profundo y Restaurador",
+        "description": "Despierta renovado y listo. Optimiza tu rutina nocturna y el tiempo de nutrientes para un sueño de calidad y recuperación más rápida."
+      },
+      "weightBalance": {
+        "title": "Equilibrio de Peso Sin Esfuerzo",
+        "description": "Logra tu peso ideal sin contar calorías o sentirte privado. Construye hábitos sostenibles que funcionen con tu estilo de vida."
+      },
+      "peakPerformance": {
+        "title": "Modo de Máximo Rendimiento",
+        "description": "Desbloquea tu potencial atlético con estrategias de alimentación dirigidas que mejoran la fuerza, resistencia y recuperación."
+      },
+      "foodFreedom": {
+        "title": "Libertad y Alegría con la Comida",
+        "description": "Transforma tu relación con la comida del estrés a la celebración. Disfruta las comidas sin culpa o restricción."
+      },
+      "lifelongVitality": {
+        "title": "Vitalidad de Por Vida",
+        "description": "Invierte en tu yo futuro. Crea hábitos de bienestar duraderos que apoyen tu salud, energía y longevidad por años."
+      }
+    },
+    "testimonials": {
+      "title": "Lo Que Dicen Mis Clientes",
+      "subtitle": "No solo tomes mi palabra. Esto es lo que sucede cuando te comprometes con un enfoque de bienestar basado en la ciencia.",
+      "sarah": {
+        "quote": "Pasé de 3 tazas de café diarias a energía natural todo el día. ¡Perdí 15 libras en 3 meses!",
+        "author": "Sarah M., 24",
+        "category": "Energía y Peso"
+      },
+      "maria": {
+        "quote": "Como madre ocupada, pensé que comer saludable era imposible. ¡Las estrategias de preparación de comidas de Isabel cambiaron todo!",
+        "author": "María C., 26",
+        "category": "Salud Familiar"
+      },
+      "roberto": {
+        "quote": "Después de mi diagnóstico de diabetes, me sentía abrumado. Isabel hizo que la nutrición fuera simple y sostenible - ¡ahora me siento increíble!",
+        "author": "Roberto S., 28",
+        "category": "Manejo de Salud"
+      },
+      "verifiedReviews": "100% Reseñas Verificadas",
+      "realStories": "Historias Reales de Clientes",
+      "privacyProtected": "Privacidad Protegida"
+    },
+    "contact": {
+      "title": "¿Listo para Transformar Tu Vida?",
+      "subtitle": "Sé la próxima historia de éxito. Únete a otros que ya han transformado su energía, peso y relación con la comida. Tu transformación comienza con una decisión.",
+      "getStarted": "Comienza Hoy",
+      "freeConsultation": "Gratis",
+      "virtualConsultation": "Consulta Virtual",
+      "followUp": "4 semanas",
+      "followUpText": "Seguimiento",
+      "personalizedGuidance": "1:1",
+      "personalizedGuidanceText": "Guía Personalizada"
+    },
+    "serviceModal": {
+      "whatIncludes": "¿Qué incluye este plan?",
+      "startNow": "¡Comenzar Ahora!",
+      "close": "Cerrar"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No"
+  }
+}

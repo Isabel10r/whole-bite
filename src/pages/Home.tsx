@@ -5,6 +5,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell,  } from '@fortawesome/free-solid-svg-icons';
 import { HEADER_HEIGHT } from '../components/Header';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -75,6 +76,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; d
 };
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [currentBenefitIndex, setCurrentBenefitIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -85,33 +87,33 @@ const HomePage = () => {
   // Benefits data
   const benefits = [
     {
-      title: "Sustained Energy All Day",
-      description: "No more afternoon crashes or energy dips. Fuel your body strategically for consistent vitality from morning to night.",
+      title: t('home.benefits.sustainedEnergy.title'),
+      description: t('home.benefits.sustainedEnergy.description'),
       image: "https://images.unsplash.com/photo-1607914660217-754fdd90041d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      title: "Deep, Restorative Sleep",
-      description: "Wake up refreshed and ready. Optimize your evening routine and nutrient timing for quality sleep and faster recovery.",
+      title: t('home.benefits.restorativeSleep.title'),
+      description: t('home.benefits.restorativeSleep.description'),
       image: "https://images.unsplash.com/flagged/photo-1555697752-da25a4b1025b?q=80&w=1710&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      title: "Effortless Weight Balance",
-      description: "Achieve your ideal weight without counting calories or feeling deprived. Build sustainable habits that work with your lifestyle.",
+      title: t('home.benefits.weightBalance.title'),
+      description: t('home.benefits.weightBalance.description'),
       image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      title: "Peak Performance Mode",
-      description: "Unlock your athletic potential with targeted fueling strategies that enhance strength, endurance, and recovery.",
+      title: t('home.benefits.peakPerformance.title'),
+      description: t('home.benefits.peakPerformance.description'),
       image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      title: "Food Freedom & Joy",
-      description: "Transform your relationship with food from stress to celebration. Enjoy meals without guilt or restriction.",
+      title: t('home.benefits.foodFreedom.title'),
+      description: t('home.benefits.foodFreedom.description'),
       image: "https://images.unsplash.com/photo-1556911073-a517e752729c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-      title: "Lifelong Vitality",
-      description: "Invest in your future self. Create lasting wellness habits that support your health, energy, and longevity for years to come.",
+      title: t('home.benefits.lifelongVitality.title'),
+      description: t('home.benefits.lifelongVitality.description'),
       image: "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ];
@@ -146,38 +148,38 @@ const HomePage = () => {
 
   const testimonials = [
     {
-      quote: "Went from 3 cups of coffee daily to natural energy all day. Lost 15 pounds in 3 months!",
-      author: "Sarah M., 24",
+      quote: t('home.testimonials.sarah.quote'),
+      author: t('home.testimonials.sarah.author'),
       icon: faStar,
       iconColor: "#10b981",
-      category: "Energy & Weight"
+      category: t('home.testimonials.sarah.category')
     },
     {
-      quote: "As a busy mom, I thought healthy eating was impossible. Isabel's meal prep strategies changed everything!",
-      author: "María C., 26",
+      quote: t('home.testimonials.maria.quote'),
+      author: t('home.testimonials.maria.author'),
       icon: faDumbbell,
       iconColor: "#24604c",
-      category: "Family Health"
+      category: t('home.testimonials.maria.category')
     },
     {
-      quote: "After my diabetes diagnosis, I was overwhelmed. Isabel made nutrition simple and sustainable - I feel amazing now!",
-      author: "Roberto S., 28",
+      quote: t('home.testimonials.roberto.quote'),
+      author: t('home.testimonials.roberto.author'),
       icon: faHeart,
       iconColor: "#10b981",
-      category: "Health Management"
+      category: t('home.testimonials.roberto.category')
     },
   ];
 
   const services = [
     {
       id: 1,
-      title: "Kickstart",
-      subtitle: "The beginning of your change",
-      description: "Perfect for those who want to start without feeling overwhelmed.",
+      title: t('home.services.kickstart.title'),
+      subtitle: t('home.services.kickstart.subtitle'),
+      description: t('home.services.kickstart.description'),
       icon: faRocket,
       iconColor: "#10b981",
-      price: "COP 220,000 / month",
-      priceUSD: "USD 55",
+      price: t('home.services.kickstart.price'),
+      priceUSD: t('home.services.kickstart.priceUSD'),
       features: [
         "Initial consultation (60 min) + complete diagnosis with personalized plan",
         "100% customized meal plan designed for your goals",
@@ -189,13 +191,13 @@ const HomePage = () => {
     },
     {
       id: 2,
-      title: "Lifestyle",
-      subtitle: "Your new healthy routine",
-      description: "The most popular plan: balance between support and flexibility.",
+      title: t('home.services.lifestyle.title'),
+      subtitle: t('home.services.lifestyle.subtitle'),
+      description: t('home.services.lifestyle.description'),
       icon: faHeart,
       iconColor: "#24604c",
-      price: "COP 380,000 / month",
-      priceUSD: "USD 95",
+      price: t('home.services.lifestyle.price'),
+      priceUSD: t('home.services.lifestyle.priceUSD'),
       features: [
         "Everything from the Kickstart plan",
         "Individual weekly follow-up (25 min virtual)",
@@ -207,13 +209,13 @@ const HomePage = () => {
     },
     {
       id: 3,
-      title: "Transform",
-      subtitle: "Complete 360° support",
-      description: "Designed for deep change with constant support.",
+      title: t('home.services.transform.title'),
+      subtitle: t('home.services.transform.subtitle'),
+      description: t('home.services.transform.description'),
       icon: faCrown,
-      iconColor: "#90cbb9",
-      price: "COP 650,000 / month",
-      priceUSD: "USD 160",
+      iconColor: "#10b981",
+      price: t('home.services.transform.price'),
+      priceUSD: t('home.services.transform.priceUSD'),
       features: [
         "Everything from the Lifestyle plan",
         "Daily WhatsApp review of meals & habits",
@@ -228,20 +230,20 @@ const HomePage = () => {
   const features = [
     {
       icon: <HeartOutlined className="text-4xl text-[#10b981]" />,
-      title: "Science-Backed Methods",
-      description: "Every strategy is grounded in the latest scientific research and proven clinical evidence.",
+      title: t('home.features.scienceBacked.title'),
+      description: t('home.features.scienceBacked.description'),
       image: "https://plus.unsplash.com/premium_photo-1723532517432-d04f548b212f?q=80&w=1586&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
       {
         icon: <TrophyOutlined className="text-4xl text-[#24604c]" />,
-        title: "Transformative Outcomes",
-        description: "Achieve lasting results that endure—sustainable transformation, not short-term fixes.",
+        title: t('home.features.transformativeOutcomes.title'),
+        description: t('home.features.transformativeOutcomes.description'),
         image: "https://images.unsplash.com/photo-1676131062088-1638d013cb61?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       },
     {
       icon: <TeamOutlined className="text-4xl text-[#90cbb9]" />,
-      title: "Tailored Coaching",
-      description: "Customized guidance that adapts to your unique goals and lifestyle.",
+      title: t('home.features.tailoredCoaching.title'),
+      description: t('home.features.tailoredCoaching.description'),
       image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     }
   ];
@@ -346,8 +348,8 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              Transform Your Health with{' '}
-              <span className="text-[#10b981]">Expert Nutrition</span>
+              {t('home.hero.title')}{' '}
+              <span className="text-[#10b981]">{t('home.hero.titleHighlight')}</span>
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed opacity-95"
@@ -355,7 +357,7 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             >
-              Healthy never felt this good—let's make it your lifestyle. Discover personalized nutrition that transforms your energy, balances your hormones, and creates lasting habits backed by science.
+              {t('home.hero.subtitle')}
             </motion.p>
             
             {/* Stats Row */}
@@ -367,15 +369,15 @@ const HomePage = () => {
             >
               <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={100} suffix="%" />
-                <div className="text-sm text-[#373837] mt-2 font-bold">Tailored Plans</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">{t('home.hero.stats.tailoredPlans')}</div>
               </div>
               <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={50} suffix="+" />
-                <div className="text-sm text-[#373837] mt-2 font-bold">Recipes & Meal Ideas</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">{t('home.hero.stats.recipes')}</div>
               </div>
               <div className="bg-[#24604c]/10 backdrop-blur-sm rounded-2xl p-6 border border-[#24604c]/20">
                 <AnimatedCounter end={90} suffix="%" />
-                <div className="text-sm text-[#373837] mt-2 font-bold">Report Improved Habits</div>
+                <div className="text-sm text-[#373837] mt-2 font-bold">{t('home.hero.stats.improvedHabits')}</div>
               </div>
             </motion.div>
 
@@ -395,7 +397,7 @@ const HomePage = () => {
                   className="bg-[#10b981] text-white font-semibold border-none px-10 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!text-white"
                   href="#contact"
                 >
-                  Start Your Journey <ArrowRightOutlined />
+                  {t('home.hero.cta.startJourney')} <ArrowRightOutlined />
                 </Button>
               </motion.div>
               <motion.div
@@ -407,7 +409,7 @@ const HomePage = () => {
                   className="bg-transparent text-[#373837] border-2 border-[#373837] px-10 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
                   href="#services"
                 >
-                  Learn More
+                  {t('home.hero.cta.learnMore')}
                 </Button>
               </motion.div>
             </motion.div>
@@ -515,7 +517,7 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               style={{ color: '#2E2E2E' }}
             >
-              What Makes My Coaching Different?
+              {t('home.features.title')}
             </motion.h2>
             <motion.p 
               className="text-xl max-w-3xl mx-auto leading-relaxed"
@@ -525,7 +527,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ color: '#2E2E2E' }}
             >
-              Unlike generic diet plans, my approach integrates advanced nutritional science with personalized strategies that work harmoniously with your body's natural processes.
+              {t('home.features.subtitle')}
             </motion.p>
           </div>
           
@@ -696,7 +698,7 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               style={{ color: '#2E2E2E' }}
             >
-              My Services
+              {t('home.services.title')}
             </motion.h2>
             <motion.p 
               className="text-xl max-w-3xl mx-auto leading-relaxed"
@@ -706,7 +708,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ color: '#2E2E2E' }}
             >
-              Choose the level of support that fits your journey—from getting started to complete transformation with ongoing guidance.
+              {t('home.services.subtitle')}
             </motion.p>
           </div>
           
@@ -795,7 +797,7 @@ const HomePage = () => {
                         setSelectedService(service.id);
                       }}
                     >
-                      Learn More
+                      {t('home.services.kickstart.learnMore')}
                     </Button>
                   </div>
                 </motion.div>
@@ -905,7 +907,7 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               style={{ color: '#2E2E2E' }}
             >
-              What You'll Achieve
+              {t('home.benefits.title')}
             </motion.h2>
             <motion.p 
               className="text-xl max-w-3xl mx-auto leading-relaxed mb-8"
@@ -915,7 +917,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ color: '#2E2E2E' }}
             >
-              These aren't just promises—they're the real transformations my clients experience when they commit to their wellness journey.
+              {t('home.benefits.subtitle')}
             </motion.p>
            </div>
 
@@ -1133,7 +1135,7 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               style={{ color: '#2E2E2E' }}
             >
-              What My Clients Say
+              {t('home.testimonials.title')}
             </motion.h2>
             <motion.p 
               className="text-xl max-w-3xl mx-auto leading-relaxed"
@@ -1143,7 +1145,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ color: '#2E2E2E' }}
             >
-              Don't just take my word for it. Here's what happens when you commit to a science-backed approach to wellness.
+              {t('home.testimonials.subtitle')}
             </motion.p>
           </div>
           
@@ -1232,15 +1234,15 @@ const HomePage = () => {
               <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500">
                 <div className="flex items-center gap-2">
                   <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
-                  <span>100% Verified Reviews</span>
+                  <span>{t('home.testimonials.verifiedReviews')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
-                  <span>Real Client Stories</span>
+                  <span>{t('home.testimonials.realStories')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981]" />
-                  <span>Privacy Protected</span>
+                  <span>{t('home.testimonials.privacyProtected')}</span>
                 </div>
               </div>
             </motion.div>
@@ -1259,9 +1261,9 @@ const HomePage = () => {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Transform Your Life?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">{t('home.contact.title')}</h2>
             <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed opacity-95">
-              Be the next success story. Join others who've already transformed their energy, weight, and relationship with food. Your transformation starts with one decision.
+              {t('home.contact.subtitle')}
             </p>
             
             <div className="flex justify-center items-center mb-12">
@@ -1275,7 +1277,7 @@ const HomePage = () => {
                 }}
                 onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
               >
-                Get Started Today <ArrowRightOutlined />
+                {t('home.contact.getStarted')} <ArrowRightOutlined />
               </Button>
             </div>
             
@@ -1283,25 +1285,25 @@ const HomePage = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
                 <div className="font-bold text-center">
                   <div className="text-3xl text-[#24604c] mb-2">
-                    Free
+                    {t('home.contact.freeConsultation')}
                   </div>
-                  <div className="text-sm text-white font-bold">Virtual Consultation</div>
+                  <div className="text-sm text-white font-bold">{t('home.contact.virtualConsultation')}</div>
                 </div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
                 <div className="font-bold text-center">
                   <div className="text-3xl text-[#24604c] mb-2">
-                    4 weeks
+                    {t('home.contact.followUp')}
                   </div>
-                  <div className="text-sm text-white font-bold">Follow-up</div>
+                  <div className="text-sm text-white font-bold">{t('home.contact.followUpText')}</div>
                 </div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
                 <div className="font-bold text-center">
                   <div className="text-3xl text-[#24604c] mb-2">
-                    1:1
+                    {t('home.contact.personalizedGuidance')}
                   </div>
-                  <div className="text-sm text-white font-bold">Personalized Guidance</div>
+                  <div className="text-sm text-white font-bold">{t('home.contact.personalizedGuidanceText')}</div>
                 </div>
               </div>
             </div>
@@ -1361,7 +1363,7 @@ const HomePage = () => {
                   {/* Features */}
                   <div className="flex-1 mb-6">
                     <h3 className="text-xl font-bold mb-4 text-black text-center">
-                      What does this plan include?
+                      {t('home.serviceModal.whatIncludes')}
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
                       {service.features.map((feature, index) => (
@@ -1396,14 +1398,14 @@ const HomePage = () => {
                       }}
                       onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
                     >
-                      Start Now!
+                      {t('home.serviceModal.startNow')}
                     </Button>
                     <Button
                       size="large"
                       className="px-6 py-3 h-auto text-base font-semibold hover:!bg-[#1a4a3c] hover:!border-[#1a4a3c] hover:!text-white"
                       onClick={() => setSelectedService(null)}
                     >
-                      Close
+                      {t('home.serviceModal.close')}
                     </Button>
                   </div>
                 </div>

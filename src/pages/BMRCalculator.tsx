@@ -409,21 +409,21 @@ const BMRCalculator: React.FC = () => {
                           </span>
                         }
                         name="age"
-        rules={[
-          { required: true, message: 'Please enter your age' },
-          { 
-            validator: (_, value) => {
-              const num = Number(value);
-              if (!value || isNaN(num)) {
-                return Promise.reject(new Error('Please enter a valid age'));
-              }
-              if (num < 15 || num > 100) {
-                return Promise.reject(new Error('Age must be between 15 and 100'));
-              }
-              return Promise.resolve();
-            }
-          }
-        ]}
+                        rules={[
+                          { required: true, message: 'Please enter your age' },
+                          { 
+                            validator: (_, value) => {
+                              const num = Number(value);
+                              if (!value || isNaN(num)) {
+                                return Promise.reject(new Error('Please enter a valid age'));
+                              }
+                              if (num < 15 || num > 100) {
+                                return Promise.reject(new Error('Age must be between 15 and 100'));
+                              }
+                              return Promise.resolve();
+                            }
+                          }
+                        ]}
                       >
                         <Input 
                           type="number" 
@@ -469,21 +469,21 @@ const BMRCalculator: React.FC = () => {
                           </span>
                         }
                         name="weight"
-        rules={[
-          { required: true, message: 'Please enter your weight' },
-          { 
-            validator: (_, value) => {
-              const num = Number(value);
-              if (!value || isNaN(num)) {
-                return Promise.reject(new Error('Please enter a valid weight'));
-              }
-              if (num <= 0 || num > 500) {
-                return Promise.reject(new Error('Please enter a valid weight (1-500)'));
-              }
-              return Promise.resolve();
-            }
-          }
-        ]}
+                        rules={[
+                          { required: true, message: 'Please enter your weight' },
+                          { 
+                            validator: (_, value) => {
+                              const num = Number(value);
+                              if (!value || isNaN(num)) {
+                                return Promise.reject(new Error('Please enter a valid weight'));
+                              }
+                              if (num <= 0 || num > 500) {
+                                return Promise.reject(new Error('Please enter a valid weight (1-500)'));
+                              }
+                              return Promise.resolve();
+                            }
+                          }
+                        ]}
                       >
                         <Input 
                           type="number" 
@@ -525,28 +525,28 @@ const BMRCalculator: React.FC = () => {
                           </span>
                         }
                         name="height"
-        rules={[
-          { required: true, message: 'Please enter your height' },
-          { 
-            validator: (_, value) => {
-              const num = Number(value);
-              const unit = form.getFieldValue('heightUnit');
-              if (!value || isNaN(num)) {
-                return Promise.reject(new Error('Please enter a valid height'));
-              }
-              if (unit === 'cm') {
-                if (num < 100 || num > 250) {
-                  return Promise.reject(new Error('Height must be between 100-250 cm'));
-                }
-              } else if (unit === 'ft') {
-                if (num < 3 || num > 8) {
-                  return Promise.reject(new Error('Height must be between 3-8 feet'));
-                }
-              }
-              return Promise.resolve();
-            }
-          }
-        ]}
+                        rules={[
+                          { required: true, message: 'Please enter your height' },
+                          { 
+                            validator: (_, value) => {
+                              const num = Number(value);
+                              const unit = form.getFieldValue('heightUnit');
+                              if (!value || isNaN(num)) {
+                                return Promise.reject(new Error('Please enter a valid height'));
+                              }
+                              if (unit === 'cm') {
+                                if (num < 100 || num > 250) {
+                                  return Promise.reject(new Error('Height must be between 100-250 cm'));
+                                }
+                              } else if (unit === 'ft') {
+                                if (num < 3 || num > 8) {
+                                  return Promise.reject(new Error('Height must be between 3-8 feet'));
+                                }
+                              }
+                              return Promise.resolve();
+                            }
+                          }
+                        ]}
                       >
                         <Input 
                           type="number" 
@@ -652,7 +652,7 @@ const BMRCalculator: React.FC = () => {
                         <FontAwesomeIcon icon={faCalculator} className="text-[#16a085] text-lg" />
                       </div>
                       <span style={{ color: '#2E2E2E', fontSize: '18px', fontWeight: 'bold' }}>
-{t('calculators.bmr.results.title')}
+Your Results
                       </span>
                     </div>
                   }
@@ -689,7 +689,7 @@ const BMRCalculator: React.FC = () => {
                                 <FontAwesomeIcon icon={faFire} className="text-xl text-[#e74c3c]" />
                               </div>
                               <Text strong style={{ color: '#2E2E2E', fontSize: '16px' }}>
-{t('calculators.bmr.results.bmr')}
+Basal Metabolic Rate (BMR)
                               </Text>
                             </div>
                             <div className="text-3xl font-bold mb-2" style={{ color: '#e74c3c' }}>
@@ -742,7 +742,7 @@ const BMRCalculator: React.FC = () => {
                           <FontAwesomeIcon icon={faFire} className="text-[#f39c12] text-lg" />
                         </div>
                         <Text strong style={{ color: '#2E2E2E', fontSize: '18px' }}>
-{t('calculators.bmr.results.goals.title')}
+Calorie Goals
                         </Text>
                       </div>
                     </motion.div>

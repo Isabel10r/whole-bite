@@ -177,8 +177,7 @@ const HomePage = () => {
       description: "Perfect for those who want to start without feeling overwhelmed.",
       icon: faRocket,
       iconColor: "#10b981",
-      price: "COP 220,000 / month",
-      priceUSD: "USD 55",
+      price: "USD 55 / month",
       features: [
         "Initial consultation (60 min) + complete diagnosis with personalized plan",
         "100% customized meal plan designed for your goals",
@@ -195,8 +194,7 @@ const HomePage = () => {
       description: "The most popular plan: balance between support and flexibility.",
       icon: faHeart,
       iconColor: "#24604c",
-      price: "COP 380,000 / month",
-      priceUSD: "USD 95",
+      price: "USD 95 / month",
       features: [
         "Everything from the Kickstart plan",
         "Individual weekly follow-up (25 min virtual)",
@@ -213,8 +211,7 @@ const HomePage = () => {
       description: "Designed for deep change with constant support.",
       icon: faCrown,
       iconColor: "#10b981",
-      price: "COP 650,000 / month",
-      priceUSD: "USD 160",
+      price: "USD 160 / month",
       features: [
         "Everything from the Lifestyle plan",
         "Daily WhatsApp review of meals & habits",
@@ -598,94 +595,7 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-[#F7F7F7] relative overflow-hidden">
-        {/* Floating Bubbles with Light Green Fade */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-20 left-10 w-24 h-24 rounded-full opacity-20 blur-sm"
-            style={{
-              background: `radial-gradient(circle, #b2d4c7 0%, #90cbb9 30%, transparent 70%)`
-            }}
-            animate={{
-              y: [0, -15, 0],
-              x: [0, 8, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute top-40 right-20 w-32 h-32 rounded-full opacity-20 blur-sm"
-            style={{
-              background: `radial-gradient(circle, #b2d4c7 0%, #10b981 40%, transparent 80%)`
-            }}
-            animate={{
-              y: [0, 12, 0],
-              x: [0, -6, 0],
-              scale: [1, 0.9, 1]
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-1/4 w-20 h-20 rounded-full opacity-20 blur-sm"
-            style={{
-              background: `radial-gradient(circle, #90cbb9 0%, #b2d4c7 50%, transparent 90%)`
-            }}
-            animate={{
-              y: [0, -8, 0],
-              x: [0, 5, 0],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          <motion.div
-            className="absolute top-1/3 right-1/3 w-16 h-16 rounded-full opacity-20 blur-sm"
-            style={{
-              background: `radial-gradient(circle, #b2d4c7 0%, transparent 60%)`
-            }}
-            animate={{
-              y: [0, -10, 0],
-              x: [0, 4, 0],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{
-              duration: 9,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 3
-            }}
-          />
-          <motion.div
-            className="absolute bottom-1/3 right-10 w-28 h-28 rounded-full opacity-20 blur-sm"
-            style={{
-              background: `radial-gradient(circle, #10b981 0%, #90cbb9 30%, transparent 70%)`
-            }}
-            animate={{
-              y: [0, 15, 0],
-              x: [0, -7, 0],
-              scale: [1, 0.8, 1]
-            }}
-            transition={{
-              duration: 11,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 4
-            }}
-          />
-        </div>
+      <section id="services" className="py-24 bg-gradient-to-br from-[#F7F7F7] via-white to-[#F0F9F6] relative overflow-hidden">
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-20">
@@ -724,80 +634,114 @@ const HomePage = () => {
               >
                 {/* Service Card */}
                 <motion.div 
-                  className="relative p-8 rounded-2xl bg-gradient-to-br from-[#24604c]/10 via-[#24604c]/5 to-white shadow-lg shadow-black/8 h-full flex flex-col border border-[#24604c]/20"
+                  className="relative p-6 rounded-2xl bg-gradient-to-br from-white via-[#F8FFFE] to-white shadow-lg shadow-black/8 h-full flex flex-col border border-[#24604c]/15 overflow-hidden group"
                   whileHover={{ 
-                    y: -4,
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+                    y: -12,
+                    scale: 1.03,
+                    boxShadow: "0 32px 64px -12px rgba(0, 0, 0, 0.3)"
                   }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  style={{
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,255,254,0.8) 50%, rgba(255,255,255,0.9) 100%)`,
+                    backdropFilter: 'blur(10px)'
+                  }}
                 >
-                  {/* Background Glow */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-5"
-                    style={{
-                      background: `radial-gradient(circle, ${service.iconColor} 0%, transparent 70%)`
-                    }}
-                  />
-                  
-                  {/* Icon */}
-                  <div className="mb-6 flex justify-center">
-                    <div className="relative">
-                      <FontAwesomeIcon 
-                        icon={service.icon} 
-                        className="text-4xl"
-                        style={{ color: service.iconColor }}
-                      />
-                    </div>
+                  {/* Animated Background Pattern */}
+                  <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: `radial-gradient(circle at 20% 80%, ${service.iconColor} 0%, transparent 50%),
+                                    radial-gradient(circle at 80% 20%, ${service.iconColor} 0%, transparent 50%),
+                                    radial-gradient(circle at 40% 40%, ${service.iconColor} 0%, transparent 50%)`
+                      }}
+                    />
                   </div>
                   
-                  {/* Title */}
+                  
+                  {/* Icon with enhanced animation */}
+                  <div className="mb-4 flex justify-center">
+                    <motion.div 
+                      className="relative p-3 rounded-xl"
+                      style={{
+                        background: `linear-gradient(135deg, ${service.iconColor}20, ${service.iconColor}10)`
+                      }}
+                      whileHover={{ 
+                        rotate: [0, -15, 15, 0],
+                        scale: 1.1,
+                        y: -3
+                      }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                      <FontAwesomeIcon 
+                        icon={service.icon} 
+                        className="text-3xl drop-shadow-lg"
+                        style={{ color: service.iconColor }}
+                      />
+                    </motion.div>
+                  </div>
+                  
+                  {/* Title with gradient text */}
                   <h3 
-                    className="text-2xl font-bold mb-2 text-center relative z-10"
-                    style={{ color: '#2E2E2E' }}
+                    className="text-xl font-bold mb-1 text-center relative z-10"
+                    style={{ 
+                      background: `linear-gradient(135deg, #2E2E2E, ${service.iconColor})`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }}
                   >
                     {service.title}
                   </h3>
                   
                   {/* Subtitle */}
-                  <p className="text-lg font-semibold text-center mb-4 relative z-10" style={{ color: '#2E2E2E' }}>
+                  <p className="text-base font-semibold text-center mb-2 relative z-10" style={{ color: '#2E2E2E' }}>
                     {service.subtitle}
                   </p>
                   
                   {/* Description */}
-                  <p className="leading-relaxed text-center mb-6 relative z-10 flex-grow" style={{ color: '#2E2E2E' }}>
+                  <p className="leading-relaxed text-center mb-4 relative z-10 flex-grow text-sm" style={{ color: '#2E2E2E' }}>
                     {service.description}
                   </p>
                   
                   {/* Price */}
-                  <div className="text-center mb-6 relative z-10">
-                    <div className="text-2xl font-bold" style={{ color: service.iconColor }}>
+                  <div className="text-center mb-4 relative z-10">
+                    <div className="text-xl font-bold" style={{ color: service.iconColor }}>
                       {service.price}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {service.priceUSD}
                     </div>
                   </div>
                   
-                  {/* CTA Button */}
+                  {/* Enhanced CTA Button */}
                   <div className="text-center relative z-10 mt-auto">
-                    <Button
-                      type="primary"
-                      size="large"
-                      className="w-full hover:shadow-lg hover:!bg-[#373837] hover:!border-[#373837] hover:!text-white"
-                      style={{
-                        backgroundColor: service.iconColor,
-                        borderColor: service.iconColor,
-                        height: '48px',
-                        fontSize: '16px',
-                        fontWeight: '600'
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.05,
+                        y: -2
                       }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedService(service.id);
-                      }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      Learn More
-                    </Button>
+                      <Button
+                        type="primary"
+                        size="large"
+                        className="w-full hover:shadow-2xl transition-all duration-300 font-bold"
+                        style={{
+                          background: `linear-gradient(135deg, ${service.iconColor}, ${service.iconColor}dd)`,
+                          borderColor: service.iconColor,
+                          height: '44px',
+                          fontSize: '14px',
+                          fontWeight: '700',
+                          borderRadius: '12px',
+                          boxShadow: `0 4px 15px ${service.iconColor}40`,
+                          border: 'none'
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedService(service.id);
+                        }}
+                      >
+                        Learn More
+                      </Button>
+                    </motion.div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -1353,9 +1297,6 @@ const HomePage = () => {
                     </p>
                     <div className="text-2xl font-bold mb-1" style={{ color: service.iconColor }}>
                       {service.price}
-                    </div>
-                    <div className="text-base text-gray-600">
-                      {service.priceUSD}
                     </div>
                   </div>
 

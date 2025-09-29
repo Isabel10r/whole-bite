@@ -3,8 +3,9 @@ import { Button } from 'antd';
 import { ArrowRightOutlined, HeartOutlined, TrophyOutlined, TeamOutlined } from '@ant-design/icons';
 import { motion, useAnimation } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRocket, faHeart, faCrown, faCheckCircle, faStar, faDumbbell,  } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCrown, faCheckCircle, faStar, faDumbbell, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { HEADER_HEIGHT } from '../components/Header';
+import SimpleEmailModal from '../components/SimpleEmailModal';
 ;
 
 
@@ -79,9 +80,20 @@ const HomePage = () => {
   const [selectedService, setSelectedService] = useState<number | null>(null);
   const [currentBenefitIndex, setCurrentBenefitIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const titleControls = useAnimation();
   const featuresSectionRef = useRef<HTMLElement>(null);
   const benefitsCarouselRef = useRef<HTMLElement>(null);
+
+  // Handle email subscription success
+  const handleEmailSuccess = (email: string) => {
+    // Close the email modal
+    setIsEmailModalOpen(false);
+    
+    // Redirect to Calendly with pre-filled information
+    const calendlyUrl = `https://calendly.com/isabel10ramirez06/30min?name=${encodeURIComponent(email.split('@')[0])}&email=${encodeURIComponent(email)}`;
+    window.open(calendlyUrl, '_blank');
+  };
 
   // Benefits data
   const benefits = [
@@ -172,53 +184,23 @@ const HomePage = () => {
   const services = [
     {
       id: 1,
-      title: "Kickstart",
-      subtitle: "The beginning of your change",
-      description: "Perfect for those who want to start without feeling overwhelmed.",
-      icon: faRocket,
-      iconColor: "#10b981",
-      price: "USD 55 / month",
-      features: [
-        "Initial consultation (60 min) + complete diagnosis with personalized plan",
-        "100% customized meal plan designed for your goals",
-        "Shopping list tailored to your plan",
-        "Plan adjustments every 2 weeks",
-        "Mini recipe book (5 practical recipes)",
-        "Exclusive access to private community (WhatsApp/Telegram)"
-      ]
-    },
-    {
-      id: 2,
-      title: "Lifestyle",
-      subtitle: "Your new healthy routine",
-      description: "The most popular plan: balance between support and flexibility.",
-      icon: faHeart,
-      iconColor: "#24604c",
-      price: "USD 95 / month",
-      features: [
-        "Everything from the Kickstart plan",
-        "Individual weekly follow-up (25 min virtual)",
-        "Monthly pantry makeover call (30 min virtual session)",
-        "Weekly progress checklist",
-        "Extended recipe book (15 recipes)",
-        "Direct chat (response < 24h)"
-      ]
-    },
-    {
-      id: 3,
       title: "Transform",
-      subtitle: "Complete 360° support",
-      description: "Designed for deep change with constant support.",
+      subtitle: "Complete 360° Transformation",
+      description: "The ultimate nutrition coaching experience designed for deep, lasting change with comprehensive support.",
       icon: faCrown,
       iconColor: "#10b981",
-      price: "USD 160 / month",
+      price: "USD 200 / month",
       features: [
-        "Everything from the Lifestyle plan",
-        "Daily WhatsApp review of meals & habits",
-        "Shop smart & healthy with ease: 45-min guided grocery call",
+        "60-min initial consultation & personalized plan",
+        "Fully customized meal plan + shopping list",
+        "Weekly 25-min virtual check-ins",
+        "Monthly 30-min pantry makeover",
+        "45-min guided grocery call",
+        "Daily WhatsApp support (<24h response)",
         "Functional training plan with certified trainer",
-        "Premium recipe book (+30 recipes)",
-        "Access to exclusive monthly challenges based on your nutritional goals"
+        "30+ premium recipes",
+        "Exclusive community access",
+        "Monthly challenges & weekly progress checklist"
       ]
     }
   ];
@@ -607,7 +589,7 @@ const HomePage = () => {
               transition={{ duration: 0.8 }}
               style={{ color: '#2E2E2E' }}
             >
-              My Services
+              My Service
             </motion.h2>
             <motion.p 
               className="text-xl max-w-3xl mx-auto leading-relaxed"
@@ -617,11 +599,11 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               style={{ color: '#2E2E2E' }}
             >
-              Choose the level of support that fits your journey—from getting started to complete transformation with ongoing guidance.
+              A comprehensive wellness program that transforms your relationship with food and creates lasting healthy habits.
             </motion.p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="max-w-5xl mx-auto">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -632,18 +614,18 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 onClick={() => setSelectedService(service.id)}
               >
-                {/* Service Card */}
+                {/* Horizontal Service Card */}
                 <motion.div 
-                  className="relative p-6 rounded-2xl bg-gradient-to-br from-white via-[#F8FFFE] to-white shadow-lg shadow-black/8 h-full flex flex-col border border-[#24604c]/15 overflow-hidden group"
+                  className="relative rounded-2xl bg-gradient-to-r from-[#10b981]/5 via-white to-[#24604c]/5 shadow-xl shadow-[#10b981]/15 border-2 border-[#10b981]/20 overflow-hidden group"
                   whileHover={{ 
-                    y: -12,
-                    scale: 1.03,
-                    boxShadow: "0 32px 64px -12px rgba(0, 0, 0, 0.3)"
+                    y: -6,
+                    scale: 1.01,
+                    boxShadow: "0 25px 50px -15px rgba(16, 185, 129, 0.3)"
                   }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   style={{
-                    background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,255,254,0.8) 50%, rgba(255,255,255,0.9) 100%)`,
-                    backdropFilter: 'blur(10px)'
+                    background: `linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255,255,255,0.95) 30%, rgba(255,255,255,0.95) 70%, rgba(36, 96, 76, 0.05) 100%)`,
+                    backdropFilter: 'blur(20px)'
                   }}
                 >
                   {/* Animated Background Pattern */}
@@ -658,90 +640,123 @@ const HomePage = () => {
                     />
                   </div>
                   
-                  
-                  {/* Icon with enhanced animation */}
-                  <div className="mb-4 flex justify-center">
-                    <motion.div 
-                      className="relative p-3 rounded-xl"
-                      style={{
-                        background: `linear-gradient(135deg, ${service.iconColor}20, ${service.iconColor}10)`
-                      }}
-                      whileHover={{ 
-                        rotate: [0, -15, 15, 0],
-                        scale: 1.1,
-                        y: -3
-                      }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                    >
-                      <FontAwesomeIcon 
-                        icon={service.icon} 
-                        className="text-3xl drop-shadow-lg"
-                        style={{ color: service.iconColor }}
-                      />
-                    </motion.div>
-                  </div>
-                  
-                  {/* Title with gradient text */}
-                  <h3 
-                    className="text-xl font-bold mb-1 text-center relative z-10"
-                    style={{ 
-                      background: `linear-gradient(135deg, #2E2E2E, ${service.iconColor})`,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text'
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                  
-                  {/* Subtitle */}
-                  <p className="text-base font-semibold text-center mb-2 relative z-10" style={{ color: '#2E2E2E' }}>
-                    {service.subtitle}
-                  </p>
-                  
-                  {/* Description */}
-                  <p className="leading-relaxed text-center mb-4 relative z-10 flex-grow text-sm" style={{ color: '#2E2E2E' }}>
-                    {service.description}
-                  </p>
-                  
-                  {/* Price */}
-                  <div className="text-center mb-4 relative z-10">
-                    <div className="text-xl font-bold" style={{ color: service.iconColor }}>
-                      {service.price}
-                    </div>
-                  </div>
-                  
-                  {/* Enhanced CTA Button */}
-                  <div className="text-center relative z-10 mt-auto">
-                    <motion.div
-                      whileHover={{ 
-                        scale: 1.05,
-                        y: -2
-                      }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button
-                        type="primary"
-                        size="large"
-                        className="w-full hover:shadow-2xl transition-all duration-300 font-bold"
-                        style={{
-                          background: `linear-gradient(135deg, ${service.iconColor}, ${service.iconColor}dd)`,
-                          borderColor: service.iconColor,
-                          height: '44px',
-                          fontSize: '14px',
-                          fontWeight: '700',
-                          borderRadius: '12px',
-                          boxShadow: `0 4px 15px ${service.iconColor}40`,
-                          border: 'none'
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedService(service.id);
+                  <div className="flex flex-col lg:flex-row">
+                    {/* Left Side - Visual & Title */}
+                    <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
+                      {/* Premium Badge */}
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-[#10b981] to-[#24604c] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                        PREMIUM
+                      </div>
+
+                      {/* Icon */}
+                      <div className="mb-6">
+                        <div 
+                          className="relative p-6 rounded-2xl shadow-lg"
+                          style={{
+                            background: `linear-gradient(135deg, ${service.iconColor}20, ${service.iconColor}10)`,
+                            border: `2px solid ${service.iconColor}30`
+                          }}
+                        >
+                          <FontAwesomeIcon 
+                            icon={service.icon} 
+                            className="text-5xl drop-shadow-lg"
+                            style={{ color: service.iconColor }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Title with gradient text */}
+                      <h3 
+                        className="text-3xl lg:text-4xl font-bold mb-3 relative z-10"
+                        style={{ 
+                          background: `linear-gradient(135deg, #2E2E2E, ${service.iconColor})`,
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text'
                         }}
                       >
-                        Learn More
-                      </Button>
-                    </motion.div>
+                        {service.title}
+                      </h3>
+                      
+                      {/* Subtitle */}
+                      <p className="text-lg font-semibold mb-4 relative z-10" style={{ color: '#2E2E2E' }}>
+                        {service.subtitle}
+                      </p>
+                      
+                      {/* Description */}
+                      <p className="leading-relaxed mb-6 relative z-10 text-base max-w-sm" style={{ color: '#2E2E2E' }}>
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Right Side - Price & CTA */}
+                    <div className="lg:w-1/2 p-6 lg:p-8 bg-gradient-to-br from-[#10b981]/10 to-[#24604c]/10 flex flex-col justify-center items-center">
+                      {/* Price Section */}
+                      <div className="text-center mb-6 relative z-10">
+                        <div className="text-4xl lg:text-5xl font-bold mb-2" style={{ color: service.iconColor }}>
+                          {service.price}
+                        </div>
+                        <div className="text-base text-gray-600 mb-3">Complete transformation package</div>
+                        <div className="text-xs text-gray-500 max-w-xs">
+                          Everything you need for lasting health transformation
+                        </div>
+                      </div>
+                      
+                      {/* Key Benefits Preview */}
+                      <div className="mb-6 relative z-10">
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                          <div className="flex items-center gap-1">
+                            <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
+                            <span>Personalized Plans</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
+                            <span>Daily Support</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
+                            <span>Training Plan</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <FontAwesomeIcon icon={faCheckCircle} className="text-[#10b981] text-sm" />
+                            <span>30+ Recipes</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Enhanced CTA Button */}
+                      <div className="w-full max-w-xs relative z-10">
+                        <motion.div
+                          whileHover={{ 
+                            scale: 1.05,
+                            y: -2
+                          }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Button
+                            type="primary"
+                            size="large"
+                            className="w-full hover:shadow-2xl transition-all duration-300 font-bold"
+                            style={{
+                              background: `linear-gradient(135deg, ${service.iconColor}, ${service.iconColor}dd)`,
+                              borderColor: service.iconColor,
+                              height: '48px',
+                              fontSize: '16px',
+                              fontWeight: '700',
+                              borderRadius: '16px',
+                              boxShadow: `0 8px 20px ${service.iconColor}40`,
+                              border: 'none'
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedService(service.id);
+                            }}
+                          >
+                            Learn more
+                          </Button>
+                        </motion.div>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -1218,7 +1233,7 @@ const HomePage = () => {
                   background: '#24604c',
                   borderColor: '#24604c'
                 }}
-                onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
+                onClick={() => setIsEmailModalOpen(true)}
               >
                 Get Started Today <ArrowRightOutlined />
               </Button>
@@ -1264,19 +1279,38 @@ const HomePage = () => {
           onClick={() => setSelectedService(null)}
         >
           <motion.div
-            className="bg-white rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-hidden"
+            className="bg-white rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-hidden relative"
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Mobile Corner Buttons */}
+            <div className="absolute top-2 left-2 right-2 flex justify-between items-center z-10 sm:hidden">
+              {/* CTA Button - Top Left */}
+              <button
+                onClick={() => setIsEmailModalOpen(true)}
+                className="px-4 py-2 bg-[#10b981] text-white text-xs font-semibold rounded-xl border-none hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white transition-all duration-300 flex items-center gap-1"
+              >
+                <FontAwesomeIcon icon={faCheckCircle} className="text-xs" />
+                Start Now
+              </button>
+              
+              {/* Close Button - Top Right */}
+              <button
+                onClick={() => setSelectedService(null)}
+                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              >
+                <FontAwesomeIcon icon={faTimes} className="text-gray-600 text-sm" />
+              </button>
+            </div>
             {(() => {
               const service = services.find(s => s.id === selectedService);
               if (!service) return null;
               
               return (
-                <div className="p-6 h-full flex flex-col">
+                <div className="p-6 h-full flex flex-col pt-12 sm:pt-6">
                   {/* Header */}
                   <div className="text-center mb-6">
                     <div className="flex justify-center mb-3">
@@ -1326,8 +1360,8 @@ const HomePage = () => {
                     </div>
                   </div>
 
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  {/* CTA Buttons - Desktop Only */}
+                  <div className="hidden sm:flex flex-col sm:flex-row gap-3 justify-center">
                     <Button
                       type="primary"
                       size="large"
@@ -1336,7 +1370,7 @@ const HomePage = () => {
                         backgroundColor: service.iconColor,
                         borderColor: service.iconColor
                       }}
-                      onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
+                      onClick={() => setIsEmailModalOpen(true)}
                     >
                       Start Now!
                     </Button>
@@ -1354,6 +1388,13 @@ const HomePage = () => {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Email Subscription Modal */}
+      <SimpleEmailModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
+        onSuccess={handleEmailSuccess}
+      />
     </div>
   );
 };

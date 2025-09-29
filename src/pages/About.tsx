@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button } from 'antd'
 import { 
   HeartOutlined, 
@@ -11,8 +12,11 @@ import { useInView } from 'react-intersection-observer'
 import { Helmet } from 'react-helmet-async'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap, faHeartbeat, faUsers } from '@fortawesome/free-solid-svg-icons'
+import SimpleEmailModal from '../components/SimpleEmailModal'
 
 const About: React.FC = () => {
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  
   const { ref: missionRef } = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -22,6 +26,16 @@ const About: React.FC = () => {
     threshold: 0.1,
     triggerOnce: true
   })
+
+  // Handle email subscription success
+  const handleEmailSuccess = (email: string) => {
+    // Close the email modal
+    setIsEmailModalOpen(false);
+    
+    // Redirect to Calendly with pre-filled information
+    const calendlyUrl = `https://calendly.com/isabel10ramirez06/30min?name=${encodeURIComponent(email.split('@')[0])}&email=${encodeURIComponent(email)}`;
+    window.open(calendlyUrl, '_blank');
+  };
 
   // Professional highlights images from Unsplash
   const professionalHighlights = [
@@ -331,14 +345,14 @@ const About: React.FC = () => {
                       type="primary"
                       size="large"
                       className="bg-[#10b981] text-white font-semibold border-none px-8 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!text-white"
-                      onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
+                      onClick={() => setIsEmailModalOpen(true)}
                     >
                       Book Consultation <ArrowRightOutlined />
                     </Button>
                     <Button
                       size="large"
                       className="bg-transparent text-[#373837] border-2 border-[#373837] px-8 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-[#24604c] hover:!border-[#24604c] hover:!text-white"
-                      href="/calculator"
+                      href="/calculator/bmr"
                     >
                       Free Calculator
                     </Button>
@@ -631,7 +645,7 @@ const About: React.FC = () => {
                     type="primary"
                     size="large"
                     className="bg-[#24604c] text-white font-semibold border-none px-12 py-4 rounded-full shadow-lg transition-all duration-300 text-lg hover:!bg-white hover:!border-white hover:!text-[#24604c]"
-                    onClick={() => window.open('https://calendly.com/isabel10ramirez06', '_blank')}
+                    onClick={() => setIsEmailModalOpen(true)}
                   >
                     Book Your Consultation <ArrowRightOutlined />
                   </Button>
@@ -643,7 +657,7 @@ const About: React.FC = () => {
                   <Button
                     size="large"
                     className="bg-transparent text-white border-2 border-white px-12 py-4 rounded-full transition-all duration-300 text-lg hover:!bg-white hover:!border-white hover:!text-[#24604c]"
-                    href="/calculator"
+                    href="/calculator/bmr"
                   >
                     Try Free Calculator
                   </Button>
@@ -680,6 +694,13 @@ const About: React.FC = () => {
           </div>
         </section>
       </div>
+
+      {/* Email Subscription Modal */}
+      <SimpleEmailModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
+        onSuccess={handleEmailSuccess}
+      />
     </>
   )
 }

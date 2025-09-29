@@ -3,6 +3,7 @@ import { Layout } from 'antd'
 import { Helmet } from 'react-helmet-async'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 // import NutritionCalculator from './pages/NutritionCalculator'
 import BMRCalculator from './pages/BMRCalculator'
@@ -31,6 +32,7 @@ function App() {
       </Helmet>
       
       <Layout className="min-h-screen">
+        <ScrollToTop />
         <Header />
         <Content className="flex-1">
           <Routes>

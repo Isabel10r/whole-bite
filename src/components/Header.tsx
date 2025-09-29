@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell, faChevronDown, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
+import SimpleEmailModal from './SimpleEmailModal';
 ;
 
 // Header height constant for consistent spacing across components
@@ -15,6 +16,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   // Handle scroll effect
   const handleScroll = () => {
@@ -81,8 +83,18 @@ const Header = () => {
   };
 
   const handleBookNow = () => {
-    // Redirect to Calendly booking
-    window.open('https://calendly.com/isabel10ramirez06', '_blank');
+    // Open email modal instead of direct Calendly redirect
+    setIsEmailModalOpen(true);
+  };
+
+  // Handle email subscription success
+  const handleEmailSuccess = (email: string) => {
+    // Close the email modal
+    setIsEmailModalOpen(false);
+    
+    // Redirect to Calendly with pre-filled information
+    const calendlyUrl = `https://calendly.com/isabel10ramirez06/30min?name=${encodeURIComponent(email.split('@')[0])}&email=${encodeURIComponent(email)}`;
+    window.open(calendlyUrl, '_blank');
   };
 
   const toggleMobileMenu = () => {
@@ -338,6 +350,13 @@ const Header = () => {
         </AnimatePresence>,
         document.body
       )}
+
+      {/* Email Subscription Modal */}
+      <SimpleEmailModal
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
+        onSuccess={handleEmailSuccess}
+      />
     </motion.header>
   );
 };

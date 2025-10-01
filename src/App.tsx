@@ -1,36 +1,48 @@
-import { Routes, Route } from 'react-router-dom'
-import { Layout } from 'antd'
-import { Helmet } from 'react-helmet-async'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop'
-import Home from './pages/Home'
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "antd";
+import { Helmet } from "react-helmet-async";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./pages/Home";
 // import NutritionCalculator from './pages/NutritionCalculator'
-import BMRCalculator from './pages/BMRCalculator'
-import WaterCalculator from './pages/WaterCalculator'
-import Recipes from './pages/Recipes'
-import RecipeDetail from './pages/RecipeDetail'
-import About from './pages/About'
-import './App.css'
-import './i18n'
+import BMRCalculator from "./pages/BMRCalculator";
+import WaterCalculator from "./pages/WaterCalculator";
+import Recipes from "./pages/Recipes";
+import RecipeDetail from "./pages/RecipeDetail";
+import About from "./pages/About";
+import "./App.css";
+import "./i18n";
 
-const { Content } = Layout
+const { Content } = Layout;
 
 function App() {
   return (
     <>
       <Helmet>
         <title>Whole Bite - Expert Nutrition</title>
-        <meta name="description" content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits. Book your consultation today." />
-        <meta name="keywords" content="nutritionist, nutrition, healthy eating, meal plans, recipes, wellness, lifestyle, health" />
+        <meta
+          name="description"
+          content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits. Book your consultation today."
+        />
+        <meta
+          name="keywords"
+          content="nutritionist, nutrition, healthy eating, meal plans, recipes, wellness, lifestyle, health"
+        />
         <meta property="og:title" content="Whole Bite - Expert Nutrition" />
-        <meta property="og:description" content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits." />
+        <meta
+          property="og:description"
+          content="Expert nutrition guidance for a healthier lifestyle. Personalized nutrition plans, healthy recipes, and sustainable habits."
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Whole Bite - Expert Nutrition" />
-        <meta name="twitter:description" content="Expert nutrition guidance for mothers and babies. Specialized in prenatal nutrition, postnatal recovery, and baby weaning." />
+        <meta
+          name="twitter:description"
+          content="Expert nutrition guidance for mothers and babies. Specialized in prenatal nutrition, postnatal recovery, and baby weaning."
+        />
       </Helmet>
-      
+
       <Layout className="min-h-screen">
         <ScrollToTop />
         <Header />
@@ -48,7 +60,7 @@ function App() {
         <Footer />
       </Layout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

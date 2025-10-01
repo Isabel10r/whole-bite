@@ -197,8 +197,8 @@ const HomePage = () => {
         "Monthly 30-min pantry makeover",
         "45-min guided grocery call",
         "Daily WhatsApp support (<24h response)",
-        "Functional training plan with certified trainer",
-        "30+ premium recipes",
+        "Functional training plan",
+        "30 premium recipes",
         "Exclusive community access",
         "Monthly challenges & weekly progress checklist"
       ]

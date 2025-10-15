@@ -59,32 +59,32 @@ const WaterCalculator: React.FC = () => {
   const activityLevels = [
     {
       value: "sedentary",
-      label: "Low (sedentary)",
-      description: "Low (sedentary)",
+      label: "Sedentary (little to no exercise)",
+      description: "Sedentary (little to no exercise)",
       multiplier: 0.03,
     },
     {
       value: "light",
-      label: "Moderate",
-      description: "Moderate",
+      label: "Light (exercise 1-3 days/week)",
+      description: "Light (exercise 1-3 days/week)",
       multiplier: 0.035,
     },
     {
       value: "moderate",
-      label: "Moderate",
-      description: "Moderate",
+      label: "Moderate (exercise 3-5 days/week)",
+      description: "Moderate (exercise 3-5 days/week)",
       multiplier: 0.04,
     },
     {
       value: "high",
-      label: "High (very active)",
-      description: "High (very active)",
+      label: "High (exercise 6-7 days/week)",
+      description: "High (exercise 6-7 days/week)",
       multiplier: 0.045,
     },
     {
       value: "very_high",
-      label: "High (very active)",
-      description: "High (very active)",
+      label: "Very High (intense daily exercise)",
+      description: "Very High (intense daily exercise)",
       multiplier: 0.05,
     },
   ];
@@ -92,13 +92,13 @@ const WaterCalculator: React.FC = () => {
   const climateConditions = [
     {
       value: "temperate",
-      label: "Temperate",
-      description: "Temperate",
+      label: "Temperate (15-25°C / 59-77°F)",
+      description: "Temperate (15-25°C / 59-77°F)",
       adjustment: 0,
     },
-    { value: "warm", label: "Hot", description: "Hot", adjustment: 0.5 },
-    { value: "hot", label: "Hot", description: "Hot", adjustment: 1.0 },
-    { value: "humid", label: "Humid", description: "Humid", adjustment: 0.3 },
+    { value: "warm", label: "Warm (25-32°C / 77-90°F)", description: "Warm (25-32°C / 77-90°F)", adjustment: 0.5 },
+    { value: "hot", label: "Hot (32°C+ / 90°F+)", description: "Hot (32°C+ / 90°F+)", adjustment: 1.0 },
+    { value: "humid", label: "Humid (high humidity)", description: "Humid (high humidity)", adjustment: 0.3 },
   ];
 
   const calculateWaterIntake = async (values: any) => {

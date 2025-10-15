@@ -495,7 +495,10 @@ const WaterCalculator: React.FC = () => {
                         <Select
                           placeholder="Choose your activity level"
                           optionLabelProp="label"
-                          dropdownStyle={{ minWidth: "400px" }}
+                          dropdownStyle={{ 
+                            maxWidth: "calc(100vw - 32px)",
+                            width: "auto"
+                          }}
                           className="rounded-lg"
                           style={{
                             borderRadius: "12px",
@@ -541,7 +544,10 @@ const WaterCalculator: React.FC = () => {
                         <Select
                           placeholder="Choose your climate condition"
                           optionLabelProp="label"
-                          dropdownStyle={{ minWidth: "400px" }}
+                          dropdownStyle={{ 
+                            maxWidth: "calc(100vw - 32px)",
+                            width: "auto"
+                          }}
                           className="rounded-lg"
                           style={{
                             borderRadius: "12px",

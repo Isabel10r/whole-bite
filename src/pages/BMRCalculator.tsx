@@ -754,7 +754,10 @@ const BMRCalculator: React.FC = () => {
                         <Select
                           placeholder="Choose your daily activity level"
                           optionLabelProp="label"
-                          dropdownStyle={{ minWidth: "400px" }}
+                          dropdownStyle={{ 
+                            minWidth: "280px",
+                            maxWidth: "min(400px, calc(100vw - 32px))"
+                          }}
                           className="rounded-lg"
                           style={{
                             borderRadius: "12px",
